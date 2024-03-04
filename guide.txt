@@ -1,0 +1,24 @@
+
+Routes to do:
+
+-> Bookings:
+    -Show Bookings: GET /bookings
+    -Show especific booking(id): GET /bookings/:id
+    -Create new booking: POST /bookings
+    -Update booking: PUT /bookings/:id
+    -Delete booking: DELETE /bookings/:id
+
+->Users:
+    -Show user list: GET /users
+    -Show or get especific user: GET /users/:id
+    -Create new user: POST /users
+    -Update especific user: PUT /users/:id
+    -Delete especific user: DELETE /users/:id
+
+-> Rooms:
+    -Show rooms: GET /rooms
+    -Show especific room: GET /rooms/:id
+    -Create new room: POST /rooms
+    -Update room: PUT /rooms/:id
+    -Delete especific room: DELETE /rooms/:id
+
