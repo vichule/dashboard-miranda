@@ -8,7 +8,7 @@ Routes to do:
     -Update booking: PUT /bookings/:id
     -Delete booking: DELETE /bookings/:id
 
-->Users:
+-> Users:
     -Show user list: GET /users
     -Show or get especific user: GET /users/:id
     -Create new user: POST /users
@@ -22,3 +22,6 @@ Routes to do:
     -Update room: PUT /rooms/:id
     -Delete especific room: DELETE /rooms/:id
 
+-> Contact:
+    -Send message: POST /contact
+    -get contact message?: 
