@@ -7,8 +7,9 @@ export const Login = () => {
     const navigator = useNavigate()
     const [ user, setUser ] = useState({name:'', password: ''})
     const [ formData, setFormData ] = useReducer((formData, newItem) => { return ({...formData, ...newItem} )}, {userName: '', password:''})
-    const auth = useAuth()
     const [ errorMsg, setErrorMsg] = useState('')
+    const auth = useAuth()
+    
 
     let location = useLocation()
     let from = location.state?.from?.pathname || "/"
@@ -18,8 +19,6 @@ export const Login = () => {
         try{
             await auth.login(formData.userName, formData.password)
             navigator(from, { replace: true });
-            localStorage.setItem("user", user)
-            console.log(user)
         }catch (error){
             setErrorMsg(error)
         }

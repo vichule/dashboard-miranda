@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
-    const [ user, setUser ] = useState(null)
+    const [ user, setUser ] = useState(localStorage.getItem('user') || null)
 
     const login = (userName, password) => {
         
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
             if (userName === 'admin' && password === 'password'){
                 setUser({name: userName})
                 resolve('success')
+                localStorage.setItem('user', userName)
             } else {
                 reject('Incorrect password or username')
                 
