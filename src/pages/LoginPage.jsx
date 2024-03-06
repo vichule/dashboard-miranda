@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useAuth } from "../../contexts/AuthContext/auth"
+import { useAuth } from "../contexts/AuthContext/auth"
 
 
 export const Login = () => {
@@ -12,7 +12,7 @@ export const Login = () => {
     
 
     let location = useLocation()
-    let from = location.state?.from?.pathname || "/dashboard"
+    let from = location.state?.from?.pathname || "/root"
 
     const handleLogin = async () => {
         

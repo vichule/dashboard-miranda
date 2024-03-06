@@ -6,14 +6,43 @@ import { BsHighlights } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi"; 
 import { GoBell } from "react-icons/go"; 
 import { HiOutlineLogout } from "react-icons/hi"; 
+import { colors } from "./colors";
 
+const TopMenuStyle =`
+    width: 24px;
+    height: 24px;
+    color: ${colors.hardGreen};
+    cursor:pointer;
+`
+const themeIconsStyle =`
+   width: 24px;
+   height: 24px;
+   cursor:pointer;
+`
+ export const Bell = styled(GoBell)`
+   ${TopMenuStyle}
+ `
+ export const ArrowClosed = styled(IoIosArrowBack)`
+   ${TopMenuStyle}
+ `
+ export const ArrowOpened = styled(IoIosArrowDown)`
+ ${TopMenuStyle}
+`
+ export const Mail = styled(HiOutlineMail)`
+ ${TopMenuStyle}
+`
+ export const Logout = styled(HiOutlineLogout)`
+ ${TopMenuStyle}
+`
+ export const LightsOn = styled(BsHighlights)`
+   ${themeIconsStyle}
+   
+ `
 
- const Bell = styled(GoBell)``
- const ArrowClosed = styled(IoIosArrowBack)``
- const ArrowOpened = styled(IoIosArrowDown)``
- const Mail = styled(HiOutlineMail)``
- const Logout = styled(HiOutlineLogout)``
- const Lights = styled(BsHighlights)``
+ export const LightsOff = styled(BsHighlights)`
+   ${themeIconsStyle}
+   color: ${colors.hardOrange};
+ `
 
  export const icons = {
     bell: <Bell/>,
@@ -21,5 +50,5 @@ import { HiOutlineLogout } from "react-icons/hi";
     arrowOpen: <ArrowOpened/>,
     mail: <Mail/>,
     logout: <Logout/>,
-    lights: <Lights/>,
+    lights: <LightsOn/>,
  }

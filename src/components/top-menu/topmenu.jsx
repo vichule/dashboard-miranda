@@ -1,42 +1,87 @@
 
 import styled from "styled-components";
-import { icons } from "../../styles/icons";
+import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
 import { colors } from "../../styles/colors";
+import { useAuth } from "../../contexts/AuthContext/auth";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 
-const NavIcons = styled.ul`
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-`
-
-const HeaderNav = styled.nav`
-    background-color: ${colors.white};
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-`
-
-export const TopMenu = () => {
 
 
+export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
+    const auth = useAuth()
+    const locationPath = useLocation()
+    const { pathname } = locationPath
+    const [ theme, setTheme ] = useState(true)
+
+    const handleLogout = () => {
+        auth.logout()
+    }
+
+    const toggleTheme = () => {
+        setTheme(!theme)
+      }
+
+    const namePaths = {
+      '/root/dashboard': 'Dashboard',
+      '/root/bookings': 'Bookings',
+      '/root/rooms': 'Rooms',
+      '/root/contact': 'Contact',
+      '/root/users': 'Users',
+    }
+
+    const currentNamePage = namePaths[pathname] || 'Error Path Name'
 
     return (
         <>
             <HeaderNav>
                 <div>
-                    <button>{icons.arrowOpen}</button>
-                    <button style={{display: 'none'}}>{icons.arrowClose}</button>
+                    <button onClick={toggleMenu}>{isSideMenuOpen ? <ArrowOpened/> : <ArrowClosed/>}</button>
                 </div>
-                <div>
+                <h1>{currentNamePage}</h1>
                     <NavIcons>
-                        <li><button>{icons.mail}</button></li>
-                        <li><button>{icons.bell}</button></li>
-                        <li><button>{icons.logout}</button></li>
+                        <button>{icons.mail}</button>
+                        <button>{icons.bell}</button>
+                        <button onClick={handleLogout}>{icons.logout}</button>
                     </NavIcons>
-                </div>
-                <button>{icons.lights}</button>
+                <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button>
             </HeaderNav>
         </>
     )
 }
+
+ const HeaderNav = styled.div`
+    
+    background-color: ${colors.white};
+    display: flex;
+    align-items: center;
+    padding: 3em 5em;
+    gap: 3em;
+    box-shadow: 6px 0px 5px 0px;
+
+    h1{
+        font-size: 2.8rem;
+        font-weight: 600;
+        line-height: 4.2rem;
+        color: ${colors.black}
+    }
+
+    button{
+        background: none;
+        border: none;
+        color: ${colors.black};
+
+        
+    }
+    
+`
+
+const NavIcons = styled.div`
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    gap: 5em;
+
+    
+`
