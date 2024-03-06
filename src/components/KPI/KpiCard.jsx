@@ -48,6 +48,7 @@ const IconContainer = styled.div`
         align-items: center;
         justify-content: center;
         border-radius: 1em;
+        cursor: pointer;
     &:hover{
         background-color: ${colors.red};
         

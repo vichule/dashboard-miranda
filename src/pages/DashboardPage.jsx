@@ -13,8 +13,8 @@ export const Dashboard = () => {
                 <TopContainer>
                     <KpiCard Icon={BedKpi} number={8461} text={'New Booking'}/>
                     <KpiCard Icon={CalendarKpi} number={963} text={'Scheduled Room'}/>
-                    <KpiCard Icon={ChInKpi} number={753} text={'Check In'}/>
-                    <KpiCard Icon={ChOutKpi} number={516} text={'Check Out'}/>
+                    <KpiCard Icon={ChOutKpi} number={753} text={'Check In'}/>
+                    <KpiCard Icon={ChInKpi} number={516} text={'Check Out'}/>
                     
                 </TopContainer>
                 <BotContainer>
