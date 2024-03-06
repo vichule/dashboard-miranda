@@ -7,6 +7,8 @@ import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import Logo from "../../assets/travl.png"
+import MyPic from "../../assets/profilePic.jpeg"
+import { BasicBtnStyled } from "../Button/BtnStyled";
 
 export const LateralMenu = ({ isOpen }) => {
 
@@ -24,14 +26,14 @@ export const LateralMenu = ({ isOpen }) => {
                     <LiStyled><NavLinkStyled to='/root/users'><HiOutlineUser/> Users </NavLinkStyled></LiStyled>
                 </UlStyled>
                 <CardStyled>
-                    <img src="" alt="" />
+                    <img src={MyPic} alt="" />
                     <h2>Javier Cabañas</h2>
                     <p>fake.email@gmail.com</p>
-                    <button>Edit</button>
+                    <BasicBtnStyled>Edit</BasicBtnStyled>
                 </CardStyled>
                 <LateralFooter>
                     <h2>Travl Hotel Admin Dashboard</h2>
-                    <p>© 2020 All Rights Reserved</p>
+                    <p>© 2024 All Rights Reserved</p>
                     <p>Made with ♥ by JavierCB</p>
                 </LateralFooter>
             </LateralMenuStyled>
@@ -47,7 +49,7 @@ export const LateralMenuStyled = styled.div`
     flex-direction: column;
     justify-content: space-around;
     background-color: white;
-    padding: 2em;
+    padding: 0em 3em;
     box-shadow: 0px 0px 5px 0px;
     align-items: center;
 `
@@ -63,18 +65,18 @@ export const CardStyled = styled.div`
     background-color: ${colors.white};
 
     img{
-        width: 30%;
+        width: 40%;
         border-radius: 1em;
     }
 
     h2{
-        margin: .5em 0 ;
+        margin: 0.5em 0em;
         font-size: 1.8rem;
         color: ${colors.black};
     }
 
     p{
-        margin: .5em 0 1em 0 ;
+        margin: 0.5em 0em 1em 0em;
         font-size: 1.2rem;
         color: ${colors.black};
     }
@@ -89,14 +91,14 @@ export const LateralFooter = styled.div`
     gap: 1em;
 
     p{
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         font-weight:400;
         color:#799283;
         line-height: 2.1rem;
     }
 
     h2{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 600;
         line-height: 2.5rem;
         color: ${colors.black}
@@ -126,11 +128,11 @@ export const UlStyled = styled.ul`
 `
 
 export const LiStyled = styled.li `
-     margin-bottom: 5%;
+     margin-bottom: 20%;
 `
 
 const LogoStyled = styled.img`
-    width: 80%;
+    width: 100%;
     padding: 1rem;
     margin: 0 auto 2rem auto;
 `

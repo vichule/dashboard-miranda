@@ -20,7 +20,7 @@ export const darkTheme = {
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-        background-color: ${colors.white};
+        background-color: ${colors.whiteSemi};
         color: ${colors.black};
     }
 

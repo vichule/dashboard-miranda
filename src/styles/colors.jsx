@@ -1,7 +1,9 @@
 
 export const colors = {
     black: 'black',
+    blackSemi: '#393939',
     white: 'white',
+    whiteSemi: '#f8f8f8',
     darkWhite: '#00000014',
     red: '#E23428',
     lightRed: '#FFEDEC',
