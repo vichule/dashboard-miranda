@@ -31,6 +31,10 @@ export const Contact = () => {
                 </TopContainer>
             </ContactContainer>
             <BotContainer>
+                <ContactMenu>
+                    <h2> All Contacts </h2>
+                    <h2> Archived </h2>
+                </ContactMenu>
             <TableStyled>
                 <thead>
                         <tr>
@@ -79,5 +83,16 @@ const ContactContainer = styled.div`
 
 const BotContainer = styled.div`
     padding: 0em 3em;
+`
+
+const ContactMenu = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 10%;
+    
+    h2{
+        cursor: pointer;
+    }
 `
 

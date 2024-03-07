@@ -1,4 +1,3 @@
-import data from '../../data/comments.json'
 import { TdText } from './StyledTable'
 
 export const ContactTable = ({ data }) => {

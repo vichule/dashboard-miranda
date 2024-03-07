@@ -1,4 +1,3 @@
-import data from '../../data/bookings.json'
 import { TdText } from './StyledTable'
 
 export const BookingsTable = ({ data }) => {
