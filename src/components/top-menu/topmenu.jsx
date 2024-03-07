@@ -11,8 +11,7 @@ import { useState } from "react";
 
 export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
     const auth = useAuth()
-    const locationPath = useLocation()
-    const { pathname } = locationPath
+    const locationPath = useLocation().pathname
     const [ theme, setTheme ] = useState(true)
 
     const handleLogout = () => {
@@ -31,7 +30,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
       '/root/users': 'Users',
     }
 
-    const currentNamePage = namePaths[pathname] || 'Error Path Name'
+    const currentNamePage = namePaths[locationPath] || 'Error Path Name'
 
     return (
         <>

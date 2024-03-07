@@ -61,7 +61,7 @@ export const SwiperReview = () => {
 }
 
 
-export const StyledSwiper = styled(Swiper)`
+const StyledSwiper = styled(Swiper)`
     width: 100%;
     margin: 0 auto;
     padding: 2em;
@@ -97,6 +97,7 @@ const ReviewContainer = styled.div`
     margin: 0em 3em;
     border-radius: 3em;
     transition: all ease 300ms;
+    background-color: ${colors.white};
 
     &:hover{
         scale: 1.02;

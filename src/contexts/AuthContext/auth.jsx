@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
         
         return new Promise((resolve, reject) => {
 
-            if (userName === 'admin' && password === 'password'){
+            if (userName === 'admin@admin.co' && password === 'adminadmin'){
                 setUser({name: userName})
                 resolve('success')
                 localStorage.setItem('user', userName)

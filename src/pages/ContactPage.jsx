@@ -1,26 +1,63 @@
 import styled from "styled-components"
 import { SwiperReview } from "../components/Swipers/SwiperReview"
-
+import { ContactTable } from "../components/Tables/ContactTable"
+import data from '../data/comments.json'
+import { useState } from "react"
+import { colors } from "../styles/colors"
+import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 
 
 
 export const Contact = () => {
 
+    const [ contacts, setContacts] = useState(data)
+    const [currentPage, setCurrentPage] = useState(1)
 
+    const rows = 4;
+    const firstPage = (currentPage - 1) * rows
+    const LastPage = firstPage + rows;
+    const displayedRows = contacts.slice(firstPage, LastPage)
+    const totalPages = Math.ceil(contacts.length / rows);
 
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+      };
 
     return (
         <>
-            <TopContainer>
-                <h1>Contact</h1>
-                <SwiperReview/>
-            </TopContainer>
+            <ContactContainer>
+                <TopContainer>
+                    <SwiperReview/>
+                </TopContainer>
+            </ContactContainer>
+            <BotContainer>
+            <TableStyled>
+                <thead>
+                        <tr>
+                            <TdStyled>Date & Id</TdStyled>
+                            <TdStyled>Customer, Email & Phone</TdStyled>
+                            <TdStyled>Subject & Comment</TdStyled>
+                            <TdStyled>Action</TdStyled>
+                        </tr>
+                </thead>
+                <tbody>
+                    <ContactTable data={displayedRows}/>
+                </tbody>
+                
+            </TableStyled>
+            <div>
+                    <button onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>Previous</button>
+                    <button onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+            </div>
+            </BotContainer>
         </>
     )
 }
 
 
-export const TopContainer = styled.div`
+const TopContainer = styled.div`
     max-height: 30rem;
     width: 100%;
     max-width: 140rem;  
@@ -30,3 +67,17 @@ export const TopContainer = styled.div`
     align-items: center;
     margin: 0 auto;
 `
+
+const ContactContainer = styled.div`
+    padding: 3em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+`
+
+const BotContainer = styled.div`
+    padding: 0em 3em;
+`
+

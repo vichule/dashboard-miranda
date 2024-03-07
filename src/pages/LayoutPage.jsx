@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { TopMenu } from "../components/top-menu/topmenu"
+import { TopMenu } from "../components/Top-menu/topmenu"
 import { LateralMenu } from "../components/lateral-menu/lateralmenu"
 import { Outlet } from "react-router-dom"
 import { useState } from "react"

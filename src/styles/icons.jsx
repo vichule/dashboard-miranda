@@ -26,11 +26,19 @@ import { HiOutlineUser } from "react-icons/hi";
       height: 24px;
       color: ${colors.hardGreen};
       cursor:pointer;
+      &:hover{
+         scale: 1.2;
+         
+     }
    `
    const themeIconsStyle =`
       width: 24px;
       height: 24px;
       cursor:pointer;
+      &:hover{
+         scale: 1.2;
+         
+     }
    `
 
    const KpiStyledIcons =`
@@ -100,7 +108,7 @@ import { HiOutlineUser } from "react-icons/hi";
    `
 export const KeyIconMenu = styled(SlKey)`
       ${LateralMenuStyle}
-      transform: 'rotate(-45deg)';
+      transform: rotate(-45deg);
    `
    export const PuzzleIconMenu = styled(HiOutlinePuzzle)`
       ${LateralMenuStyle}
