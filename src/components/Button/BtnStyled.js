@@ -10,4 +10,10 @@ export const BasicBtnStyled = styled.button`
     border-radius: 8px;
     background-color: ${colors.whiteSemi};
     color: ${colors.hardGreen};
+    transition: all ease 300ms;
+
+    &:hover{
+        background-color: ${colors.hardGreen};
+        color: ${colors.whiteSemi};
+    }
 `

@@ -1,14 +1,10 @@
 import { NavLink } from "react-router-dom"
-import { LuLayoutDashboard } from "react-icons/lu";
-import { SlKey } from "react-icons/sl";
-import { TbCalendarCheck } from "react-icons/tb";
-import { HiOutlinePuzzle } from "react-icons/hi";
-import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import Logo from "../../assets/travl.png"
 import MyPic from "../../assets/profilePic.jpeg"
 import { BasicBtnStyled } from "../Button/BtnStyled";
+import { CalendarIconMenu, DashboardIconMenu, KeyIconMenu, PuzzleIconMenu, UserIconMenu } from "../../styles/icons";
 
 export const LateralMenu = ({ isOpen }) => {
 
@@ -19,11 +15,11 @@ export const LateralMenu = ({ isOpen }) => {
             isOpen && <LateralMenuStyled>
                 <LogoStyled src={Logo}/>
                 <UlStyled>
-                    <LiStyled><NavLinkStyled to='/root/dashboard'><LuLayoutDashboard/> Dashboard </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/bookings'><TbCalendarCheck/> Bookings </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/rooms'><SlKey style = {{transform: 'rotate(-45deg)' }}/> Rooms </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/contact'><HiOutlinePuzzle/> Contact </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/users'><HiOutlineUser/> Users </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/root/dashboard'><DashboardIconMenu/> Dashboard </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/root/bookings'><CalendarIconMenu/> Bookings </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/root/rooms'><KeyIconMenu/> Rooms </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/root/contact'><PuzzleIconMenu/> Contact </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/root/users'><UserIconMenu/> Users </NavLinkStyled></LiStyled>
                 </UlStyled>
                 <CardStyled>
                     <img src={MyPic} alt="" />

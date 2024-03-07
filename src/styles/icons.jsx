@@ -7,11 +7,20 @@ import { BsHighlights } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi"; 
 import { GoBell } from "react-icons/go"; 
 import { HiOutlineLogout } from "react-icons/hi"; 
-import { HiOutlineLogin } from "react-icons/hi"; //<HiOutlineLogin />
-import { MdBed } from "react-icons/md"; //<MdBed />
-import { TbCalendarCheck } from "react-icons/tb"; //<TbCalendarCheck/>
+import { HiOutlineLogin } from "react-icons/hi"; 
+import { MdBed } from "react-icons/md"; 
+import { TbCalendarCheck } from "react-icons/tb"; 
+import { RxCrossCircled } from "react-icons/rx";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { SlKey } from "react-icons/sl";
+import { HiOutlinePuzzle } from "react-icons/hi";
+import { HiOutlineUser } from "react-icons/hi";
 
 
+   const LateralMenuStyle = `
+      font-size: 2.5rem;
+   `
    const TopMenuStyle =`
       width: 24px;
       height: 24px;
@@ -71,6 +80,38 @@ import { TbCalendarCheck } from "react-icons/tb"; //<TbCalendarCheck/>
    export const ChInKpi = styled(HiOutlineLogin)`
       ${KpiStyledIcons}
    `
+
+   export const CrossIcon = styled(RxCrossCircled)`
+      font-size: 2.2rem;
+      color: ${colors.red};
+      cursor: pointer;
+   `
+   export const CheckIcon = styled(FaRegCheckCircle)`
+      font-size: 2rem;
+      color: ${colors.green};
+      cursor: pointer;
+   `
+
+   export const CalendarIconMenu = styled(TbCalendarCheck)`
+      ${LateralMenuStyle}
+   `
+   export const DashboardIconMenu = styled(LuLayoutDashboard)`
+      ${LateralMenuStyle}
+   `
+export const KeyIconMenu = styled(SlKey)`
+      ${LateralMenuStyle}
+      transform: 'rotate(-45deg)';
+   `
+   export const PuzzleIconMenu = styled(HiOutlinePuzzle)`
+      ${LateralMenuStyle}
+   `
+export const UserIconMenu = styled(HiOutlineUser)`
+      ${LateralMenuStyle}
+   `
+
+
+
+
 
    export const icons = {
       bell: <Bell/>,

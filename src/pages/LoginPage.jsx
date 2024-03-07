@@ -12,7 +12,7 @@ export const Login = () => {
     
 
     let location = useLocation()
-    let from = location.state?.from?.pathname || "/root"
+    let from = location.state?.from?.pathname || "/root/dashboard"
 
     const handleLogin = async () => {
         

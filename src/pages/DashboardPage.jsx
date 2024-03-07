@@ -3,6 +3,7 @@ import { KpiCard } from "../components/KPI/KpiCard"
 import { BedKpi, CalendarKpi, ChInKpi, ChOutKpi } from "../styles/icons"
 import { colors } from "../styles/colors"
 
+import { SwiperReview } from "../components/Swipers/SwiperReview"
 
 export const Dashboard = () => {
 
@@ -18,10 +19,9 @@ export const Dashboard = () => {
                     
                 </TopContainer>
                 <BotContainer>
-                    {/*Header Review*/}
-                    <h1>Latest Reviews by Customers</h1>
-                    {/*Swiper Review*/}
-                    <p>Swiper</p>
+                    <HeaderReview>Latest Reviews by Customers</HeaderReview>
+                    
+                    <SwiperReview/>
                 </BotContainer>
 
             </DashboardContainer>
@@ -36,7 +36,7 @@ const DashboardContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     padding: 3em;
-    height: 100%;
+    height: 87rem;
     gap: 2em;
 `
 const TopContainer = styled.div`
@@ -54,6 +54,14 @@ const BotContainer = styled.div`
     width: 100%;
     padding: 2em;
     border-radius: 1em;
+    justify-content: space-between;
     
     background-color: ${colors.white};
+`
+
+const HeaderReview = styled.h1`
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 2em;
+    font-weight: 500;
 `
