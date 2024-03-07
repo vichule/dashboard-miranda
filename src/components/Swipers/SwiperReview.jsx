@@ -12,6 +12,10 @@ import { CheckIcon, CrossIcon } from "../../styles/icons";
 
 export const SwiperReview = () => {
 
+    const differenceDate = (date) => {
+        return Math.floor(((Date.now() - new Date(date).getTime()) )/(1000*60*60*24))
+    }
+
 
     return(
         <>
@@ -25,7 +29,7 @@ export const SwiperReview = () => {
                 }}
 
             >
-                {data.map(({ message, photo, first_name, last_name, id}) =>
+                {data.map(({ message, photo, first_name, last_name, id, date}) =>
                 <SwiperSlide key={id}>
                     <ReviewContainer>
                         
@@ -35,7 +39,10 @@ export const SwiperReview = () => {
                             </TextContainer>
                             <UserContainer>
                                 <ImgUser src={photo} alt="" />
-                                <TextUser>{first_name} {last_name}</TextUser>
+                                <div>
+                                    <TextUser>{first_name} {last_name}</TextUser>
+                                    <DateUser>{differenceDate(date)} days ago</DateUser>
+                                </div>
                                 <CheckIcon/>
                                 <CrossIcon/>
                             </UserContainer>
@@ -131,5 +138,12 @@ const TextUser = styled.p`
     color:${colors.black};
     font-size: 1.5rem;
     font-weight:600;
+    line-height: 2rem;
+`
+
+const DateUser = styled.p`
+    color:${colors.lightGrey};
+    font-size: 1rem;
+    font-weight:400;
     line-height: 2rem;
 `
