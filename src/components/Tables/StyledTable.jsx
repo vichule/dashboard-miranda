@@ -9,6 +9,7 @@ export const TableStyled = styled.table`
     text-align: left;
     padding: 0em 5em 0em 5em;
     border-spacing: 1rem 2em;
+    min-height: 80rem;
     height: 50rem;
     background-color: ${colors.white};
     margin-bottom: 2em;
