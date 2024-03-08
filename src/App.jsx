@@ -31,15 +31,14 @@ function App() {
             <Provider store={store}>
               <BrowserRouter>
                 <Routes>
-                  <Route path='/' element={<Login/>}/>
-                  <Route path='/root' element={<RequireAuth><Layout/></RequireAuth>}>
-                    <Route path='dashboard' element={<Dashboard/>}/>
-                    <Route path='bookings' element={<Bookings/>}/>
-                    <Route path='rooms' element={<Rooms/>}/>
-                    <Route path='users' element={<Users/>}/>
-                    <Route path='contact' element={<Contact/>}/>
+                  <Route path='/login' element={<Login/>}/>
+                  <Route path='' element={<RequireAuth><Layout/></RequireAuth>}>
+                    <Route path='/' element={<RequireAuth><Dashboard/></RequireAuth>}/>
+                    <Route path='bookings' element={<RequireAuth><Bookings/></RequireAuth>}/>
+                    <Route path='rooms' element={<RequireAuth><Rooms/></RequireAuth>}/>
+                    <Route path='users' element={<RequireAuth><Users/></RequireAuth>}/>
+                    <Route path='contact' element={<RequireAuth><Contact/></RequireAuth>}/>
                   </Route>
-                  <Route path='*' element={<Navigate to='/' />} />
                 </Routes>
               </BrowserRouter>
             </Provider>

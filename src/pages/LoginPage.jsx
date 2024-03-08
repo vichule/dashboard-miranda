@@ -16,7 +16,7 @@ export const Login = () => {
     
 
     let location = useLocation()
-    let from = location.state?.from?.pathname || "/root/dashboard"
+    let from = location.state?.from?.pathname || "/"
 
     const handleLogin = async (event) => {
         event.preventDefault()
@@ -43,13 +43,15 @@ export const Login = () => {
 
                         <InputContainer>
                             <LoginLabel htmlFor="username">Username</LoginLabel>
-                            <input value={formData.userName} placeholder="admin@admin.co" name="username" id="username" type="text" onChange={ (e) => setFormData({userName: e.target.value})} />
+                            <input value={formData.userName} placeholder="example@example.com" name="username" id="username" type="text" onChange={ (e) => setFormData({userName: e.target.value})} />
                         </InputContainer>
                         <InputContainer>
                             <LoginLabel htmlFor="password">Password</LoginLabel>
-                            <input value={formData.password} placeholder="adminadmin" name="password" id="password" type="password" onChange={ (e) => setFormData({password: e.target.value})}/>
+                            <input value={formData.password} placeholder="exampleword" name="password" id="password" type="password" onChange={ (e) => setFormData({password: e.target.value})}/>
                         </InputContainer>
 
+                        <p>admin@admin.co</p>
+                        <p>adminadmin</p>
                     
                         <BasicBtnStyled type="submit" style={{marginTop: '5em'}}>Log In</BasicBtnStyled>
                     </form>
@@ -81,6 +83,10 @@ const LoginContainer = styled.div`
     border-radius: 5em;
     margin: 0 auto;
     width: 45rem;
+
+    p{
+        color: ${colors.white};
+    }
 `
 const ErrorContainer = styled.div`
     background-color: ${colors.red};

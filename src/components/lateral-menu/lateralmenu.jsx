@@ -15,11 +15,11 @@ export const LateralMenu = ({ isOpen }) => {
             isOpen && <LateralMenuStyled>
                 <LogoStyled src={Logo}/>
                 <UlStyled>
-                    <LiStyled><NavLinkStyled to='/root/dashboard'><DashboardIconMenu/> Dashboard </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/bookings'><CalendarIconMenu/> Bookings </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/rooms'><KeyIconMenu/> Rooms </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/contact'><PuzzleIconMenu/> Contact </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/root/users'><UserIconMenu/> Users </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/'><DashboardIconMenu/> Dashboard </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/bookings'><CalendarIconMenu/> Bookings </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/rooms'><KeyIconMenu/> Rooms </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/contact'><PuzzleIconMenu/> Contact </NavLinkStyled></LiStyled>
+                    <LiStyled><NavLinkStyled to='/users'><UserIconMenu/> Users </NavLinkStyled></LiStyled>
                 </UlStyled>
                 <CardStyled>
                     <img src={MyPic} alt="" />

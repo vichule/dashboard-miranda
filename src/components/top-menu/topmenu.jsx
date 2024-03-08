@@ -23,11 +23,11 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
       }
 
     const namePaths = {
-      '/root/dashboard': 'Dashboard',
-      '/root/bookings': 'Bookings',
-      '/root/rooms': 'Rooms',
-      '/root/contact': 'Contact',
-      '/root/users': 'Users',
+      '/': 'Dashboard',
+      '/bookings': 'Bookings',
+      '/rooms': 'Rooms',
+      '/contact': 'Contact',
+      '/users': 'Users',
     }
 
     const currentNamePage = namePaths[locationPath] || 'Error Path Name'
