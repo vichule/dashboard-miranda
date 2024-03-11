@@ -3,13 +3,15 @@ import { TdText } from './StyledTable'
 
 export const RoomsTable = ({ data }) => {
 
-
+const handleInfo = (id) =>{
+    console.log(id)
+}
 
     return(
         <>
             {data.map((json) => (
 
-                    <tr key={json.id}>
+                    <tr key={json.id} onClick={()=> handleInfo(json.id)}>
                         <td style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                             <RoomsImgStyled src={json.photos[0]} alt="" />
                             <div>
@@ -27,13 +29,13 @@ export const RoomsTable = ({ data }) => {
                             <p>{json.amenities.join(', ')}</p>
                         </td>
                         <td>
-                            <TdText>{json.price}</TdText>
+                            <TdText>{json.price}/Night</TdText>
                         </td>
                         <td>
                             <p>{json.status}</p>
                         </td>
                         <td>
-                            <p>*--*</p>
+                            <button >*--*</button>
                         </td>
                     </tr>
 

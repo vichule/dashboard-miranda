@@ -2,14 +2,21 @@ import styled from "styled-components"
 import data from '../data/users.json'
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { BookingsTable } from "../components/Tables/BookingsTable"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { UsersTable } from "../components/Tables/UsersTable"
+import { useDispatch, useSelector } from "react-redux"
+import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
+import { userListThunk } from "../features/users/usersThunk"
 
 
 
 export const Users = () => {
+    const dispatch = useDispatch()
+    const usersData = useSelector(getUsersData)
+    const usersDataError = useSelector(getUsersError)
+    const usersDataStatus = useSelector(getUsersStatus)
 
-    const [ users, setUsers] = useState(data)
+    const [ users, setUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const rows = 5;
@@ -22,6 +29,22 @@ export const Users = () => {
         setCurrentPage(newPage);
       };
 
+
+    useEffect(() =>{
+        let newUsers = []
+        if(usersDataStatus === 'idle'){
+            dispatch(userListThunk())
+        }else if(usersDataStatus === 'pending'){
+
+        }else if (usersDataStatus === 'fulfilled'){
+            newUsers = [...usersData]
+            setUsers(newUsers)
+
+        }else if(usersDataStatus === 'rejected'){
+            console.log(usersDataError)
+        }
+
+    },[dispatch, usersData, usersDataStatus])
 
     return (
         <>

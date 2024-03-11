@@ -2,15 +2,21 @@ import styled from "styled-components"
 import { SwiperReview } from "../components/Swipers/SwiperReview"
 import { ContactTable } from "../components/Tables/ContactTable"
 import data from '../data/comments.json'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { colors } from "../styles/colors"
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
+import { useDispatch, useSelector } from "react-redux"
+import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../features/contact/contactSlice"
+import { commentsListThunk } from "../features/contact/contactThunk"
 
 
 
 export const Contact = () => {
-
-    const [ contacts, setContacts] = useState(data)
+    const dispatch = useDispatch()
+    const commentsData = useSelector(getCommentsListData)
+    const commentsDataError = useSelector(getCommentsListError)
+    const commentsDataStatus = useSelector(getCommentsListStatus)
+    const [ contacts, setContacts] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const rows = 4;
@@ -22,6 +28,22 @@ export const Contact = () => {
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
+
+    useEffect(() =>{
+        let newComments = []
+        if(commentsDataStatus === 'idle'){
+            dispatch(commentsListThunk())
+        }else if (commentsDataStatus === 'pending'){
+        
+            
+        }else if(commentsDataStatus === 'fulfilled'){
+            newComments = [...commentsData]
+            setContacts(newComments)
+
+        }else if(commentsDataStatus === 'rejected'){
+            console.log(commentsDataError)
+        }
+    },[dispatch, commentsData, commentsDataStatus])
 
     return (
         <>

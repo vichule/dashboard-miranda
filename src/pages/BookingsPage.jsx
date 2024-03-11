@@ -2,13 +2,19 @@ import styled from "styled-components"
 import data from '../data/bookings.json'
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { BookingsTable } from "../components/Tables/BookingsTable"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
+import { bookingsListThunk } from "../features/bookings/bookingsThunk"
 
 
 
 export const Bookings = () => {
-
-    const [ bookings, setBookings] = useState(data)
+    const bookingsData = useSelector(getBookingsData)
+    const bookingsDataError = useSelector(getBookingsError)
+    const bookingsDataStatus = useSelector(getBookingsStatus)
+    const dispatch = useDispatch()
+    const [ bookings, setBookings] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const rows = 10;
@@ -21,6 +27,21 @@ export const Bookings = () => {
         setCurrentPage(newPage);
       };
 
+    useEffect(() =>{
+        let newBookings = []
+        if(bookingsDataStatus === 'idle'){
+            dispatch(bookingsListThunk())
+        }
+        if (bookingsDataStatus === 'pending'){
+            
+        }else if(bookingsDataStatus === 'fulfilled'){
+            newBookings = [...bookingsData]
+            setBookings(newBookings)
+
+        }else if(bookingsDataStatus === 'rejected'){
+            console.log(roomsDataError)
+        }
+    },[dispatch, bookingsData, bookingsDataStatus])
 
     return (
         <>

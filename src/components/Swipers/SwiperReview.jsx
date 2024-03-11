@@ -1,4 +1,3 @@
-import { CardReview } from "./CardReview"
 import { Swiper, SwiperSlide} from "swiper/react";
 import { Keyboard, Navigation } from 'swiper/modules';
 
@@ -9,8 +8,33 @@ import "swiper/css/navigation";
 import { colors } from "../../styles/colors";
 import styled from "styled-components";
 import { CheckIcon, CrossIcon } from "../../styles/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../../features/contact/contactSlice"
+import { commentsListThunk } from "../../features/contact/contactThunk"
+import { useEffect, useState } from "react";
 
 export const SwiperReview = () => {
+    const dispatch = useDispatch()
+    const commentsData = useSelector(getCommentsListData)
+    const commentsDataError = useSelector(getCommentsListError)
+    const commentsDataStatus = useSelector(getCommentsListStatus)
+    const [ comments, setComments] = useState([])
+
+    useEffect(() =>{
+        let newComments = []
+        if(commentsDataStatus === 'idle'){
+            dispatch(commentsListThunk())
+        }
+        if (commentsDataStatus === 'pending'){
+            
+        }else if(commentsDataStatus === 'fulfilled'){
+            newComments = [...commentsData]
+            setComments(newComments)
+
+        }else if(commentsDataStatus === 'rejected'){
+            console.log(commentsDataError)
+        }
+    },[dispatch, commentsData, commentsDataStatus])
 
     const differenceDate = (date) => {
         return Math.floor(((Date.now() - new Date(date).getTime()) )/(1000*60*60*24))
@@ -29,7 +53,7 @@ export const SwiperReview = () => {
                 }}
 
             >
-                {data.map(({ message, photo, first_name, last_name, id, date}) =>
+                {comments.map(({ message, photo, first_name, last_name, id, date}) =>
                 <SwiperSlide key={id}>
                     <ReviewContainer>
                         

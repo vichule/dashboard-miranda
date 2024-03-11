@@ -1,15 +1,22 @@
 import styled from "styled-components"
 import data from '../data/rooms.json'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { colors } from "../styles/colors"
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { RoomsTable } from "../components/Tables/RoomsTable"
+import { useDispatch, useSelector } from "react-redux"
+import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
+import { roomListThunk } from "../features/rooms/roomsThunk"
 
 
 
 export const Rooms = () => {
-
-    const [ rooms, setRooms] = useState(data)
+    const roomsData = useSelector(getRoomsData)
+    const roomsDataStatus = useSelector(getRoomsStatus)
+    const roomsDataError = useSelector(getRoomsError)
+    const dispatch = useDispatch()
+    
+    const [ rooms, setRooms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
 
     const rows = 4;
@@ -17,6 +24,24 @@ export const Rooms = () => {
     const LastPage = firstPage + rows;
     const displayedRows = rooms.slice(firstPage, LastPage)
     const totalPages = Math.ceil(rooms.length / rows);
+
+
+    useEffect(() =>{
+        let newRooms = []
+        if(roomsDataStatus === 'idle'){
+            dispatch(roomListThunk())
+        } else if (roomsDataStatus === 'pending'){
+            console.log(roomsDataStatus)
+
+        } else if (roomsDataStatus === 'fulfilled'){
+            newRooms = [...roomsData]
+            setRooms(newRooms)
+
+        } else if (roomsDataStatus === 'rejected'){
+            console.log(roomsDataError)
+        }
+        
+    },[dispatch, roomsDataStatus, roomsData])
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -43,7 +68,7 @@ export const Rooms = () => {
                         </tr>
                 </thead>
                 <tbody>
-                    <RoomsTable data={displayedRows}/>
+                    <RoomsTable data={displayedRows} />
                 </tbody>
                 
             </TableStyled>
