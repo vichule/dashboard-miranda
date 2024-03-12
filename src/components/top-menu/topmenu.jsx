@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
 import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -14,9 +14,11 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
     const locationPath = useLocation().pathname
     const [ theme, setTheme ] = useState(true)
     const { id } = useParams()
+    const navigator = useNavigate()
 
     const handleLogout = () => {
         auth.logout()
+        navigator('/login')
     }
 
     const toggleTheme = () => {

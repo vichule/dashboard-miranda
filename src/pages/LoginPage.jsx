@@ -7,9 +7,8 @@ import { BasicBtnStyled } from "../components/Button/BtnStyled"
 import styled from "styled-components"
 import { colors } from "../styles/colors"
 
-export const Login = () => {
+export const Login = ({setAuthUser}) => {
     const navigator = useNavigate()
-    const [ user, setUser ] = useState({name:'', password: ''})
     const [ formData, setFormData ] = useReducer((formData, newItem) => { return ({...formData, ...newItem} )}, {userName: '', password:''})
     const [ errorMsg, setErrorMsg] = useState('')
     const auth = useAuth()
@@ -20,20 +19,21 @@ export const Login = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault()
-        try{
-            await auth.login(formData.userName, formData.password)
-            navigator(from, { replace: true });
-        }catch (error){
-            setErrorMsg(error)
+
+        if (formData.userName === 'admin@admin.co' && formData.password === 'adminadmin') {
+            setAuthUser(true)
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(navigator(from, { replace: true }))
+                }, 800)
+            })
+            
+        } else {
+            setErrorMsg('Incorrect values')
         }
     }
 
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-          setUser(loggedInUser);
-        }
-      }, []);
+   
 
     return (
             <LoginPageStyled style={{backgroundImage: `url(${Background})`}}>
