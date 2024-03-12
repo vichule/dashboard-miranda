@@ -5,6 +5,6 @@ export const bookingsListThunk = createAsyncThunk('bookings/fetchBookings', asyn
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 1500)
+        }, 1200)
     })
 })

@@ -6,6 +6,6 @@ export const roomListThunk = createAsyncThunk('rooms/fetchRooms', async () =>{
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 1500)
+        }, 1000)
     })
 })

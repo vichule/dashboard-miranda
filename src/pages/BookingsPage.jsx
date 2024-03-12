@@ -39,7 +39,7 @@ export const Bookings = () => {
             setBookings(newBookings)
 
         }else if(bookingsDataStatus === 'rejected'){
-            console.log(roomsDataError)
+            console.log(bookingsDataError)
         }
     },[dispatch, bookingsData, bookingsDataStatus])
 

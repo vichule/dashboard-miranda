@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
 import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 
 
@@ -13,6 +13,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
     const auth = useAuth()
     const locationPath = useLocation().pathname
     const [ theme, setTheme ] = useState(true)
+    const { id } = useParams()
 
     const handleLogout = () => {
         auth.logout()
@@ -28,6 +29,8 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
       '/rooms': 'Rooms',
       '/contact': 'Contact',
       '/users': 'Users',
+      [`/bookings/booking/${id}`]: `Bookings > Booking Nº ${id} `,
+      [`/rooms/room/${id}`]: `Rooms > Room Nº ${id} `,
     }
 
     const currentNamePage = namePaths[locationPath] || 'Error Path Name'

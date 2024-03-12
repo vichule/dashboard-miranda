@@ -15,6 +15,8 @@ import { RequireAuth } from './contexts/AuthContext/RequireAuth.jsx'
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, darkTheme, lightTheme } from './styles/theme.jsx'
 import { Layout } from './pages/LayoutPage.jsx'
+import { BookingID } from './pages/BookingPage.jsx'
+import { RoomID } from './pages/RoomPage.jsx'
 
 
 
@@ -35,7 +37,9 @@ function App() {
                   <Route path='' element={<RequireAuth><Layout/></RequireAuth>}>
                     <Route path='/' element={<RequireAuth><Dashboard/></RequireAuth>}/>
                     <Route path='bookings' element={<RequireAuth><Bookings/></RequireAuth>}/>
+                    <Route path='bookings/booking/:id' element={<BookingID />} />
                     <Route path='rooms' element={<RequireAuth><Rooms/></RequireAuth>}/>
+                    <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='users' element={<RequireAuth><Users/></RequireAuth>}/>
                     <Route path='contact' element={<RequireAuth><Contact/></RequireAuth>}/>
                   </Route>

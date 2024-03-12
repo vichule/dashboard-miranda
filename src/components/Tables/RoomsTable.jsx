@@ -1,11 +1,14 @@
 import styled from 'styled-components'
 import { TdText } from './StyledTable'
+import { useNavigate } from 'react-router-dom'
 
 export const RoomsTable = ({ data }) => {
 
-const handleInfo = (id) =>{
-    console.log(id)
-}
+    const navigator = useNavigate()
+    const handleInfo = (id) =>{
+        console.log(id)
+        navigator(`/rooms/room/${id}`)
+    }
 
     return(
         <>
