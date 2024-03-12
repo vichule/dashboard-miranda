@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import { TdText } from './StyledTable'
+import { useNavigate } from 'react-router-dom'
 
 export const UsersTable = ({ data }) => {
-
+    const navigator = useNavigate()
+    const handleEdit = () =>{
+        navigator('/users/user/1')
+    }
 
 
     return(
@@ -29,7 +33,7 @@ export const UsersTable = ({ data }) => {
                             <p>Active</p>
                         </td>
                         <td>
-                            <p>*...*</p>
+                            <button onClick={handleEdit}> Edit</button>
                         </td>
                     </tr>
 

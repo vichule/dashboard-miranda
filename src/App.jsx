@@ -17,6 +17,7 @@ import { GlobalStyles, darkTheme, lightTheme } from './styles/theme.jsx'
 import { Layout } from './pages/LayoutPage.jsx'
 import { BookingID } from './pages/BookingPage.jsx'
 import { RoomID } from './pages/RoomPage.jsx'
+import { UserID } from './pages/UserPage.jsx'
 
 
 
@@ -50,6 +51,7 @@ function App() {
                     <Route path='rooms' element={<RequireAuth authUser={authUser}><Rooms/></RequireAuth>}/>
                     <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='users' element={<RequireAuth authUser={authUser}><Users/></RequireAuth>}/>
+                    <Route path='users/user/1' element={<UserID />} />
                     <Route path='contact' element={<RequireAuth authUser={authUser}><Contact/></RequireAuth>}/>
                   </Route>
                 </Routes>
