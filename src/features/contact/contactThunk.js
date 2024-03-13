@@ -5,7 +5,16 @@ export const commentsListThunk = createAsyncThunk('contacts/fetchComments', asyn
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 1500)
+        }, 200)
     })
 
+})
+
+
+export const commentThunk = createAsyncThunk('users/fetchComment', async (id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve((data.find((comment) => comment.id === id) || null));
+        }, 200)
+    })
 })

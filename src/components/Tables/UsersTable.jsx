@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 
 export const UsersTable = ({ data }) => {
     const navigator = useNavigate()
-    const handleEdit = () =>{
-        navigator('/users/user/1')
+    const handleEdit = (id) =>{
+        navigator(`/users/user/${id}`)
     }
 
 
@@ -33,7 +33,7 @@ export const UsersTable = ({ data }) => {
                             <p>Active</p>
                         </td>
                         <td>
-                            <button onClick={handleEdit}> Edit</button>
+                            <button onClick={()=> handleEdit(json.id)}> Edit</button>
                         </td>
                     </tr>
 

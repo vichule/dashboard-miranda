@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { commentsListThunk } from "./contactThunk";
+import { commentThunk, commentsListThunk } from "./contactThunk";
 
 const initialState = {
     status: "idle",
     data: [],
     error: null,
+    comment: {
+        data: null,
+        status: 'idle',
+        error: null
+    }
   };
 
 export const contactSlice = createSlice({
@@ -26,9 +31,24 @@ export const contactSlice = createSlice({
             state.status = 'rejected'
             state.error = action.error.message
         })
+        .addCase(commentThunk.pending, (state) =>{
+            state.comment.status = 'pending'
+        })
+        .addCase(commentThunk.fulfilled, (state, action) =>{
+            state.comment.status = 'fulfilled'
+            state.comment.data = action.payload
+        })
+        .addCase(commentThunk.rejected, (state, action) =>{
+            state.comment.status = 'rejected'
+            state.comment.error = action.error.message
+        })
     }
 })
 
 export const getCommentsListData = (state) => state.contacts.data
 export const getCommentsListError = (state) => state.contacts.error
 export const getCommentsListStatus = (state) => state.contacts.status
+
+export const getCommentData = (state) => state.contacts.comment.data
+export const getCommentError = (state) => state.contacts.comment.status
+export const getCommentStatus = (state) => state.contacts.comment.error 

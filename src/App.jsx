@@ -51,7 +51,7 @@ function App() {
                     <Route path='rooms' element={<RequireAuth authUser={authUser}><Rooms/></RequireAuth>}/>
                     <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='users' element={<RequireAuth authUser={authUser}><Users/></RequireAuth>}/>
-                    <Route path='users/user/1' element={<UserID />} />
+                    <Route path='users/user/:id' element={<UserID />} />
                     <Route path='contact' element={<RequireAuth authUser={authUser}><Contact/></RequireAuth>}/>
                   </Route>
                 </Routes>

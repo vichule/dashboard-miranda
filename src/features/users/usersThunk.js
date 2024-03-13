@@ -6,6 +6,15 @@ export const userListThunk = createAsyncThunk('users/fetchUsers', async () =>{
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 1500)
+        }, 200)
+    })
+})
+
+
+export const userThunk = createAsyncThunk('users/fetchUser', async (id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve((data.find((user) => user.id === id) || null));
+        }, 200)
     })
 })
