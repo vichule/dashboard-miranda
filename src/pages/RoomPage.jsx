@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
-import { roomListThunk } from "../features/rooms/roomsThunk"
+import { useCallback, useEffect, useState } from "react"
+import { getRoomData, getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
+import { roomListThunk, roomThunk } from "../features/rooms/roomsThunk"
+import { RoomCard } from "../components/ViewCards/RoomCard"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import styled from "styled-components"
 
 
 
@@ -11,53 +14,59 @@ export const RoomID = () =>{
     const roomsData = useSelector(getRoomsData)
     const roomsDataError = useSelector(getRoomsError)
     const roomsDataStatus = useSelector(getRoomsStatus)
+    const room = useSelector(getRoomData)
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigator = useNavigate()
 
-    const [ room, setRoom ] = useState({  })
-    const [amenities, setAmenities] = useState([])
-    const [photos, setPhotos] = useState([])
+    //const [ room, setRoom ] = useState({  })
+ 
+    const [ spinner, setSpinner ] = useState(true)
+
 
     const handleBack = () =>{
         navigator(-1)
     }
 
+    const api = useCallback(async () => {
+        await dispatch(roomThunk(parseInt(id))).unwrap();
+        setSpinner(false)
+    }, [id, dispatch, room]);
+
     useEffect(() => {
-        let specificRoom = ({})
-        if (roomsDataStatus === "idle") {
-            dispatch(roomListThunk())
-          } else if (roomsDataStatus === "pending") {
+        api();
+        
+        
+    }, [api, id]);
+
+    // useEffect(() => {
+    //     let specificRoom = ({})
+    //     if (roomsDataStatus === "idle") {
+    //         dispatch(roomListThunk())
+    //       } else if (roomsDataStatus === "pending") {
            
-          } else if (roomsDataStatus === "fulfilled") {
-            specificRoom = roomsData.find((room) => room.id.toString() === id)
-            setRoom(specificRoom)
-            setAmenities(specificRoom.amenities)
-            setPhotos(specificRoom.photos)
-        } else if (roomsDataStatus === 'rejected'){
-            console.log(roomsDataError)
-        }
-      }, [dispatch,roomsDataStatus,roomsData])
+    //       } else if (roomsDataStatus === "fulfilled") {
+    //         specificRoom = roomsData.find((room) => room.id.toString() === id)
+    //         setRoom(specificRoom)
+    //         setAmenities(specificRoom.amenities)
+    //         setPhotos(specificRoom.photos)
+    //     } else if (roomsDataStatus === 'rejected'){
+    //         console.log(roomsDataError)
+    //     }
+    //   }, [dispatch,roomsDataStatus,roomsData])
 
     return(
         <>
-            <div>
-            <button onClick={handleBack}>Back</button>
-                <h1>Room ID: {room.id}</h1>
-                <h1>Room Type: {room.room_type}</h1>
-                <p>{room.room_number}</p>
-                <h1>Price</h1>
-                <p>{room.price} /Night</p>
-                <h1>Description of the Room</h1>
-                <p>{room.description}</p>
-                <h1>Facilities</h1>
-                {amenities.map((element, index) => (
-                                <p key={index}>{element}</p>
-                            ))}
-                <div>
-                    <img src={photos[0]} alt="" />
-                </div>
-            </div>
+            <MainContainer style={{padding: '1em'}}>
+                <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
+                {spinner ? <p>Loading</p> : <RoomCard room={room} />}
+            </MainContainer>
+            
         </>
     )
 }
+
+const MainContainer = styled.div`
+    padding: 2em 1em 1em 2em;
+    text-align: left;
+`

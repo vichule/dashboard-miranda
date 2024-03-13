@@ -6,7 +6,6 @@ export const RoomsTable = ({ data }) => {
 
     const navigator = useNavigate()
     const handleInfo = (id) =>{
-        console.log(id)
         navigator(`/rooms/room/${id}`)
     }
 

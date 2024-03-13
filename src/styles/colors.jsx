@@ -18,4 +18,5 @@ export const colors = {
     grey2: '#787878',
     hardGrey: '#4E4E4E',
     lightGrey: '#A1A1A1',
+    btnBack2: '#2e644942'
 }

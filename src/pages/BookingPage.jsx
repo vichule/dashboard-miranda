@@ -1,101 +1,84 @@
 import { useDispatch, useSelector } from "react-redux"
-import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
+import { getBookingData, getBookingError, getBookingStatus, getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { useNavigate, useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { bookingsListThunk } from "../features/bookings/bookingsThunk"
-import { roomListThunk } from "../features/rooms/roomsThunk"
-import { getRoomsData } from "../features/rooms/roomsSlice"
+import { useCallback, useEffect, useState } from "react"
+import { bookingThunk, bookingsListThunk } from "../features/bookings/bookingsThunk"
+import { roomListThunk, roomThunk } from "../features/rooms/roomsThunk"
+import { getRoomData, getRoomsData } from "../features/rooms/roomsSlice"
+import { BookingCard } from "../components/ViewCards/BookingCard"
+import { BasicBtnStyled, GreenBtnStyled } from "../components/Button/BtnStyled"
+import styled from "styled-components"
 
 
 
 export const BookingID = () =>{
 
-    const bookingsData = useSelector(getBookingsData)
-    const bookingsDataError = useSelector(getBookingsError)
-    const bookingsDataStatus = useSelector(getBookingsStatus)
     const roomsData = useSelector(getRoomsData)
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigator = useNavigate()
 
-    const [ booking, setBooking ] = useState({})
-    const [ room, setRoom ] = useState({})
+    const booking = useSelector(getBookingData)
+    const [ room, setRoom ] = useState([])
     const handleBack = () =>{
         navigator(-1)
     }
-    const [photos, setPhotos] = useState([])
-    const [amenities, setAmenities] = useState([])
+    const [ spinner, setSpinner ] = useState(true)
+    let bookingRoom = ({})
 
+    // useEffect(() => {
+    //     let specificBooking = ({})
+    //     let bookingRoom = ({})
+        
+    //     if (bookingsDataStatus === "idle") {
+    //         dispatch(bookingsListThunk())
+    //         dispatch(roomListThunk())
+    //       } else if (bookingDataStatus === "pending") {
+           
+    //       } else if (bookingsDataStatus === "fulfilled") {
+    //         specificBooking = bookingsData.find((room) => room.id.toString() === id)
+    //         setRoom(specificRoom)
+    //         bookingRoom = roomsData.find((room) => room.id.toString() === specificBooking.room.toString())
+    //         setBooking(specificBooking)            
+            
+    //         setPhotos(bookingRoom.photos)
+    //         setAmenities(bookingRoom.amenities)
+    //     } else if (bookingsDataStatus === 'rejected'){
+    //         console.log(bookingsDataError)
+    //     }
+    //   }, [dispatch, id, bookingsData])
+
+    const api = useCallback(async () => {
+        await dispatch(roomListThunk()).unwrap();
+        await dispatch(bookingThunk(parseInt(id))).unwrap();
+        bookingRoom = roomsData.find((room) => room.id === booking.room)
+        setRoom(bookingRoom)
+        if(room === bookingRoom){
+            setSpinner(false)
+        }
+        
+    }, [id, dispatch, room]);
 
     useEffect(() => {
-        let specificBooking = ({})
-        let bookingRoom = ({})
+        api();
         
-        if (bookingsDataStatus === "idle") {
-            dispatch(bookingsListThunk())
-            dispatch(roomListThunk())
-          } else if (bookingsDataStatus === "pending") {
-           
-          } else if (bookingsDataStatus === "fulfilled") {
-            specificBooking = bookingsData.find((booking) => booking.id.toString() === id)
-            bookingRoom = roomsData.find((room) => room.id.toString() === specificBooking.room.toString())
-            setBooking(specificBooking)
-            setRoom(bookingRoom)
-            
-            setPhotos(bookingRoom.photos)
-            setAmenities(bookingRoom.amenities)
-        } else if (bookingsDataStatus === 'rejected'){
-            console.log(bookingsDataError)
-        }
-      }, [dispatch,bookingsDataStatus,bookingsData,roomsData,bookingsDataError])
+        
+    }, [api, id]);
+    
+
 
     return(
         <>
-            <div>
-                <button onClick={handleBack}>Back</button>
-                <h1>{booking.id}</h1>
-                <div>
-                    <h1>Guest</h1>
-                    <p>{booking.first_name} {booking.last_name}</p>
-                    <p>ID #{booking.id}</p>
-                </div>
-                <div>
-                    <h1>Check In</h1>
-                    <p>{booking.check_in}</p>
-                </div>
-                <div>
-                    <h1>Check Out</h1>
-                    <p>{booking.check_out}</p>
-                </div>
-                <div>
-                    <h1>Notes</h1>
-                    <p>{booking.notes}</p>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                            <h1>Room Info</h1>
-                            <p>{room.room_number}</p>
-                            <p>{room.room_type}</p>
-                        </div>
-                        
-                        <div>
-                            <h1>Price</h1>
-                            <p>${room.price} /Night</p>
-                        </div>
-                    </div>
-                    <p>{room.description}</p>
-                    <div>
-                        <h1>Facilities</h1>
-                        {amenities.map((element, index) => (
-                                <p key={index}>{element}</p>
-                            ))}
-                    </div>
-                    <div>
-                        <img src={photos[0]} alt="" />
-                    </div>
-                </div>
-            </div>
+            <MainContainer style={{padding: '1em'}}>
+                <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
+                {spinner ? <p>Loading</p> : <BookingCard booking={booking} room={room}/>}
+            </MainContainer>
+            
         </>
     )
 }
+
+const MainContainer = styled.div`
+    padding: 2em 1em 1em 2em;
+    text-align: left;
+`

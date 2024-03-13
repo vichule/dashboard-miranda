@@ -5,7 +5,6 @@ export const BookingsTable = ({ data }) => {
     const navigator = useNavigate()
 
     const handleInfo = (id) =>{
-        console.log(id)
         navigator(`/bookings/booking/${id}`)
     }
 

@@ -5,6 +5,14 @@ export const bookingsListThunk = createAsyncThunk('bookings/fetchBookings', asyn
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data)
-        }, 1200)
+        }, 300)
+    })
+})
+
+export const bookingThunk = createAsyncThunk('bookings/fetchBooking', async (id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve((data.find((booking) => booking.id === id) || null));
+        }, 200)
     })
 })

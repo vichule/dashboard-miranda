@@ -17,3 +17,19 @@ export const BasicBtnStyled = styled.button`
         color: ${colors.whiteSemi};
     }
 `
+
+export const GreenBtnStyled = styled.button`
+    font-weight: 600;
+    width: 16rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: ${colors.hardGreen};
+    color: ${colors.whiteSemi};
+    transition: all ease 300ms;
+
+    &:hover{
+        background-color: ${colors.btnBack2};
+        color: ${colors.hardGreen};
+    }
+`
