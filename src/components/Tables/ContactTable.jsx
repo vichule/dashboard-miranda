@@ -1,6 +1,15 @@
+import { useDispatch } from 'react-redux'
 import { TdText } from './StyledTable'
+import { removeComment } from '../../features/contact/contactSlice'
+import { DeleteIcon } from '../../styles/icons'
 
 export const ContactTable = ({ data }) => {
+
+    const dispatch = useDispatch()
+
+    const handleDelete = (comment, event) =>{
+        dispatch(removeComment(comment))
+    }
 
 
 
@@ -26,6 +35,10 @@ export const ContactTable = ({ data }) => {
                             <button>Publish</button>
                             <button>Archive</button>
                         </td>
+                        <td>
+                            <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
+                        </td>
+                        
                     </tr>
 
             ))}

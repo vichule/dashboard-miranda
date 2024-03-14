@@ -20,13 +20,12 @@ const initialState = {
             state.data = [action.payload, ...state.data]
         },
         removeRoom(state, action){
-            state.data = state.data.filter((room) => room.id !== action.payload.id)
+            const roomSelect = state.data.findIndex(room=> room.id === action.payload.id)
+            state.data.splice(roomSelect, 1);
         },
         editRoom(state, action){
-            const rooms = [...state.data]
-            const roomId = rooms.findIndex((room) => room.id == action.payload.id)
-            const newRoom = {...rooms[roomId]}
-            rooms[roomId] = newRoom
+            const roomId = state.data.findIndex((room) => room.id == action.payload.id)
+            state.data[roomId] = action.payload;
         }
     },
     extraReducers: (builder) =>{

@@ -8,15 +8,15 @@ export const UserForm = ({user, change, save, remove}) => {
         <>
             <form onSubmit={save}>
                     <div>
-                        <label htmlFor="firstName"></label>
+                        <label htmlFor="firstName">First Name</label>
                         <input type="text" name="first_name" value={user.first_name} onChange={change}/>
                     </div>
                     <div>
-                        <label htmlFor="lastName"></label>
+                        <label htmlFor="lastName">Last Name</label>
                         <input type="text" name="last_name" value={user.last_name} onChange={change}/>
                     </div>
                     <div>
-                        <label htmlFor="job"></label>
+                        <label htmlFor="job">Job</label>
                         <select name="job" id="job" onChange={change}>
                             <option value="true">Room Service</option>
                             <option value="false">Manager</option>
@@ -24,20 +24,23 @@ export const UserForm = ({user, change, save, remove}) => {
                         </select>
                     </div>
                     <div>
-                        <label htmlFor="email"></label>
+                        <label htmlFor="email">Email</label>
                         <input type="email" name="email" value={user.email} onChange={change}/>
                     </div>
                     <div>
-                        <label htmlFor="phone"></label>
+                        <label htmlFor="phone">Phone</label>
                         <input type="tel" name="phone" value={user.phone} onChange={change}/>
                     </div>
-                    
                     <div>
-                        <label htmlFor="description"></label>
+                        <label htmlFor="start_date">Start Date</label>
+                        
+                    </div>
+                    <div>
+                        <label htmlFor="description">Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" value={user.description} onChange={change}></textarea>
                     </div>
                     <div>
-                        <label htmlFor="status"></label>
+                        <label htmlFor="status">Status</label>
                         <select name="status" id="status" onChange={change}>
                             <option value="Status">Status</option>
                             <option value="Active">Active</option>

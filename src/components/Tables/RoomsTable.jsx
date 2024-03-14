@@ -1,12 +1,22 @@
 import styled from 'styled-components'
 import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
+import { DeleteIcon } from '../../styles/icons'
+import { useDispatch } from 'react-redux'
+import { removeRoom } from '../../features/rooms/roomsSlice'
 
 export const RoomsTable = ({ data }) => {
 
+    const dispatch = useDispatch()
     const navigator = useNavigate()
+
     const handleInfo = (id) =>{
         navigator(`/rooms/room/${id}`)
+    }
+    
+    const handleDelete = (room, e) =>{
+        e.stopPropagation()
+        dispatch(removeRoom(room))
     }
 
     return(
@@ -37,7 +47,7 @@ export const RoomsTable = ({ data }) => {
                             <p>{json.status}</p>
                         </td>
                         <td>
-                            <button >*--*</button>
+                            <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
                         </td>
                     </tr>
 

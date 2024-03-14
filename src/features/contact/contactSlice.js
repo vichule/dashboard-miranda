@@ -16,7 +16,17 @@ export const contactSlice = createSlice({
     name: 'contacts',
     initialState: initialState,
     reducers: {
-
+        addComment(state, action){
+            state.data = [action.payload, ...state.data]
+        },
+        removeComment(state, action){
+            const commentSelect = state.data.findIndex(comment=> comment.id === action.payload.id)
+            state.data.splice(commentSelect, 1);
+        },
+        editComment(state, action){
+            const commentId = state.data.findIndex((comment) => comment.id == action.payload.id)
+            state.data[commentId] = action.payload;
+        }
     },
     extraReducers: (builder) =>{
         builder
@@ -52,3 +62,5 @@ export const getCommentsListStatus = (state) => state.contacts.status
 export const getCommentData = (state) => state.contacts.comment.data
 export const getCommentError = (state) => state.contacts.comment.status
 export const getCommentStatus = (state) => state.contacts.comment.error 
+
+export const { addComment, removeComment, editComment } = contactSlice.actions

@@ -27,7 +27,7 @@ export const NewUserForm = () =>{
     },[usersData,usersDataStatus,dispatch])
 
     const handleBack = () =>{
-        navigator(-1)
+        navigator('/users')
     }
 
     const handleCreate = (event)=>{

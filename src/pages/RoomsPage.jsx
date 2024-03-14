@@ -51,9 +51,7 @@ export const Rooms = () => {
         <>
             <RoomsContainer>
                 <RoomsMenu>
-                    <h2> All Rooms </h2>
-                    <h2> Available Rooms </h2>
-                    <h2> Booked Rooms </h2>
+                    <button>+ New Room</button>
                 </RoomsMenu>
             <TableStyled>
                 <thead>
