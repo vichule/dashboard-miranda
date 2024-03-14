@@ -1,3 +1,17 @@
+Dashboard Hotel Miranda -
+
+Deploy Website s3 amazon:
+
+http://dashboard-miranda-web.s3-website.eu-south-2.amazonaws.com/
+
+
+
+
+
+
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
