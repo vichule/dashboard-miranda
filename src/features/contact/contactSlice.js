@@ -26,7 +26,11 @@ export const contactSlice = createSlice({
         editComment(state, action){
             const commentId = state.data.findIndex((comment) => comment.id == action.payload.id)
             state.data[commentId] = action.payload;
-        }
+        },
+        editCommentStatus: (state,action)=>{
+            const newStatus = state.data.map((comment)=> comment.id === action.payload ? {...comment,status:!comment.status} : comment) 
+            state.data = newStatus 
+        },
     },
     extraReducers: (builder) =>{
         builder
@@ -63,4 +67,4 @@ export const getCommentData = (state) => state.contacts.comment.data
 export const getCommentError = (state) => state.contacts.comment.status
 export const getCommentStatus = (state) => state.contacts.comment.error 
 
-export const { addComment, removeComment, editComment } = contactSlice.actions
+export const { addComment, removeComment, editComment, editCommentStatus } = contactSlice.actions

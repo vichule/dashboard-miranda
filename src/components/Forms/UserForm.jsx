@@ -33,7 +33,7 @@ export const UserForm = ({user, change, save, remove}) => {
                     </div>
                     <div>
                         <label htmlFor="start_date">Start Date</label>
-                        
+                        <input type="date" name="start_date"value={user.start_date} onChange={change}/>
                     </div>
                     <div>
                         <label htmlFor="description">Description</label>

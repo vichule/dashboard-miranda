@@ -7,7 +7,8 @@
     "subject": "Quality-focused encompassing neural-net",
     "message": "Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
     "date": "11/15/2023",
-    "photo": "http://dummyimage.com/177x100.png/dddddd/000000"
+    "photo": "http://dummyimage.com/177x100.png/dddddd/000000",
+    "status": true
   }, {
     "id": 2,
     "first_name": "Elliott",
@@ -17,7 +18,8 @@
     "subject": "Enterprise-wide systematic hub",
     "message": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
     "date": "3/26/2023",
-    "photo": "http://dummyimage.com/240x100.png/cc0000/ffffff"
+    "photo": "http://dummyimage.com/240x100.png/cc0000/ffffff",
+    "status": true
   }, {
     "id": 3,
     "first_name": "Birgit",
@@ -27,7 +29,8 @@
     "subject": "Multi-layered background help-desk",
     "message": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
     "date": "8/12/2023",
-    "photo": "http://dummyimage.com/114x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/114x100.png/5fa2dd/ffffff",
+    "status": false
   }, {
     "id": 4,
     "first_name": "Addy",
@@ -37,7 +40,8 @@
     "subject": "Cloned solution-oriented firmware",
     "message": "Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.",
     "date": "3/7/2023",
-    "photo": "http://dummyimage.com/184x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/184x100.png/5fa2dd/ffffff",
+    "status": false
   }, {
     "id": 5,
     "first_name": "Itch",
@@ -47,7 +51,8 @@
     "subject": "De-engineered static concept",
     "message": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     "date": "12/18/2023",
-    "photo": "http://dummyimage.com/172x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/172x100.png/5fa2dd/ffffff",
+    "status": true
   }, {
     "id": 6,
     "first_name": "Gaspard",
@@ -57,7 +62,8 @@
     "subject": "Phased human-resource protocol",
     "message": "Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
     "date": "1/1/2024",
-    "photo": "http://dummyimage.com/181x100.png/ff4444/ffffff"
+    "photo": "http://dummyimage.com/181x100.png/ff4444/ffffff",
+    "status": true
   }, {
     "id": 7,
     "first_name": "Lilias",
@@ -67,7 +73,8 @@
     "subject": "Devolved real-time archive",
     "message": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
     "date": "3/19/2023",
-    "photo": "http://dummyimage.com/221x100.png/dddddd/000000"
+    "photo": "http://dummyimage.com/221x100.png/dddddd/000000",
+    "status": false
   }, {
     "id": 8,
     "first_name": "Andris",
@@ -77,7 +84,8 @@
     "subject": "Distributed fault-tolerant hub",
     "message": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.",
     "date": "2/19/2024",
-    "photo": "http://dummyimage.com/197x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/197x100.png/5fa2dd/ffffff",
+    "status": false
   }, {
     "id": 9,
     "first_name": "Brooke",
@@ -87,7 +95,8 @@
     "subject": "Adaptive maximized Graphic Interface",
     "message": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
     "date": "1/31/2024",
-    "photo": "http://dummyimage.com/149x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/149x100.png/5fa2dd/ffffff",
+    "status": false
   }, {
     "id": 10,
     "first_name": "Brig",
@@ -97,7 +106,8 @@
     "subject": "Horizontal optimal moratorium",
     "message": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.",
     "date": "12/26/2023",
-    "photo": "http://dummyimage.com/202x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/202x100.png/5fa2dd/ffffff",
+    "status": true
   }, {
     "id": 11,
     "first_name": "Vasilis",
@@ -107,7 +117,8 @@
     "subject": "Ameliorated dedicated internet solution",
     "message": "Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.",
     "date": "2/16/2024",
-    "photo": "http://dummyimage.com/243x100.png/ff4444/ffffff"
+    "photo": "http://dummyimage.com/243x100.png/ff4444/ffffff",
+    "status": false
   }, {
     "id": 12,
     "first_name": "Annabal",
@@ -117,7 +128,8 @@
     "subject": "Right-sized interactive approach",
     "message": "Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.",
     "date": "8/29/2023",
-    "photo": "http://dummyimage.com/152x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/152x100.png/5fa2dd/ffffff",
+    "status": true
   }, {
     "id": 13,
     "first_name": "Rochette",
@@ -127,7 +139,8 @@
     "subject": "Reverse-engineered incremental firmware",
     "message": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.",
     "date": "8/18/2023",
-    "photo": "http://dummyimage.com/237x100.png/dddddd/000000"
+    "photo": "http://dummyimage.com/237x100.png/dddddd/000000",
+    "status": true
   }, {
     "id": 14,
     "first_name": "Adelice",
@@ -137,7 +150,8 @@
     "subject": "Configurable zero defect pricing structure",
     "message": "Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.",
     "date": "12/2/2023",
-    "photo": "http://dummyimage.com/116x100.png/cc0000/ffffff"
+    "photo": "http://dummyimage.com/116x100.png/cc0000/ffffff",
+    "status": false
   }, {
     "id": 15,
     "first_name": "Lura",
@@ -147,7 +161,8 @@
     "subject": "Down-sized actuating array",
     "message": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.",
     "date": "5/31/2023",
-    "photo": "http://dummyimage.com/176x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/176x100.png/5fa2dd/ffffff",
+    "status": true
   }, {
     "id": 16,
     "first_name": "Joannes",
@@ -157,7 +172,8 @@
     "subject": "Cross-platform bottom-line methodology",
     "message": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     "date": "2/24/2024",
-    "photo": "http://dummyimage.com/119x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/119x100.png/5fa2dd/ffffff",
+    "status": false
   }, {
     "id": 17,
     "first_name": "Carlyle",
@@ -167,7 +183,8 @@
     "subject": "Reverse-engineered reciprocal encryption",
     "message": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.",
     "date": "4/28/2023",
-    "photo": "http://dummyimage.com/232x100.png/5fa2dd/ffffff"
+    "photo": "http://dummyimage.com/232x100.png/5fa2dd/ffffff",
+    "status": true
   }, {
     "id": 18,
     "first_name": "Jayme",
@@ -177,7 +194,8 @@
     "subject": "Team-oriented local array",
     "message": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.",
     "date": "10/21/2023",
-    "photo": "http://dummyimage.com/214x100.png/ff4444/ffffff"
+    "photo": "http://dummyimage.com/214x100.png/ff4444/ffffff",
+    "status": true
   }, {
     "id": 19,
     "first_name": "Conny",
@@ -187,7 +205,8 @@
     "subject": "Optimized user-facing model",
     "message": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
     "date": "5/1/2023",
-    "photo": "http://dummyimage.com/212x100.png/dddddd/000000"
+    "photo": "http://dummyimage.com/212x100.png/dddddd/000000",
+    "status": false
   }, {
     "id": 20,
     "first_name": "Nelson",
@@ -197,5 +216,6 @@
     "subject": "Persistent stable budgetary management",
     "message": "Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.",
     "date": "2/12/2024",
-    "photo": "http://dummyimage.com/206x100.png/cc0000/ffffff"
+    "photo": "http://dummyimage.com/206x100.png/cc0000/ffffff",
+    "status": false
   }]

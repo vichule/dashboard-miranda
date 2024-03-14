@@ -33,3 +33,24 @@ export const GreenBtnStyled = styled.button`
         color: ${colors.hardGreen};
     }
 `
+
+const btnTableStyled =`
+    background-color: transparent;
+    font-size: 1.5rem;
+`
+
+export const BtnPublish = styled.button`
+    ${btnTableStyled}
+    color: ${colors.green};
+    &:hover{
+        border-color: ${colors.green};
+    }
+`
+
+export const BtnArchive = styled.button`
+    ${btnTableStyled}
+    color: ${colors.red};
+    &:hover{
+        border-color: ${colors.red};
+    }
+`

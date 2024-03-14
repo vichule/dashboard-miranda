@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { DeleteIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
 import { removeRoom } from '../../features/rooms/roomsSlice'
+import { CheckinStyled, CheckoutStyled, RowContainer, TdContainer } from './ContainersStyled'
 
 export const RoomsTable = ({ data }) => {
 
@@ -23,33 +24,34 @@ export const RoomsTable = ({ data }) => {
         <>
             {data.map((json) => (
 
-                    <tr key={json.id} onClick={()=> handleInfo(json.id)}>
-                        <td style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
+                    <RowContainer key={json.id} onClick={()=> handleInfo(json.id)}>
+                        <TdContainer style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                             <RoomsImgStyled src={json.photos[0]} alt="" />
                             <div>
                                 <p>#{json.id}</p>
                                 <h2>{json.room_number}</h2>
                             </div>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
                             <p>{json.room_type}</p>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
                             <p>Floor 1</p>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
                             <p>{json.amenities.join(', ')}</p>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
                             <TdText>{json.price}/Night</TdText>
-                        </td>
-                        <td>
-                            <p>{json.status}</p>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
+                            {json.status === 'available' && <CheckinStyled>{json.status}</CheckinStyled>}
+                            {json.status === 'booked' && <CheckoutStyled>{json.status}</CheckoutStyled>}
+                        </TdContainer>
+                        <TdContainer>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
-                        </td>
-                    </tr>
+                        </TdContainer>
+                    </RowContainer>
 
             ))}
         </>

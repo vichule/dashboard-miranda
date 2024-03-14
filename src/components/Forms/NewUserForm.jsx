@@ -38,7 +38,7 @@ export const NewUserForm = () =>{
             first_name: event.target.first_name.value,
             last_name: event.target.last_name.value,
             email: event.target.email.value,
-            start_date: "20/03/2024",
+            start_date: event.target.start_date.value,
             description: event.target.description.value,
             phone: event.target.phone.value,
             photo:"http://dummyimage.com/105x100.png/dddddd/000000",
@@ -75,7 +75,10 @@ export const NewUserForm = () =>{
                         <label htmlFor="phone"></label>
                         <input type="tel" name="phone" />
                     </div>
-                    
+                    <div>
+                        <label htmlFor="start_date">Start Date</label>
+                        <input type="date" name="start_date"/>
+                    </div>
                     <div>
                         <label htmlFor="description"></label>
                         <textarea name="description" id="description" cols="30" rows="10"></textarea>

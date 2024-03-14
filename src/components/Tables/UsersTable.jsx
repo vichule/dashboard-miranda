@@ -56,8 +56,10 @@ const UserInfoText = styled.div`
 
 const StatusActive = styled.p`
     color: ${colors.green};
+    font-size: 2rem;
 `
 
 const StatusInactive = styled.p`
     color: ${colors.red};
+    font-size: 2rem;
 `

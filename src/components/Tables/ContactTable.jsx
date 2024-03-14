@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { TdText } from './StyledTable'
-import { removeComment } from '../../features/contact/contactSlice'
+import { editCommentStatus, removeComment } from '../../features/contact/contactSlice'
 import { DeleteIcon } from '../../styles/icons'
+import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
+import { useEffect } from 'react'
 
 export const ContactTable = ({ data }) => {
 
@@ -11,8 +13,11 @@ export const ContactTable = ({ data }) => {
         dispatch(removeComment(comment))
     }
 
+    const handleEdit = (comment, event) =>{
+       dispatch(editCommentStatus(comment.id))
+    }
 
-
+    
     return(
         <>
             {data.map((json) => (
@@ -32,8 +37,7 @@ export const ContactTable = ({ data }) => {
                             <TdText>{json.message}</TdText>
                         </td>
                         <td>
-                            <button>Publish</button>
-                            <button>Archive</button>
+                            {json.status ? <BtnPublish onClick={ (e) => handleEdit(json, e)}>Publish</BtnPublish> : <BtnArchive onClick={ (e) => handleEdit(json, e)}>Archive</BtnArchive>}
                         </td>
                         <td>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>

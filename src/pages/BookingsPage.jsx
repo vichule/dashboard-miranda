@@ -51,6 +51,12 @@ export const Bookings = () => {
                 <h2> Checking In </h2>
                 <h2> Checking Out </h2>
                 <h2> In Progress </h2>
+                <select name="order" id="order">
+                            <option value="true">Guest</option>
+                            <option value="false">Check In</option>
+                            <option value="false">Check Out</option>
+                            <option value="false">Order Date</option>
+                </select>
             </BookingsMenu>
             <TableStyled>
                 <thead>
