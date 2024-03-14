@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { addUser, getUsersData, getUsersError, getUsersStatus } from "../../features/users/usersSlice"
 import { useEffect, useState } from "react"
 import { userListThunk } from "../../features/users/usersThunk"
+import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
+import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 
 
 
@@ -50,52 +52,55 @@ export const NewUserForm = () =>{
 
     return(
         <>
-            <form onSubmit={handleCreate}>
-                    <div>
-                        <label htmlFor="firstName"></label>
-                        <input type="text" name="first_name" />
-                    </div>
-                    <div>
-                        <label htmlFor="lastName"></label>
-                        <input type="text" name="last_name" />
-                    </div>
-                    <div>
-                        <label htmlFor="job"></label>
-                        <select name="job" id="job">
+            <FormContainer>
+                <FormStyled onSubmit={handleCreate}>
+                    <InputContainer>
+                        <LabelForms htmlFor="first_name">First Name</LabelForms>
+                        <InputForms type="text" name="first_name" />
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="last_name">Last Name</LabelForms>
+                        <InputForms type="text" name="last_name" />
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="job">Job</LabelForms>
+                        <SelectForms name="job" id="job">
                             <option value="true">Room Service</option>
                             <option value="false">Manager</option>
                             <option value="false">Recepcionist</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="email"></label>
-                        <input type="email" name="email"/>
-                    </div>
-                    <div>
-                        <label htmlFor="phone"></label>
-                        <input type="tel" name="phone" />
-                    </div>
-                    <div>
-                        <label htmlFor="start_date">Start Date</label>
-                        <input type="date" name="start_date"/>
-                    </div>
-                    <div>
-                        <label htmlFor="description"></label>
-                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="status"></label>
-                        <select name="status" id="status" >
+                        </SelectForms>
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="email">Email</LabelForms>
+                        <InputForms type="email" name="email"/>
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="phone">Phone</LabelForms>
+                        <InputForms type="tel" name="phone" />
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="start_date">Start Date</LabelForms>
+                        <InputForms type="date" name="start_date"/>
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="description">Description</LabelForms>
+                        <TextAreaForms name="description" id="description" cols="30" rows="10"></TextAreaForms>
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="status">Status</LabelForms>
+                        <SelectForms name="status" id="status" >
                             <option value="Status">Status</option>
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button type="submit">Save Changes</button>
-                        <button onClick={handleBack}>Cancel</button>
-                    </div>
-                </form>
+                        </SelectForms>
+                    </InputContainer>
+                    <BtnContainerForm>
+                        <GreenBtnStyled type="submit">Create User</GreenBtnStyled>
+                        <BasicBtnStyled onClick={handleBack}>Cancel</BasicBtnStyled>
+                    </BtnContainerForm>
+                </FormStyled>
+            </FormContainer>
+            
         </>
     )
 }

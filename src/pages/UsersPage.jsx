@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
 import { userListThunk } from "../features/users/usersThunk"
 import { useNavigate } from "react-router-dom"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
 
 
 
@@ -59,7 +60,7 @@ export const Users = () => {
                 <h2> All Employee </h2>
                 <h2> Active Employee </h2>
                 <h2> Inactive Employee </h2>
-                <button onClick={handleNew}>+ New User</button>
+                <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
             </UsersMenu>
             <TableStyled>
                 <thead>
@@ -77,10 +78,10 @@ export const Users = () => {
                 
             </TableStyled>
             <div>
-                    <button onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>Previous</button>
-                    <button onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>Previous</GreenBtnStyled>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
             </div>
             </UsersContainer>
         </>

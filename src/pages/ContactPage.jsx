@@ -8,6 +8,7 @@ import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { useDispatch, useSelector } from "react-redux"
 import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../features/contact/contactSlice"
 import { commentsListThunk } from "../features/contact/contactThunk"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
 
 
 
@@ -72,10 +73,10 @@ export const Contact = () => {
                 
             </TableStyled>
             <div>
-                    <button onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>Previous</button>
-                    <button onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>Previous</GreenBtnStyled>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
             </div>
             </BotContainer>
         </>

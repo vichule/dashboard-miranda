@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
 import { colors } from '../../styles/colors'
+import { BasicBtnStyled } from '../Button/BtnStyled'
 
 export const UsersTable = ({ data }) => {
     const navigator = useNavigate()
@@ -34,7 +35,7 @@ export const UsersTable = ({ data }) => {
                             {json.status === 'Active' ? <StatusActive>{json.status}</StatusActive> : <StatusInactive>{json.status}</StatusInactive>}
                         </td>
                         <td>
-                            <button onClick={()=> handleEdit(json.id)}> Edit</button>
+                            <BasicBtnStyled onClick={()=> handleEdit(json.id)}>Edit</BasicBtnStyled>
                         </td>
                     </tr>
 

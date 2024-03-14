@@ -7,6 +7,7 @@ import { RoomsTable } from "../components/Tables/RoomsTable"
 import { useDispatch, useSelector } from "react-redux"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
 import { roomListThunk } from "../features/rooms/roomsThunk"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
 
 
 
@@ -71,10 +72,10 @@ export const Rooms = () => {
                 
             </TableStyled>
             <div>
-                    <button onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>Previous</button>
-                    <button onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>Previous</GreenBtnStyled>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
             </div>
             </RoomsContainer>
         </>

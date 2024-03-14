@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { bookingsListThunk } from "../features/bookings/bookingsThunk"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
 
 
 
@@ -76,10 +77,10 @@ export const Bookings = () => {
                 
             </TableStyled>
             <div>
-                    <button onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>Previous</button>
-                    <button onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages || totalPages === 0}>Next</button>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>Previous</GreenBtnStyled>
+                    <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
             </div>
             </BookingsContainer>
         </>

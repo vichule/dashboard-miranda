@@ -4,6 +4,7 @@ import { editUser, getUserData, getUserStatus, getUsersData, getUsersError, getU
 import { useCallback, useEffect, useState } from "react"
 import { userListThunk, userThunk } from "../features/users/usersThunk"
 import { UserForm } from "../components/Forms/UserForm"
+import { GreenBtnStyled } from "../components/Button/BtnStyled"
 
 
 export const UserID = () => {
@@ -80,8 +81,8 @@ export const UserID = () => {
     return(
         <>
 
-            <div>
-                <button onClick={handleBack}>Back</button>
+            <div style={{padding: '5em'}}>
+                <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
                 {spinner ? <p>Loading</p> : <UserForm user={user} change={handleChange} remove={handleDeleteUser} save={handleSaveUser}/>}
                 
             </div>
