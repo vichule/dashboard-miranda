@@ -89,7 +89,6 @@ export const NewUserForm = () =>{
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>
                         <SelectForms name="status" id="status" >
-                            <option value="Status">Status</option>
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>

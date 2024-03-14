@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
 import { roomListThunk } from "../features/rooms/roomsThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -16,6 +17,7 @@ export const Rooms = () => {
     const roomsDataStatus = useSelector(getRoomsStatus)
     const roomsDataError = useSelector(getRoomsError)
     const dispatch = useDispatch()
+    const navigator = useNavigate()
     
     const [ rooms, setRooms] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -48,11 +50,15 @@ export const Rooms = () => {
         setCurrentPage(newPage);
       };
 
+      const handleNew = () => {
+        navigator('/rooms/newroom')
+    }
+
     return (
         <>
             <RoomsContainer>
                 <RoomsMenu>
-                    <button>+ New Room</button>
+                    <GreenBtnStyled onClick={handleNew}>+ New Room</GreenBtnStyled>
                 </RoomsMenu>
             <TableStyled>
                 <thead>

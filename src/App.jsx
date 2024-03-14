@@ -19,6 +19,7 @@ import { BookingID } from './pages/BookingPage.jsx'
 import { RoomID } from './pages/RoomPage.jsx'
 import { UserID } from './pages/Userpage.jsx'
 import { NewUserPage } from './pages/NewUserPage.jsx'
+import { NewRoomPage } from './pages/NewRoomPage.jsx'
 
 
 
@@ -51,6 +52,7 @@ function App() {
                     <Route path='bookings/booking/:id' element={<BookingID />} />
                     <Route path='rooms' element={<RequireAuth authUser={authUser}><Rooms/></RequireAuth>}/>
                     <Route path='rooms/room/:id' element={<RoomID />} />
+                    <Route path='rooms/newroom' element={<NewRoomPage/>}/>
                     <Route path='users' element={<RequireAuth authUser={authUser}><Users/></RequireAuth>}/>
                     <Route path='users/user/:id' element={<UserID />} />
                     <Route path="/users/newuser" element={<NewUserPage/>}/>
