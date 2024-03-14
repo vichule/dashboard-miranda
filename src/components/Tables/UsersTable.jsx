@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
+import { colors } from '../../styles/colors'
 
 export const UsersTable = ({ data }) => {
     const navigator = useNavigate()
@@ -19,8 +20,8 @@ export const UsersTable = ({ data }) => {
                             <UserInfoText>
                                 <h2>{json.first_name} {json.last_name}</h2>
                                 <p>#{json.id}</p>
-                                <p>#{json.email}</p>
-                                <p>#{json.start_date}</p>
+                                <p>{json.email}</p>
+                                <p>{json.start_date}</p>
                             </UserInfoText>
                         </td>
                         <td>
@@ -30,7 +31,7 @@ export const UsersTable = ({ data }) => {
                             <p>{json.phone}</p>
                         </td>
                         <td>
-                            <p>Active</p>
+                            {json.status === 'Active' ? <StatusActive>{json.status}</StatusActive> : <StatusInactive>{json.status}</StatusInactive>}
                         </td>
                         <td>
                             <button onClick={()=> handleEdit(json.id)}> Edit</button>
@@ -51,4 +52,12 @@ const UserImgTable = styled.img`
 const UserInfoText = styled.div`
     display: flex;
     flex-direction: column;
+`
+
+const StatusActive = styled.p`
+    color: ${colors.green};
+`
+
+const StatusInactive = styled.p`
+    color: ${colors.red};
 `

@@ -7,6 +7,7 @@ import { UsersTable } from "../components/Tables/UsersTable"
 import { useDispatch, useSelector } from "react-redux"
 import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
 import { userListThunk } from "../features/users/usersThunk"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -24,10 +25,15 @@ export const Users = () => {
     const LastPage = firstPage + rows;
     const displayedUsers = users.slice(firstPage, LastPage)
     const totalPages = Math.ceil(users.length / rows);
+    const navigator = useNavigate()
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
+
+    const handleNew = () => {
+        navigator('/users/newuser')
+    }
 
 
     useEffect(() =>{
@@ -53,6 +59,7 @@ export const Users = () => {
                 <h2> All Employee </h2>
                 <h2> Active Employee </h2>
                 <h2> Inactive Employee </h2>
+                <button onClick={handleNew}>+ New User</button>
             </UsersMenu>
             <TableStyled>
                 <thead>

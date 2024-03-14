@@ -7,7 +7,9 @@
     "check_in": "2/16/2024",
     "check_out": "2/19/2024",
     "notes": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    "room": 1
+    "room": 1,
+    "status": "Refund",
+    "room_type": "Suite"
   }, {
     "id": 2,
     "first_name": "Nert",
@@ -16,7 +18,9 @@
     "check_in": "5/5/2023",
     "check_out": "8/28/2023",
     "notes": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-    "room": 2
+    "room": 2,
+    "status": "Refund",
+    "room_type": "Single Bed"
   }, {
     "id": 3,
     "first_name": "Putnem",
@@ -25,7 +29,9 @@
     "check_in": "11/11/2023",
     "check_out": "10/2/2023",
     "notes": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
-    "room": 3
+    "room": 3,
+    "status": "Booked",
+    "room_type": "Double Bed"
   }, {
     "id": 4,
     "first_name": "Julius",
@@ -34,7 +40,9 @@
     "check_in": "9/12/2023",
     "check_out": "10/8/2023",
     "notes": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
-    "room": 4
+    "room": 4,
+    "status": "Pending",
+    "room_type": "Double Superior"
   }, {
     "id": 5,
     "first_name": "Barny",
@@ -43,7 +51,9 @@
     "check_in": "11/16/2023",
     "check_out": "8/4/2023",
     "notes": "Phasellus id sapien in sapien iaculis congue.",
-    "room": 5
+    "room": 5,
+    "status": "Cancelled",
+    "room_type": "Suite"
   }, {
     "id": 6,
     "first_name": "Fernande",
@@ -52,7 +62,9 @@
     "check_in": "5/7/2023",
     "check_out": "12/28/2023",
     "notes": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    "room": 6
+    "room": 6,
+    "status": "Booked",
+    "room_type": "Single Bed"
   }, {
     "id": 7,
     "first_name": "Clemens",
@@ -61,7 +73,9 @@
     "check_in": "7/10/2023",
     "check_out": "10/18/2023",
     "notes": "Nulla nisl.",
-    "room": 7
+    "room": 7,
+    "status": "Refund",
+    "room_type": "Double Bed"
   }, {
     "id": 8,
     "first_name": "Bartie",
@@ -70,7 +84,9 @@
     "check_in": "3/16/2023",
     "check_out": "7/15/2023",
     "notes": "Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
-    "room": 8
+    "room": 8,
+    "status": "Refund",
+    "room_type": "Double Superior"
   }, {
     "id": 9,
     "first_name": "Tobye",
@@ -79,7 +95,9 @@
     "check_in": "6/24/2023",
     "check_out": "10/15/2023",
     "notes": "Sed accumsan felis.",
-    "room": 9
+    "room": 9,
+    "status": "Pending",
+    "room_type": "Suite"
   }, {
     "id": 10,
     "first_name": "Amity",
@@ -88,7 +106,9 @@
     "check_in": "2/14/2024",
     "check_out": "2/24/2024",
     "notes": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
-    "room": 10
+    "room": 1,
+    "status": "Pending",
+    "room_type": "Single Bed"
   }, {
     "id": 11,
     "first_name": "Caddric",
@@ -97,7 +117,9 @@
     "check_in": "5/10/2023",
     "check_out": "8/30/2023",
     "notes": "Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
-    "room": 11
+    "room": 1,
+    "status": "Cancelled",
+    "room_type": "Double Bed"
   }, {
     "id": 12,
     "first_name": "Brooks",
@@ -106,7 +128,9 @@
     "check_in": "5/7/2023",
     "check_out": "7/24/2023",
     "notes": "Etiam faucibus cursus urna.",
-    "room": 12
+    "room": 1,
+    "status": "Refund",
+    "room_type": "Double Superior"
   }, {
     "id": 13,
     "first_name": "Tanny",
@@ -115,7 +139,9 @@
     "check_in": "9/27/2023",
     "check_out": "12/3/2023",
     "notes": "Donec ut dolor.",
-    "room": 13
+    "room": 1,
+    "status": "Refund",
+    "room_type": "Suite"
   }, {
     "id": 14,
     "first_name": "Nichole",
@@ -124,7 +150,9 @@
     "check_in": "11/24/2023",
     "check_out": "10/12/2023",
     "notes": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
-    "room": 14
+    "room": 1,
+    "status": "Booked",
+    "room_type": "Single Bed"
   }, {
     "id": 15,
     "first_name": "Annice",
@@ -133,7 +161,9 @@
     "check_in": "10/21/2023",
     "check_out": "3/26/2023",
     "notes": "Duis at velit eu est congue elementum. In hac habitasse platea dictumst.",
-    "room": 15
+    "room": 1,
+    "status": "Refund",
+    "room_type": "Double Bed"
   }, {
     "id": 16,
     "first_name": "Enrique",
@@ -142,7 +172,9 @@
     "check_in": "2/27/2024",
     "check_out": "2/14/2024",
     "notes": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    "room": 1
+    "room": 1,
+    "status": "Booked",
+    "room_type": "Suite"
   }, {
     "id": 17,
     "first_name": "Robbin",
@@ -151,7 +183,9 @@
     "check_in": "8/4/2023",
     "check_out": "9/4/2023",
     "notes": "Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
-    "room": 2
+    "room": 2,
+    "status": "Booked",
+    "room_type": "Single Bed"
   }, {
     "id": 18,
     "first_name": "Elizabeth",
@@ -160,7 +194,9 @@
     "check_in": "6/7/2023",
     "check_out": "7/3/2023",
     "notes": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    "room": 3
+    "room": 3,
+    "status": "Booked",
+    "room_type": "Double Bed"
   }, {
     "id": 19,
     "first_name": "Ernestine",
@@ -169,7 +205,9 @@
     "check_in": "10/2/2023",
     "check_out": "3/9/2023",
     "notes": "Nunc rhoncus dui vel sem. Sed sagittis.",
-    "room": 4
+    "room": 4,
+    "status": "Refund",
+    "room_type": "Double Superior"
   }, {
     "id": 20,
     "first_name": "Lucian",
@@ -178,5 +216,7 @@
     "check_in": "5/19/2023",
     "check_out": "10/3/2023",
     "notes": "Morbi quis tortor id nulla ultrices aliquet.",
-    "room": 5
+    "room": 5,
+    "status": "Booked",
+    "room_type": "Suite"
   }]

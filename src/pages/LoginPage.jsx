@@ -25,7 +25,7 @@ export const Login = ({setAuthUser}) => {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve(navigator(from, { replace: true }))
-                }, 800)
+                }, 500)
             })
             
         } else {

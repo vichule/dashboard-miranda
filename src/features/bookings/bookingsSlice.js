@@ -18,7 +18,17 @@ export const bookingsSlice = createSlice({
     name: 'bookings',
     initialState: initialState,
     reducers: {
-
+        addBooking(state, action){
+            state.data = [action.payload, ...state.data]
+        },
+        removeBooking(state, action){
+            const bookingSelect = state.data.findIndex(booking=> booking.id === action.payload.id)
+            state.data.splice(bookingSelect, 1);
+        },
+        editBooking(state, action){
+            const bookingId = state.data.findIndex((booking) => booking.id == action.payload.id)
+            state.data[bookingId] = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -54,3 +64,6 @@ export const getBookingsError = (state) => state.bookings.error
 export const getBookingData = (state) => state.bookings.booking.data
 export const getBookingStatus = (state) => state.bookings.booking.status
 export const getBookingError = (state) => state.bookings.booking.error
+
+
+export const { addBooking, removeBooking, editBooking } = bookingsSlice.actions

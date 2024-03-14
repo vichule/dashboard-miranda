@@ -6,7 +6,8 @@
   "start_date": "9/16/2023",
   "description": "Maecenas rhoncus aliquam lacus.",
   "photo": "http://dummyimage.com/111x100.png/ff4444/ffffff",
-  "phone": "781-111-8314"
+  "phone": "781-111-8314",
+  "status": "Active"
 }, {
   "id": 2,
   "first_name": "Lidia",
@@ -15,7 +16,8 @@
   "start_date": "1/20/2024",
   "description": "Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.",
   "photo": "http://dummyimage.com/148x100.png/dddddd/000000",
-  "phone": "530-636-5717"
+  "phone": "530-636-5717",
+  "status": "Active"
 }, {
   "id": 3,
   "first_name": "Nat",
@@ -24,7 +26,8 @@
   "start_date": "2/15/2023",
   "description": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
   "photo": "http://dummyimage.com/137x100.png/5fa2dd/ffffff",
-  "phone": "769-374-6971"
+  "phone": "769-374-6971",
+  "status": "Active"
 }, {
   "id": 4,
   "first_name": "Ebba",
@@ -33,7 +36,8 @@
   "start_date": "2/1/2024",
   "description": "Quisque ut erat. Curabitur gravida nisi at nibh.",
   "photo": "http://dummyimage.com/100x100.png/cc0000/ffffff",
-  "phone": "531-368-5190"
+  "phone": "531-368-5190",
+  "status": "Active"
 }, {
   "id": 5,
   "first_name": "Federica",
@@ -42,7 +46,8 @@
   "start_date": "1/24/2023",
   "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
   "photo": "http://dummyimage.com/141x100.png/cc0000/ffffff",
-  "phone": "322-445-2606"
+  "phone": "322-445-2606",
+  "status": "Inactive"
 }, {
   "id": 6,
   "first_name": "Benjamen",
@@ -51,7 +56,8 @@
   "start_date": "5/21/2024",
   "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
   "photo": "http://dummyimage.com/111x100.png/ff4444/ffffff",
-  "phone": "880-826-7830"
+  "phone": "880-826-7830",
+  "status": "Inactive"
 }, {
   "id": 7,
   "first_name": "Minna",
@@ -60,7 +66,8 @@
   "start_date": "3/11/2024",
   "description": "Nunc purus. Phasellus in felis.",
   "photo": "http://dummyimage.com/130x100.png/5fa2dd/ffffff",
-  "phone": "842-419-5372"
+  "phone": "842-419-5372",
+  "status": "Inactive"
 }, {
   "id": 8,
   "first_name": "Maris",
@@ -69,7 +76,8 @@
   "start_date": "5/18/2023",
   "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
   "photo": "http://dummyimage.com/132x100.png/ff4444/ffffff",
-  "phone": "402-668-0818"
+  "phone": "402-668-0818",
+  "status": "Active"
 }, {
   "id": 9,
   "first_name": "Shoshana",
@@ -78,7 +86,8 @@
   "start_date": "8/20/2023",
   "description": "In quis justo. Maecenas rhoncus aliquam lacus.",
   "photo": "http://dummyimage.com/144x100.png/ff4444/ffffff",
-  "phone": "418-462-6729"
+  "phone": "418-462-6729",
+  "status": "Active"
 }, {
   "id": 10,
   "first_name": "Adolphus",
@@ -87,7 +96,8 @@
   "start_date": "7/15/2024",
   "description": "Etiam faucibus cursus urna.",
   "photo": "http://dummyimage.com/130x100.png/ff4444/ffffff",
-  "phone": "924-345-6605"
+  "phone": "924-345-6605",
+  "status": "Inactive"
 }, {
   "id": 11,
   "first_name": "Alix",
@@ -96,7 +106,8 @@
   "start_date": "1/6/2024",
   "description": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
   "photo": "http://dummyimage.com/145x100.png/5fa2dd/ffffff",
-  "phone": "748-720-1180"
+  "phone": "748-720-1180",
+  "status": "Active"
 }, {
   "id": 12,
   "first_name": "Peggy",
@@ -105,7 +116,8 @@
   "start_date": "5/12/2023",
   "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.",
   "photo": "http://dummyimage.com/104x100.png/5fa2dd/ffffff",
-  "phone": "746-745-7052"
+  "phone": "746-745-7052",
+  "status": "Inactive"
 }, {
   "id": 13,
   "first_name": "Lauree",
@@ -114,7 +126,8 @@
   "start_date": "8/2/2023",
   "description": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.",
   "photo": "http://dummyimage.com/139x100.png/cc0000/ffffff",
-  "phone": "688-113-0451"
+  "phone": "688-113-0451",
+  "status": "Active"
 }, {
   "id": 14,
   "first_name": "Dore",
@@ -123,7 +136,8 @@
   "start_date": "10/29/2023",
   "description": "Aliquam non mauris.",
   "photo": "http://dummyimage.com/131x100.png/cc0000/ffffff",
-  "phone": "240-991-7467"
+  "phone": "240-991-7467",
+  "status": "Active"
 }, {
   "id": 15,
   "first_name": "Currie",
@@ -132,7 +146,8 @@
   "start_date": "1/10/2023",
   "description": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",
   "photo": "http://dummyimage.com/117x100.png/ff4444/ffffff",
-  "phone": "368-601-3422"
+  "phone": "368-601-3422",
+  "status": "Inactive"
 }, {
   "id": 16,
   "first_name": "Berkie",
@@ -141,7 +156,8 @@
   "start_date": "11/30/2023",
   "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
   "photo": "http://dummyimage.com/113x100.png/cc0000/ffffff",
-  "phone": "987-241-3921"
+  "phone": "987-241-3921",
+  "status": "Inactive"
 }, {
   "id": 17,
   "first_name": "Hyman",
@@ -150,7 +166,8 @@
   "start_date": "2/28/2023",
   "description": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
   "photo": "http://dummyimage.com/148x100.png/cc0000/ffffff",
-  "phone": "142-898-1931"
+  "phone": "142-898-1931",
+  "status": "Active"
 }, {
   "id": 18,
   "first_name": "Simmonds",
@@ -159,7 +176,8 @@
   "start_date": "1/8/2024",
   "description": "Suspendisse potenti.",
   "photo": "http://dummyimage.com/135x100.png/5fa2dd/ffffff",
-  "phone": "938-263-7950"
+  "phone": "938-263-7950",
+  "status": "Active"
 }, {
   "id": 19,
   "first_name": "Patti",
@@ -168,7 +186,8 @@
   "start_date": "10/25/2023",
   "description": "Integer ac neque. Duis bibendum.",
   "photo": "http://dummyimage.com/139x100.png/cc0000/ffffff",
-  "phone": "424-657-6118"
+  "phone": "424-657-6118",
+  "status": "Active"
 }, {
   "id": 20,
   "first_name": "Donni",
@@ -177,7 +196,8 @@
   "start_date": "4/19/2023",
   "description": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
   "photo": "http://dummyimage.com/122x100.png/ff4444/ffffff",
-  "phone": "560-810-7168"
+  "phone": "560-810-7168",
+  "status": "Inactive"
 }, {
   "id": 21,
   "first_name": "Kile",
@@ -186,7 +206,8 @@
   "start_date": "2/16/2023",
   "description": "In hac habitasse platea dictumst.",
   "photo": "http://dummyimage.com/103x100.png/dddddd/000000",
-  "phone": "748-570-0493"
+  "phone": "748-570-0493",
+  "status": "Inactive"
 }, {
   "id": 22,
   "first_name": "Blinni",
@@ -195,7 +216,8 @@
   "start_date": "1/9/2024",
   "description": "Phasellus id sapien in sapien iaculis congue.",
   "photo": "http://dummyimage.com/136x100.png/ff4444/ffffff",
-  "phone": "660-469-3006"
+  "phone": "660-469-3006",
+  "status": "Inactive"
 }, {
   "id": 23,
   "first_name": "Joan",
@@ -204,7 +226,8 @@
   "start_date": "7/3/2023",
   "description": "Vivamus tortor. Duis mattis egestas metus.",
   "photo": "http://dummyimage.com/149x100.png/5fa2dd/ffffff",
-  "phone": "702-759-3169"
+  "phone": "702-759-3169",
+  "status": "Inactive"
 }, {
   "id": 24,
   "first_name": "Beryl",
@@ -213,7 +236,8 @@
   "start_date": "4/28/2023",
   "description": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
   "photo": "http://dummyimage.com/113x100.png/dddddd/000000",
-  "phone": "867-386-6181"
+  "phone": "867-386-6181",
+  "status": "Active"
 }, {
   "id": 25,
   "first_name": "Cissy",
@@ -222,7 +246,8 @@
   "start_date": "11/15/2022",
   "description": "Morbi non quam nec dui luctus rutrum.",
   "photo": "http://dummyimage.com/138x100.png/5fa2dd/ffffff",
-  "phone": "141-574-2955"
+  "phone": "141-574-2955",
+  "status": "Active"
 }, {
   "id": 26,
   "first_name": "Oriana",
@@ -231,7 +256,8 @@
   "start_date": "12/3/2023",
   "description": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
   "photo": "http://dummyimage.com/134x100.png/cc0000/ffffff",
-  "phone": "820-634-1475"
+  "phone": "820-634-1475",
+  "status": "Active"
 }, {
   "id": 27,
   "first_name": "Vin",
@@ -240,7 +266,8 @@
   "start_date": "2/21/2024",
   "description": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.",
   "photo": "http://dummyimage.com/126x100.png/ff4444/ffffff",
-  "phone": "919-380-8377"
+  "phone": "919-380-8377",
+  "status": "Inactive"
 }, {
   "id": 28,
   "first_name": "Larry",
@@ -249,7 +276,8 @@
   "start_date": "9/26/2023",
   "description": "Vestibulum rutrum rutrum neque.",
   "photo": "http://dummyimage.com/141x100.png/dddddd/000000",
-  "phone": "811-251-6458"
+  "phone": "811-251-6458",
+  "status": "Active"
 }, {
   "id": 29,
   "first_name": "Harbert",
@@ -258,7 +286,8 @@
   "start_date": "4/8/2023",
   "description": "Nulla justo.",
   "photo": "http://dummyimage.com/105x100.png/dddddd/000000",
-  "phone": "818-340-5461"
+  "phone": "818-340-5461",
+  "status": "Inactive"
 }, {
   "id": 30,
   "first_name": "Suzie",
@@ -267,5 +296,6 @@
   "start_date": "1/26/2024",
   "description": "Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
   "photo": "http://dummyimage.com/118x100.png/ff4444/ffffff",
-  "phone": "506-263-2453"
+  "phone": "506-263-2453",
+  "status": "Inactive"
 }]

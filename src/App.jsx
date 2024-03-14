@@ -18,6 +18,7 @@ import { Layout } from './pages/LayoutPage.jsx'
 import { BookingID } from './pages/BookingPage.jsx'
 import { RoomID } from './pages/RoomPage.jsx'
 import { UserID } from './pages/Userpage.jsx'
+import { NewUserPage } from './pages/NewUserPage.jsx'
 
 
 
@@ -52,6 +53,7 @@ function App() {
                     <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='users' element={<RequireAuth authUser={authUser}><Users/></RequireAuth>}/>
                     <Route path='users/user/:id' element={<UserID />} />
+                    <Route path="/users/newuser" element={<NewUserPage/>}/>
                     <Route path='contact' element={<RequireAuth authUser={authUser}><Contact/></RequireAuth>}/>
                   </Route>
                 </Routes>

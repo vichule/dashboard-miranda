@@ -1,11 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 import { TdText } from './StyledTable'
+import { DeleteIcon } from '../../styles/icons'
+import { useDispatch } from 'react-redux'
+import { removeBooking } from '../../features/bookings/bookingsSlice'
 
 export const BookingsTable = ({ data }) => {
     const navigator = useNavigate()
+    const dispatch = useDispatch()
 
     const handleInfo = (id) =>{
         navigator(`/bookings/booking/${id}`)
+    }
+    
+    const handleDelete = (booking, e) =>{
+        e.stopPropagation()
+        dispatch(removeBooking(booking))
     }
 
     return(
@@ -31,10 +40,13 @@ export const BookingsTable = ({ data }) => {
                             <TdText>{json.notes}</TdText>
                         </td>
                         <td>
-                            <p>Minimal Deluxe</p>
+                            <p>{json.room_type}</p>
                         </td>
                         <td>
-                            <p>Check In</p>
+                            <p>{json.status}</p>
+                        </td>
+                        <td>
+                            <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
                         </td>
                     </tr>
 

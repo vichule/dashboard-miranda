@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { editUser, getUserData, getUserStatus, getUsersData, getUsersError, getUsersStatus, removeUser } from "../features/users/usersSlice"
 import { useCallback, useEffect, useState } from "react"
 import { userListThunk, userThunk } from "../features/users/usersThunk"
+import { UserForm } from "../components/Forms/UserForm"
 
 
 export const UserID = () => {
@@ -26,15 +27,16 @@ export const UserID = () => {
         start_date: "",
         description: "",
         phone: "",
-        photo: ""
+        photo: "",
+        status: ""
         })
 
-    const api = useCallback(async () => {
-        await dispatch(userThunk(parseInt(id))).unwrap();
+    // const api = useCallback(async () => {
+    //     await dispatch(userThunk(parseInt(id))).unwrap();
         
-        setUser(userData)
-        setSpinner(false)
-    }, [id, dispatch, user]);
+    //     setUser(userData)
+    //     setSpinner(false)
+    // }, [id, dispatch, user]);
 
     // useEffect(() => {
     //     api();
@@ -80,48 +82,7 @@ export const UserID = () => {
 
             <div>
                 <button onClick={handleBack}>Back</button>
-                {spinner ? <p>Loading</p> : <form onSubmit={handleSaveUser}>
-                    <div>
-                        <label htmlFor="firstName"></label>
-                        <input type="text" name="first_name" value={user.first_name || ''} onChange={handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="lastName"></label>
-                        <input type="text" name="last_name" value={user.last_name} onChange={handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="job"></label>
-                        <select name="job" id="job" onChange={handleChange}>
-                            <option value="true">Room Service</option>
-                            <option value="false">Manager</option>
-                            <option value="false">Recepcionist</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="email"></label>
-                        <input type="email" name="email" value={user.email} onChange={handleChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="phone"></label>
-                        <input type="tel" name="phone" value={user.phone} onChange={handleChange}/>
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="description"></label>
-                        <textarea name="description" id="description" cols="30" rows="10" value={user.description} onChange={handleChange}></textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="state"></label>
-                        <select name="state" id="state" onChange={handleChange}>
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button type="submit">Save Changes</button>
-                        <button onClick={handleDeleteUser}>Delete User</button>
-                    </div>
-                </form>}
+                {spinner ? <p>Loading</p> : <UserForm user={user} change={handleChange} remove={handleDeleteUser} save={handleSaveUser}/>}
                 
             </div>
         

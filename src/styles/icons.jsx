@@ -16,6 +16,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { SlKey } from "react-icons/sl";
 import { HiOutlinePuzzle } from "react-icons/hi";
 import { HiOutlineUser } from "react-icons/hi";
+import { RiDeleteBack2Fill } from "react-icons/ri";
 
 
    const LateralMenuStyle = `
@@ -117,7 +118,9 @@ export const UserIconMenu = styled(HiOutlineUser)`
       ${LateralMenuStyle}
    `
 
-
+export const DeleteIcon = styled(RiDeleteBack2Fill)`
+   ${TopMenuStyle}
+`
 
 
 
