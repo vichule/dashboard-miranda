@@ -28,10 +28,10 @@ export const RoomID = () =>{
         navigator(-1)
     }
 
-    const api = useCallback(async () => {
+    const api = async () => {
         await dispatch(roomThunk(parseInt(id))).unwrap();
         setSpinner(false)
-    }, [id, dispatch, room]);
+    }
 
     useEffect(() => {
         api();

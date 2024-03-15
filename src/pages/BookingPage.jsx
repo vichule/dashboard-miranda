@@ -48,7 +48,7 @@ export const BookingID = () =>{
     //     }
     //   }, [dispatch, id, bookingsData])
 
-    const api = useCallback(async () => {
+    const api = async () => {
         await dispatch(roomListThunk()).unwrap();
         await dispatch(bookingThunk(parseInt(id))).unwrap();
         bookingRoom = roomsData.find((room) => room.id === booking.room)
@@ -57,7 +57,7 @@ export const BookingID = () =>{
             setSpinner(false)
         }
         
-    }, [id, dispatch, room]);
+    }
 
     useEffect(() => {
         api();

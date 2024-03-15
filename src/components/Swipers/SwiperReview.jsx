@@ -9,9 +9,10 @@ import { colors } from "../../styles/colors";
 import styled from "styled-components";
 import { CheckIcon, CrossIcon } from "../../styles/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../../features/contact/contactSlice"
+import { getCommentsListData, getCommentsListError, getCommentsListStatus, removeComment } from "../../features/contact/contactSlice"
 import { commentsListThunk } from "../../features/contact/contactThunk"
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const SwiperReview = () => {
     const dispatch = useDispatch()
@@ -40,6 +41,23 @@ export const SwiperReview = () => {
         return Math.floor(((Date.now() - new Date(date).getTime()) )/(1000*60*60*24))
     }
 
+    const popUp = ({comment}) =>{
+        Swal.fire({
+            title: `Message from ${comment.first_name} ${comment.last_name}`,
+            text: comment.message,
+            confirmButtonText: 'Close',
+            confirmButtonColor: colors.hardGreen,
+            color: colors.white,
+            background: colors.blackSemi,
+            width:'1200px',
+          })
+    }
+
+    const handleDelete = (comment, event) =>{
+        event.stopPropagation()
+        dispatch(removeComment(comment))
+    }
+
 
     return(
         <>
@@ -53,28 +71,28 @@ export const SwiperReview = () => {
                 }}
 
             >
-                {comments.map(({ message, photo, first_name, last_name, id, date}) =>
-                <SwiperSlide key={id}>
+                {comments.map((comment) => (
+                <SwiperSlide key={comment.id}>
                     <ReviewContainer>
                         
                         <CardContainer >
-                            <TextContainer>  
-                                {message}
+                            <TextContainer onClick={ (e) => popUp({comment, e})}>  
+                                {comment.message}
                             </TextContainer>
                             <UserContainer>
-                                <ImgUser src={photo} alt="" />
+                                <ImgUser src={comment.photo} alt="" />
                                 <div>
-                                    <TextUser>{first_name} {last_name}</TextUser>
-                                    <DateUser>{differenceDate(date)} days ago</DateUser>
+                                    <TextUser>{comment.first_name} {comment.last_name}</TextUser>
+                                    <DateUser>{differenceDate(comment.date)} days ago</DateUser>
                                 </div>
                                 <CheckIcon/>
-                                <CrossIcon/>
+                                <CrossIcon onClick={ (e) => handleDelete(comment, e)}/>
                             </UserContainer>
                         </CardContainer>
                         
                     </ReviewContainer>                
                 </SwiperSlide>
-            )}
+                ))}
             </StyledSwiper>
 
 

@@ -23,8 +23,10 @@ export const Contact = () => {
     const rows = 4;
     const firstPage = (currentPage - 1) * rows
     const LastPage = firstPage + rows;
-    const displayedRows = contacts.slice(firstPage, LastPage)
+    let displayedRows = contacts.slice(firstPage, LastPage)
     const totalPages = Math.ceil(contacts.length / rows);
+    
+    const [filter, setFilter] = useState(false)
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -46,6 +48,15 @@ export const Contact = () => {
         }
     },[dispatch, commentsData, commentsDataStatus])
 
+    const handleFilterOn = () =>{
+        setFilter(true)
+    }
+    const handleFilterOff = () =>{
+        setFilter(false)
+    }
+
+   
+
     return (
         <>
             <ContactContainer>
@@ -55,8 +66,8 @@ export const Contact = () => {
             </ContactContainer>
             <BotContainer>
                 <ContactMenu>
-                    <h2> All Contacts </h2>
-                    <h2> Archived </h2>
+                    <h2 onClick={handleFilterOff}> All Contacts </h2>
+                    <h2 onClick={handleFilterOn}> Archived </h2>
                 </ContactMenu>
             <TableStyled>
                 <thead>
@@ -68,7 +79,7 @@ export const Contact = () => {
                         </tr>
                 </thead>
                 <tbody>
-                    <ContactTable data={displayedRows}/>
+                    <ContactTable data={displayedRows} dataFilter={filter}/>
                 </tbody>
                 
             </TableStyled>
