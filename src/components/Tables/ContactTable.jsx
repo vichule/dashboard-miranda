@@ -5,7 +5,7 @@ import { DeleteIcon } from '../../styles/icons'
 import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
 import { useEffect } from 'react'
 
-export const ContactTable = ({ data , dataFilter }) => {
+export const ContactTable = ({ data  }) => {
     let dataFiltered = ([])
     const dispatch = useDispatch()
 
@@ -17,15 +17,11 @@ export const ContactTable = ({ data , dataFilter }) => {
        dispatch(editCommentStatus(comment.id))
     }
     
-    if(dataFilter){
-        dataFiltered = data.filter((comment) => comment.status === true)
-    }else{
-        dataFiltered = data
-    }
+    
     
     return(
         <>
-            {dataFiltered.map((json) => (
+            {data.map((json) => (
 
                     <tr key={json.id}>
                         <td>

@@ -9,6 +9,7 @@ import { getUsersData, getUsersError, getUsersStatus } from "../features/users/u
 import { userListThunk } from "../features/users/usersThunk"
 import { useNavigate } from "react-router-dom"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { colors } from "../styles/colors"
 
 
 
@@ -28,6 +29,8 @@ export const Users = () => {
     const totalPages = Math.ceil(users.length / rows);
     const navigator = useNavigate()
 
+    const [filter, setFilter] = useState('none')
+
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
@@ -44,22 +47,36 @@ export const Users = () => {
         }else if(usersDataStatus === 'pending'){
 
         }else if (usersDataStatus === 'fulfilled'){
-            newUsers = [...usersData]
+            if (filter === 'Active'){
+                newUsers = usersData.filter((user) => user.status === "Active" )
+            }else if(filter === 'Inactive'){
+                newUsers = usersData.filter((user) => user.status === "Inactive" )
+            }else{
+                newUsers = [...usersData]
+                
+            }
+            
             setUsers(newUsers)
 
         }else if(usersDataStatus === 'rejected'){
             console.log(usersDataError)
         }
 
-    },[dispatch, usersData, usersDataStatus])
+    },[dispatch, usersData, usersDataStatus, filter])
+
+    const handleFilter = (option) => {
+        setFilter(option);
+      };
 
     return (
         <>
             <UsersContainer>
             <UsersMenu>
-                <h2> All Employee </h2>
-                <h2> Active Employee </h2>
-                <h2> Inactive Employee </h2>
+                <TabMenu>
+                    <TabElement onClick={()=> handleFilter("none")}> All Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Active")}> Active Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Inactive")}> Inactive Employee </TabElement>
+                </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
             </UsersMenu>
             <TableStyled>
@@ -94,11 +111,32 @@ const UsersContainer = styled.div`
 
 const UsersMenu = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 25%;
-    
-    h2{
-        cursor: pointer;
-    }
+    justify-content: space-between;
+    margin-bottom: 2em;
+    width: 95%;
+   
 `
+
+const TabMenu = styled.ul`
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 70%;
+    align-items: flex-end;
+`
+const TabElement = styled.li`
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: ${colors.grey2};
+    border-bottom: 1px solid ${colors.grey2};
+    width: 11em;
+        &:hover{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+        &:active{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+    `

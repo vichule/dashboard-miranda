@@ -17,7 +17,7 @@ import { GlobalStyles, darkTheme, lightTheme } from './styles/theme.jsx'
 import { Layout } from './pages/LayoutPage.jsx'
 import { BookingID } from './pages/BookingPage.jsx'
 import { RoomID } from './pages/RoomPage.jsx'
-import { UserID } from './pages/Userpage.jsx'
+import { UserID } from './pages/UserPage.jsx'
 import { NewUserPage } from './pages/NewUserPage.jsx'
 import { NewRoomPage } from './pages/NewRoomPage.jsx'
 

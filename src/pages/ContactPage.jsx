@@ -40,13 +40,18 @@ export const Contact = () => {
         
             
         }else if(commentsDataStatus === 'fulfilled'){
-            newComments = [...commentsData]
+            if(filter){
+                newComments = commentsData.filter((comment) => comment.status === true)
+            }else{
+                newComments = [...commentsData]
+            }
+            
             setContacts(newComments)
 
         }else if(commentsDataStatus === 'rejected'){
             console.log(commentsDataError)
         }
-    },[dispatch, commentsData, commentsDataStatus])
+    },[dispatch, commentsData, commentsDataStatus,filter])
 
     const handleFilterOn = () =>{
         setFilter(true)
@@ -66,8 +71,11 @@ export const Contact = () => {
             </ContactContainer>
             <BotContainer>
                 <ContactMenu>
-                    <h2 onClick={handleFilterOff}> All Contacts </h2>
-                    <h2 onClick={handleFilterOn}> Archived </h2>
+                    <TabMenu>
+                        <TabElement onClick={handleFilterOff}> All Contacts </TabElement>
+                        <TabElement onClick={handleFilterOn}> Archived </TabElement>
+                    </TabMenu>
+                    
                 </ContactMenu>
             <TableStyled>
                 <thead>
@@ -79,7 +87,7 @@ export const Contact = () => {
                         </tr>
                 </thead>
                 <tbody>
-                    <ContactTable data={displayedRows} dataFilter={filter}/>
+                    <ContactTable data={displayedRows} />
                 </tbody>
                 
             </TableStyled>
@@ -121,12 +129,32 @@ const BotContainer = styled.div`
 
 const ContactMenu = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 10%;
+    margin-bottom: 2em;
     
-    h2{
-        cursor: pointer;
-    }
+    
 `
+
+const TabMenu = styled.ul`
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 70%;
+    align-items: flex-end;
+`
+const TabElement = styled.li`
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: ${colors.grey2};
+    border-bottom: 1px solid ${colors.grey2};
+    width: 11em;
+        &:hover{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+        &:active{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+    `
 

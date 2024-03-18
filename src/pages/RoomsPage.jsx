@@ -28,6 +28,10 @@ export const Rooms = () => {
     const displayedRows = rooms.slice(firstPage, LastPage)
     const totalPages = Math.ceil(rooms.length / rows);
 
+    const [filter, setFilter] = useState('none')
+
+
+
 
     useEffect(() =>{
         let newRooms = []
@@ -37,14 +41,21 @@ export const Rooms = () => {
             console.log(roomsDataStatus)
 
         } else if (roomsDataStatus === 'fulfilled'){
-            newRooms = [...roomsData]
+            if (filter === 'available'){
+                newRooms = roomsData.filter((room) => room.status === "available" )
+            }else if(filter === 'booked'){
+                newRooms = roomsData.filter((room) => room.status === "booked" )
+            }else{
+                newRooms = [...roomsData]
+                
+            }
+            
             setRooms(newRooms)
-
         } else if (roomsDataStatus === 'rejected'){
             console.log(roomsDataError)
         }
         
-    },[dispatch, roomsDataStatus, roomsData])
+    },[dispatch, roomsDataStatus, roomsData, filter])
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -54,10 +65,26 @@ export const Rooms = () => {
         navigator('/rooms/newroom')
     }
 
+    const handleFilter = (option) => {
+        setFilter(option);
+      };
+
     return (
         <>
             <RoomsContainer>
                 <RoomsMenu>
+                    <TabMenu>
+                        
+                        <TabElement onClick={()=> handleFilter("none")}>
+                            All Rooms
+                        </TabElement>
+                        <TabElement onClick={()=> handleFilter("available")}>
+                            Available Rooms
+                        </TabElement>
+                        <TabElement onClick={()=> handleFilter("booked")}>
+                            Booked Rooms
+                        </TabElement>
+                    </TabMenu>
                     <GreenBtnStyled onClick={handleNew}>+ New Room</GreenBtnStyled>
                 </RoomsMenu>
             <TableStyled>
@@ -101,11 +128,30 @@ const RoomsContainer = styled.div`
 
 const RoomsMenu = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 40%;
-    
-    h2{
-        cursor: pointer;
-    }
+    justify-content: flex-start;
+    width: 100%;
 `
+
+const TabMenu = styled.ul`
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 85%;
+    align-items: flex-end;
+`
+const TabElement = styled.li`
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: ${colors.grey2};
+    border-bottom: 1px solid ${colors.grey2};
+    width: 11em;
+        &:hover{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+        &:active{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+    `

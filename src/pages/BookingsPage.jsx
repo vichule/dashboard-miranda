@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { bookingsListThunk } from "../features/bookings/bookingsThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { colors } from "../styles/colors"
 
 
 
@@ -24,6 +25,8 @@ export const Bookings = () => {
     const displayedBookings = bookings.slice(firstPage, LastPage)
     const totalPages = Math.ceil(bookings.length / rows);
 
+    const [filter, setFilter] = useState('none')
+
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
@@ -36,22 +39,40 @@ export const Bookings = () => {
         if (bookingsDataStatus === 'pending'){
             
         }else if(bookingsDataStatus === 'fulfilled'){
-            newBookings = [...bookingsData]
+            if (filter === 'Check-in'){
+                newBookings = bookingsData.filter((booking) => booking.status === "Check-in" )
+            }else if(filter === 'Check-out'){
+                newBookings = bookingsData.filter((booking) => booking.status === "Check-out" )
+            }else if(filter === 'In progress'){
+                newBookings = bookingsData.filter((booking) => booking.status === "In progress" )
+            }else{
+                newBookings = [...bookingsData]
+                
+            }
+            
+           
             setBookings(newBookings)
 
         }else if(bookingsDataStatus === 'rejected'){
             console.log(bookingsDataError)
         }
-    },[dispatch, bookingsData, bookingsDataStatus])
+    },[dispatch, bookingsData, bookingsDataStatus, filter])
+
+    const handleFilter = (option) => {
+        setFilter(option);
+      };
 
     return (
         <>
             <BookingsContainer>
             <BookingsMenu>
-                <h2> All Bookings </h2>
-                <h2> Checking In </h2>
-                <h2> Checking Out </h2>
-                <h2> In Progress </h2>
+                <TabMenu>
+                    <TabElement onClick={()=> handleFilter("none")}> All Bookings </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-in")}> Checking In </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-out")}> Checking Out </TabElement>
+                    <TabElement onClick={()=> handleFilter("In progress")}> In Progress </TabElement>
+                </TabMenu>
+
                 <select name="order" id="order">
                             <option value="true">Guest</option>
                             <option value="false">Check In</option>
@@ -95,9 +116,29 @@ const BookingsMenu = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 25%;
-    
-    h2{
-        cursor: pointer;
-    }
+    width: 95%;
+    margin-bottom: 2em;
 `
+
+const TabMenu = styled.ul`
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+`
+const TabElement = styled.li`
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: ${colors.grey2};
+    border-bottom: 1px solid ${colors.grey2};
+    width: 11em;
+        &:hover{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+        &:active{
+            color: ${colors.hardGreen};
+            border-bottom: 2px solid ${colors.hardGreen};
+        }
+    `
