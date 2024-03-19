@@ -27,6 +27,7 @@ export const Contact = () => {
     const totalPages = Math.ceil(contacts.length / rows);
     
     const [filter, setFilter] = useState(false)
+    const [order, setOrder] = useState('none');
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -60,6 +61,13 @@ export const Contact = () => {
         setFilter(false)
     }
 
+    const handleOrder = (e) => {
+        e.preventDefault();
+
+        setOrder(e.target.value)
+
+    }
+
    
 
     return (
@@ -91,12 +99,12 @@ export const Contact = () => {
                 </tbody>
                 
             </TableStyled>
-            <div>
+            <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </div>
+            </PaginationContainer>
             </BotContainer>
         </>
     )
@@ -158,3 +166,7 @@ const TabElement = styled.li`
         }
     `
 
+const PaginationContainer = styled.div`
+    display: flex;
+    gap: 5em;
+`

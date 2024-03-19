@@ -26,6 +26,7 @@ export const Bookings = () => {
     const totalPages = Math.ceil(bookings.length / rows);
 
     const [filter, setFilter] = useState('none')
+    const [order, setOrder] = useState('none');
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -49,18 +50,48 @@ export const Bookings = () => {
                 newBookings = [...bookingsData]
                 
             }
+
+            const orderedBookings = newBookings.sort((a, b) => {
+                switch (order) {
+                    case 'guest':
+                        const nameA = a.first_name
+                        const nameB = b.first_name
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+                        return 0;
+                        
+                    case 'check_in':
+                        return new Date(a.check_in) - new Date(b.check_in)
+                    case 'check_out':
+                        return new Date(a.check_out) - new Date(b.check_out)
+                    
+                    default:
+                        return new Date(a.order_date) - new Date(b.order_date);
+                }
+            })
             
            
-            setBookings(newBookings)
+            setBookings(orderedBookings)
 
         }else if(bookingsDataStatus === 'rejected'){
             console.log(bookingsDataError)
         }
-    },[dispatch, bookingsData, bookingsDataStatus, filter])
+    },[dispatch, bookingsData, bookingsDataStatus, filter,order])
 
     const handleFilter = (option) => {
         setFilter(option);
       };
+
+      const handleOrder = (e) => {
+        e.preventDefault();
+
+        setOrder(e.target.value)
+
+    }
 
     return (
         <>
@@ -73,11 +104,12 @@ export const Bookings = () => {
                     <TabElement onClick={()=> handleFilter("In progress")}> In Progress </TabElement>
                 </TabMenu>
 
-                <select name="order" id="order">
-                            <option value="true">Guest</option>
-                            <option value="false">Check In</option>
-                            <option value="false">Check Out</option>
-                            <option value="false">Order Date</option>
+                <select name="order" id="order" onChange={(e) => handleOrder(e)}>
+                            <option value="date">Order Date</option>
+                            <option value="guest">Guest</option>
+                            <option value="check_in">Check In</option>
+                            <option value="check_out">Check Out</option>
+                            
                 </select>
             </BookingsMenu>
             <TableStyled>
@@ -97,12 +129,12 @@ export const Bookings = () => {
                 </tbody>
                 
             </TableStyled>
-            <div>
+            <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </div>
+            </PaginationContainer>
             </BookingsContainer>
         </>
     )
@@ -142,3 +174,8 @@ const TabElement = styled.li`
             border-bottom: 2px solid ${colors.hardGreen};
         }
     `
+
+const PaginationContainer = styled.div`
+    display: flex;
+    gap: 5em;
+`

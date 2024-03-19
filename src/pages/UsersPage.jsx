@@ -94,12 +94,12 @@ export const Users = () => {
                 </tbody>
                 
             </TableStyled>
-            <div>
+            <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </div>
+            </PaginationContainer>
             </UsersContainer>
         </>
     )
@@ -140,3 +140,7 @@ const TabElement = styled.li`
             border-bottom: 2px solid ${colors.hardGreen};
         }
     `
+const PaginationContainer = styled.div`
+display: flex;
+gap: 5em;
+`
