@@ -4,7 +4,7 @@ import Btn from "./BtnTheme"
 
 describe('Button', () => {
     it('Per default has black color', () =>{
-        render(<Btn onClick={()=> {}} isActive={false}/>)
+        render(<Btn onClick={()=> {}} isActive={true}/>)
         const btnClass = Btn({}).type.styledComponentId
         const element = document.getElementsByClassName(btnClass)
         const style = window.getComputedStyle(element[0])
@@ -12,7 +12,7 @@ describe('Button', () => {
     })
 
     it('If is clicked switch to yellow color', () =>{
-        render(<Btn onClick={()=> {}} isActive={true}/>)
+        render(<Btn onClick={()=> {}} isActive={false}/>)
         const btnClass = Btn({}).type.styledComponentId
         const element = document.getElementsByClassName(btnClass)
         const style = window.getComputedStyle(element[0])

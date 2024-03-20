@@ -51,7 +51,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
                     <NavIcons>
                         <button>{icons.mail}</button>
                         <button>{icons.bell}</button>
-                        <button onClick={handleLogout}>{icons.logout}</button>
+                        <button onClick={handleLogout} id="logout">{icons.logout}</button>
                     </NavIcons>
                 {/* <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button> */}
                 <ThemeButtonStyled onClick={toggleTheme} $isActive={theme}><LightsOn/></ThemeButtonStyled>
