@@ -10,6 +10,7 @@ import { userListThunk } from "../features/users/usersThunk"
 import { useNavigate } from "react-router-dom"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
+import { TabElement } from "../components/Tabs/TabsStyled"
 
 
 
@@ -30,6 +31,7 @@ export const Users = () => {
     const navigator = useNavigate()
 
     const [filter, setFilter] = useState('none')
+    const [currentTab, setCurrenTab] = useState('none')
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -66,6 +68,7 @@ export const Users = () => {
 
     const handleFilter = (option) => {
         setFilter(option);
+        setCurrenTab(option)
       };
 
     return (
@@ -73,9 +76,9 @@ export const Users = () => {
             <UsersContainer>
             <UsersMenu>
                 <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")}> All Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Active")}> Active Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Inactive")}> Inactive Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}> All Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Active")} $isActive={currentTab === "Active" ? true : false}> Active Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive" ? true : false}> Inactive Employee </TabElement>
                 </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
             </UsersMenu>
@@ -124,22 +127,7 @@ const TabMenu = styled.ul`
     width: 70%;
     align-items: flex-end;
 `
-const TabElement = styled.li`
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: ${colors.grey2};
-    border-bottom: 1px solid ${colors.grey2};
-    width: 11em;
-        &:hover{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-        &:active{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-    `
+
 const PaginationContainer = styled.div`
 display: flex;
 gap: 5em;

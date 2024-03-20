@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../features/contact/contactSlice"
 import { commentsListThunk } from "../features/contact/contactThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
 
 
 
@@ -28,6 +29,7 @@ export const Contact = () => {
     
     const [filter, setFilter] = useState(false)
     const [order, setOrder] = useState('none');
+    const [currentTab, setCurrenTab] = useState('none')
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -54,12 +56,10 @@ export const Contact = () => {
         }
     },[dispatch, commentsData, commentsDataStatus,filter])
 
-    const handleFilterOn = () =>{
-        setFilter(true)
-    }
-    const handleFilterOff = () =>{
-        setFilter(false)
-    }
+    const handleFilter = (option) => {
+        setFilter(option);
+        setCurrenTab(option)
+      };
 
     const handleOrder = (e) => {
         e.preventDefault();
@@ -80,8 +80,8 @@ export const Contact = () => {
             <BotContainer>
                 <ContactMenu>
                     <TabMenu>
-                        <TabElement onClick={handleFilterOff}> All Contacts </TabElement>
-                        <TabElement onClick={handleFilterOn}> Archived </TabElement>
+                        <TabElement onClick={()=> handleFilter(false)} $isActive={currentTab === false ? true : false}> All Contacts </TabElement>
+                        <TabElement onClick={()=> handleFilter(true)} $isActive={currentTab === true ? true : false}> Archived </TabElement>
                     </TabMenu>
                     
                 </ContactMenu>
@@ -142,29 +142,6 @@ const ContactMenu = styled.div`
     
 `
 
-const TabMenu = styled.ul`
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-start;
-    width: 70%;
-    align-items: flex-end;
-`
-const TabElement = styled.li`
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: ${colors.grey2};
-    border-bottom: 1px solid ${colors.grey2};
-    width: 11em;
-        &:hover{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-        &:active{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-    `
 
 const PaginationContainer = styled.div`
     display: flex;

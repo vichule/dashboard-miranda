@@ -8,6 +8,7 @@ import { getBookingsData, getBookingsError, getBookingsStatus } from "../feature
 import { bookingsListThunk } from "../features/bookings/bookingsThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
+import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
 
 
 
@@ -27,6 +28,7 @@ export const Bookings = () => {
 
     const [filter, setFilter] = useState('none')
     const [order, setOrder] = useState('none');
+    const [currentTab, setCurrenTab] = useState('none')
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -84,6 +86,7 @@ export const Bookings = () => {
 
     const handleFilter = (option) => {
         setFilter(option);
+        setCurrenTab(option)
       };
 
       const handleOrder = (e) => {
@@ -98,10 +101,10 @@ export const Bookings = () => {
             <BookingsContainer>
             <BookingsMenu>
                 <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")}> All Bookings </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-in")}> Checking In </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-out")}> Checking Out </TabElement>
-                    <TabElement onClick={()=> handleFilter("In progress")}> In Progress </TabElement>
+                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}> All Bookings </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-in")} $isActive={currentTab === "Check-in" ? true : false}> Checking In </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-out")} $isActive={currentTab === "Check-out" ? true : false}> Checking Out </TabElement>
+                    <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress" ? true : false}> In Progress </TabElement>
                 </TabMenu>
 
                 <select name="order" id="order" onChange={(e) => handleOrder(e)}>
@@ -152,28 +155,6 @@ const BookingsMenu = styled.div`
     margin-bottom: 2em;
 `
 
-const TabMenu = styled.ul`
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-`
-const TabElement = styled.li`
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: ${colors.grey2};
-    border-bottom: 1px solid ${colors.grey2};
-    width: 11em;
-        &:hover{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-        &:active{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-    `
 
 const PaginationContainer = styled.div`
     display: flex;
