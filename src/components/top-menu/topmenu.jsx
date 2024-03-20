@@ -5,6 +5,7 @@ import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import { ThemeButtonStyled } from "../Button/BtnTheme";
 
 
 
@@ -52,7 +53,8 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
                         <button>{icons.bell}</button>
                         <button onClick={handleLogout}>{icons.logout}</button>
                     </NavIcons>
-                <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button>
+                {/* <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button> */}
+                <ThemeButtonStyled onClick={toggleTheme} $isActive={theme}><LightsOn/></ThemeButtonStyled>
             </HeaderNav>
         </>
     )
@@ -77,8 +79,6 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
     button{
         background: none;
         border: none;
-        color: ${colors.black};
-
         
     }
     

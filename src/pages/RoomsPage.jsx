@@ -9,6 +9,7 @@ import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/r
 import { roomListThunk } from "../features/rooms/roomsThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import { useNavigate } from "react-router-dom"
+import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
 
 
 
@@ -29,6 +30,7 @@ export const Rooms = () => {
     const totalPages = Math.ceil(rooms.length / rows);
 
     const [filter, setFilter] = useState('none')
+    const [currentTab, setCurrenTab] = useState('none')
 
 
 
@@ -67,6 +69,7 @@ export const Rooms = () => {
 
     const handleFilter = (option) => {
         setFilter(option);
+        setCurrenTab(option)
       };
 
     return (
@@ -75,13 +78,13 @@ export const Rooms = () => {
                 <RoomsMenu>
                     <TabMenu>
                         
-                        <TabElement onClick={()=> handleFilter("none")}>
+                        <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}>
                             All Rooms
                         </TabElement>
-                        <TabElement onClick={()=> handleFilter("available")}>
+                        <TabElement onClick={()=> handleFilter("available")} $isActive={currentTab === "available" ? true : false}>
                             Available Rooms
                         </TabElement>
-                        <TabElement onClick={()=> handleFilter("booked")}>
+                        <TabElement onClick={()=> handleFilter("booked")} $isActive={currentTab === "booked" ? true : false}>
                             Booked Rooms
                         </TabElement>
                     </TabMenu>
@@ -132,29 +135,7 @@ const RoomsMenu = styled.div`
     width: 100%;
 `
 
-const TabMenu = styled.ul`
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-start;
-    width: 85%;
-    align-items: flex-end;
-`
-const TabElement = styled.li`
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: ${colors.grey2};
-    border-bottom: 1px solid ${colors.grey2};
-    width: 11em;
-        &:hover{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-        &:active{
-            color: ${colors.hardGreen};
-            border-bottom: 2px solid ${colors.hardGreen};
-        }
-    `
+
 
 const PaginationContainer = styled.div`
     display: flex;
