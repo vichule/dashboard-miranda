@@ -15,10 +15,10 @@ export const TabElement = styled.li`
     border-bottom: ${props => props.$isActive ? '2px solid rgb(19, 88, 70)' : '1px solid rgb(120, 120, 120)'};
     color: ${props => props.$isActive ? 'rgb(19, 88, 70)' : 'rgb(120, 120, 120)'};
     width: 11em;
-        &:hover{
+        /* &:hover{
             color: ${colors.hardGreen};
             border-bottom: 2px solid ${colors.hardGreen};
-        }
+        } */
     `
 
 export default function TabLi({onClick, isActive, children}){
