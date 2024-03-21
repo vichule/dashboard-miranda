@@ -1,6 +1,6 @@
 describe('template spec', () => {
 
-  it('Login navegation simulation', () => {
+  it.only('Login navegation simulation', () => {
     cy.visit('/')
     cy.url().should('include', '/login')
     cy.get('input[name=username]').type('admin@admin.co')
@@ -8,13 +8,18 @@ describe('template spec', () => {
     cy.wait(1000)
     cy.contains('Log In').click()
     cy.wait(2000)
+    cy.url().should('include', '/')
     cy.contains('Bookings').click()
+    cy.url().should('include', '/bookings')
     cy.wait(1000)
     cy.contains('Rooms').click()
+    cy.url().should('include', '/rooms')
     cy.wait(1000)
     cy.contains('Contact').click()
+    cy.url().should('include', '/contact')
     cy.wait(1000)
     cy.contains('Users').click()
+    cy.url().should('include', '/users')
     cy.wait(1000)
     cy.get('button[id=logout]').click()
     cy.url().should('include', '/login')
@@ -30,5 +35,32 @@ describe('template spec', () => {
 
   })
 
-
+  it('Login + create user', () => {
+    cy.visit('/')
+    cy.url().should('include', '/login')
+    cy.get('input[name=username]').type('admin@admin.co')
+    cy.get('input[name=password]').type('adminadmin')
+    cy.wait(1000)
+    cy.contains('Log In').click()
+    cy.wait(2000)
+    cy.contains('Users').click()
+    cy.wait(1000)
+    cy.contains('+').click()
+    cy.wait(1000)
+    cy.get('input[name=first_name]').type('user')
+    cy.get('input[name=last_name]').type('new')
+    cy.get('select#job').select('Manager')
+    cy.get('input[name=email]').type('user@user.com')
+    cy.get('input[name=phone]').type('6666666666')
+    cy.get('input[name="start_date"]').click().type('2024-10-02')
+    cy.wait(1000)
+    cy.get('textarea').type('This is a new user created by cypress')
+    cy.get('select#status').select('Active')
+    cy.wait(1000)
+    cy.contains('Create User').click()
+    cy.wait(2000)
+  });
+    
 })
+
+
