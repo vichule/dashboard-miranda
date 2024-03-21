@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
 import { userListThunk } from "../features/users/usersThunk"
 import { useNavigate } from "react-router-dom"
-import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
 import { TabElement } from "../components/Tabs/TabsStyled"
 
@@ -32,6 +32,7 @@ export const Users = () => {
 
     const [filter, setFilter] = useState('none')
     const [currentTab, setCurrenTab] = useState('none')
+    const [order, setOrder] = useState('none')
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -57,19 +58,54 @@ export const Users = () => {
                 newUsers = [...usersData]
                 
             }
+
+            const orderedUsers = newUsers.sort((a, b) => {
+                switch (order) {
+                    
+                        
+                    case 'oldest':
+                        return new Date(a.start_date) - new Date(b.start_date)
+                    case 'asc':
+                        if (a.first_name <  b.first_name) {
+                            return -1;
+                        }
+                        if (a.first_name >  b.first_name) {
+                            return 1;
+                        }
+                        return 0;
+                    case 'desc':
+                            if (a.first_name > b.first_name) {
+                                return -1;
+                            }
+                            if (a.first_name < b.first_name) {
+                                return 1;
+                            }
+                            return 0;
+                    
+                    default:
+                        return new Date(b.start_date) - new Date(a.start_date);
+                }
+            })
             
-            setUsers(newUsers)
+            setUsers(orderedUsers)
 
         }else if(usersDataStatus === 'rejected'){
             console.log(usersDataError)
         }
 
-    },[dispatch, usersData, usersDataStatus, filter])
+    },[dispatch, usersData, usersDataStatus, filter,order])
 
     const handleFilter = (option) => {
         setFilter(option);
         setCurrenTab(option)
       };
+
+      const handleOrder = (e) => {
+        e.preventDefault();
+
+        setOrder(e.target.value)
+
+    }
 
     return (
         <>
@@ -81,6 +117,13 @@ export const Users = () => {
                     <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive" ? true : false}> Inactive Employee </TabElement>
                 </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
+                <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
+                            <option value="none">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="asc">ABC</option>
+                            <option value="desc">CBA</option>
+                            
+                </OrderSelect>
             </UsersMenu>
             <TableStyled>
                 <thead>

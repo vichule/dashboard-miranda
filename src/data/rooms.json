@@ -2,7 +2,7 @@
     {
       "id": 1,
       "room_type": "Suite",
-      "room_number": "Suite-1",
+      "room_number": 101,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "price": 450,
       "offer": true,
@@ -33,7 +33,7 @@
     {
       "id": 2,
       "room_type": "Single Bed",
-      "room_number": "Single-1",
+      "room_number": 201,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "price": 150,
       "offer": false,
@@ -60,7 +60,7 @@
     {
       "id": 3,
       "room_type": "Double Bed",
-      "room_number": "Double-1",
+      "room_number": 301,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "price": 200,
       "offer": true,
@@ -87,7 +87,7 @@
     {
       "id": 4,
       "room_type": "Double Superior",
-      "room_number": "DoubleS-1",
+      "room_number": 401,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "price": 400,
       "offer": false,
@@ -118,7 +118,7 @@
     {
         "id": 5,
         "room_type": "Suite",
-        "room_number": "Suite-2",
+        "room_number": 102,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 450,
         "offer": true,
@@ -150,7 +150,7 @@
       {
         "id": 6,
         "room_type": "Single Bed",
-        "room_number": "Single-2",
+        "room_number": 202,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 150,
         "offer": false,
@@ -178,7 +178,7 @@
       {
         "id": 7,
         "room_type": "Double Bed",
-        "room_number": "Double-2",
+        "room_number": 302,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 200,
         "offer": true,
@@ -206,7 +206,7 @@
       {
         "id": 8,
         "room_type": "Double Superior",
-        "room_number": "DoubleS-2",
+        "room_number": 402,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 400,
         "offer": false,
@@ -238,7 +238,7 @@
       {
         "id": 9,
         "room_type": "Suite",
-        "room_number": "Suite-3",
+        "room_number": 103,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 450,
         "offer": true,
@@ -269,7 +269,7 @@
       {
         "id": 10,
         "room_type": "Single Bed",
-        "room_number": "Single-3",
+        "room_number": 203,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 150,
         "offer": false,
@@ -296,7 +296,7 @@
       {
         "id": 11,
         "room_type": "Double Bed",
-        "room_number": "Double-3",
+        "room_number": 303,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 200,
         "offer": true,
@@ -323,7 +323,7 @@
       {
         "id": 12,
         "room_type": "Double Superior",
-        "room_number": "DoubleS-3",
+        "room_number": 403,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 400,
         "offer": false,
@@ -354,7 +354,7 @@
       {
         "id": 13,
         "room_type": "Suite",
-        "room_number": "Suite-4",
+        "room_number": 104,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 450,
         "offer": true,
@@ -385,7 +385,7 @@
       {
         "id": 14,
         "room_type": "Single Bed",
-        "room_number": "Single-4",
+        "room_number": 204,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 150,
         "offer": false,
@@ -412,7 +412,7 @@
       {
         "id": 15,
         "room_type": "Double Bed",
-        "room_number": "Double-4",
+        "room_number": 304,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "price": 200,
         "offer": true,

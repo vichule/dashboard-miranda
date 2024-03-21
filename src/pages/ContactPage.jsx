@@ -28,7 +28,6 @@ export const Contact = () => {
     const totalPages = Math.ceil(contacts.length / rows);
     
     const [filter, setFilter] = useState(false)
-    const [order, setOrder] = useState('none');
     const [currentTab, setCurrenTab] = useState('none')
 
     const handlePageChange = (newPage) => {
@@ -48,8 +47,14 @@ export const Contact = () => {
             }else{
                 newComments = [...commentsData]
             }
+
+            const orderedComments = newComments.sort((a, b) => {
+                
+                 return new Date(a.date) - new Date(b.date);
+                
+            })
             
-            setContacts(newComments)
+            setContacts(orderedComments)
 
         }else if(commentsDataStatus === 'rejected'){
             console.log(commentsDataError)
@@ -61,12 +66,7 @@ export const Contact = () => {
         setCurrenTab(option)
       };
 
-    const handleOrder = (e) => {
-        e.preventDefault();
-
-        setOrder(e.target.value)
-
-    }
+    
 
    
 

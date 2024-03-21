@@ -7,7 +7,7 @@ import { RoomsTable } from "../components/Tables/RoomsTable"
 import { useDispatch, useSelector } from "react-redux"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
 import { roomListThunk } from "../features/rooms/roomsThunk"
-import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { useNavigate } from "react-router-dom"
 import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
 
@@ -31,7 +31,7 @@ export const Rooms = () => {
 
     const [filter, setFilter] = useState('none')
     const [currentTab, setCurrenTab] = useState('none')
-
+    const [order, setOrder] = useState('none');
 
 
 
@@ -51,13 +51,52 @@ export const Rooms = () => {
                 newRooms = [...roomsData]
                 
             }
+
+            const orderedRooms = newRooms.sort((a, b) => {
+                switch (order) {
+                    case 'roomUp':
+                        if (a.room_number < b.room_number) {
+                            return -1;
+                        }
+                        if (a.room_number > b.room_number) {
+                            return 1;
+                        }
+                        return 0;
+                    case 'roomDown':
+                        if (a.room_number > b.room_number) {
+                            return -1;
+                        }
+                        if (a.room_number < b.room_number) {
+                            return 1;
+                        }
+                        return 0;
+                        
+                    case 'priceUp':
+                        if (a.price < b.price) {
+                            return -1;
+                        }
+                        if (a.price > b.price) {
+                            return 1;
+                        }
+                        return 0;
+                    
+                    default:
+                        if (a.room_number < b.room_number) {
+                            return -1;
+                        }
+                        if (a.room_number > b.room_number) {
+                            return 1;
+                        }
+                        return 0;
+                }
+            })
             
-            setRooms(newRooms)
+            setRooms(orderedRooms)
         } else if (roomsDataStatus === 'rejected'){
             console.log(roomsDataError)
         }
         
-    },[dispatch, roomsDataStatus, roomsData, filter])
+    },[dispatch, roomsDataStatus, roomsData, filter,order])
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -70,7 +109,14 @@ export const Rooms = () => {
     const handleFilter = (option) => {
         setFilter(option);
         setCurrenTab(option)
-      };
+    };
+
+    const handleOrder = (e) => {
+        e.preventDefault();
+
+        setOrder(e.target.value)
+
+    }
 
     return (
         <>
@@ -89,6 +135,13 @@ export const Rooms = () => {
                         </TabElement>
                     </TabMenu>
                     <GreenBtnStyled onClick={handleNew}>+ New Room</GreenBtnStyled>
+                    <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
+                            <option value="roomUp">Room Number Asc</option>
+                            <option value="roomDown">Room Number Desc</option>
+                            <option value="priceUp">Cheapest</option>
+                            <option value="priceDown">Expensive</option>
+                            
+                    </OrderSelect>
                 </RoomsMenu>
             <TableStyled>
                 <thead>

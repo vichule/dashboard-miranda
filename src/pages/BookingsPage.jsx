@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { bookingsListThunk } from "../features/bookings/bookingsThunk"
-import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
 import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
 
@@ -107,13 +107,13 @@ export const Bookings = () => {
                     <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress" ? true : false}> In Progress </TabElement>
                 </TabMenu>
 
-                <select name="order" id="order" onChange={(e) => handleOrder(e)}>
+                <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
                             <option value="date">Order Date</option>
                             <option value="guest">Guest</option>
                             <option value="check_in">Check In</option>
                             <option value="check_out">Check Out</option>
                             
-                </select>
+                </OrderSelect>
             </BookingsMenu>
             <TableStyled>
                 <thead>

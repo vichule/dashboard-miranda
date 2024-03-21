@@ -54,3 +54,22 @@ export const BtnArchive = styled.button`
         border-color: ${colors.red};
     }
 `
+
+export const OrderSelect = styled.select`
+font-weight: 600;
+width: 16rem;
+height: 3.5rem;
+border: none;
+border-radius: 8px;
+background-color: #135846;
+color: #f8f8f8;
+transition: all ease 300ms;
+text-align: center;
+cursor: pointer;
+margin: 0em 2em 0em 2em;
+
+&:hover{
+    background-color: ${colors.btnBack2};
+    color: ${colors.hardGreen};
+}
+`
