@@ -1,22 +1,25 @@
-describe('template spec', () => {
-  it('Login + create user', () => {
+describe('Login and form user to create new user', () => {
+  it('Correct login', () => {
     cy.visit('/')
     cy.url().should('include', '/login')
-
     cy.get('input[name=username]').type('admin@admin.co')
     cy.get('input[name=password]').type('adminadmin')
     cy.wait(1000)
     cy.contains('Log In').click()
     cy.wait(2000)
-    
     cy.url().should('include', '/')
+  })
+
+  it('Navigates to users and opens new user form ', () => {
     cy.contains('Users').click()
     cy.wait(1000)
     cy.url().should('include', '/users')
     cy.contains('+').click()
     cy.wait(1000)
     cy.url().should('include', '/users/newuser')
+  })
 
+  it('Fill all inputs and create new user ', () => {
     cy.get('input[name=first_name]').type('user')
     cy.wait(1000)
     cy.get('input[name=last_name]').type('new')
@@ -32,7 +35,6 @@ describe('template spec', () => {
     cy.get('textarea').type('This is a new user created by cypress')
     cy.get('select#status').select('Active')
     cy.wait(1000)
-
     cy.contains('Create User').click().then(() =>{
       cy.window()
         .its('store')
@@ -41,6 +43,7 @@ describe('template spec', () => {
         .its('data')
         .should('have.length',31)
     })
+
     cy.wait(2000)
     cy.url().should('include', '/users')
   });
