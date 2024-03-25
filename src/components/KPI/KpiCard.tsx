@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import { colors } from "../../styles/colors"
+import { IconType } from "react-icons"
 
 
 
-export const KpiCard = ({Icon,number,text}) => {
+export const KpiCard = ({Icon,number,text}: {Icon: IconType, number: number, text: string}) => {
 
     return(
 

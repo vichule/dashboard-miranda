@@ -4,22 +4,22 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Login } from './pages/LoginPage.jsx'
-import { Dashboard } from './pages/DashboardPage.jsx'
-import { Bookings } from './pages/BookingsPage.jsx'
-import { Rooms } from './pages/RoomsPage.jsx'
-import { Users } from './pages/UsersPage.jsx'
-import { Contact } from './pages/ContactPage.jsx'
-import { AuthProvider } from './contexts/AuthContext/auth.jsx' 
-import { RequireAuth } from './auth/RequireAuth.jsx'
+import { Login } from './pages/LoginPage'
+import { Dashboard } from './pages/DashboardPage'
+import { Bookings } from './pages/BookingsPage'
+import { Rooms } from './pages/RoomsPage'
+import { Users } from './pages/UsersPage'
+import { Contact } from './pages/ContactPage'
+import { AuthProvider } from './contexts/AuthContext/auth' 
+import { RequireAuth } from './auth/RequireAuth'
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, darkTheme, lightTheme } from './styles/theme.jsx'
-import { Layout } from './pages/LayoutPage.jsx'
-import { BookingID } from './pages/BookingPage.jsx'
-import { RoomID } from './pages/RoomPage.jsx'
-import { UserID } from './pages/UserPage.jsx'
-import { NewUserPage } from './pages/NewUserPage.jsx'
-import { NewRoomPage } from './pages/NewRoomPage.jsx'
+import { Layout } from './pages/LayoutPage'
+import { BookingID } from './pages/BookingPage'
+import { RoomID } from './pages/RoomPage'
+import { UserID } from './pages/UserPage'
+import { NewUserPage } from './pages/NewUserPage'
+import { NewRoomPage } from './pages/NewRoomPage'
 
 
 
@@ -29,7 +29,7 @@ function App() {
   const isDarkTheme = theme === 'dark'
   
   const userLoged = localStorage.getItem('user') ? (localStorage.getItem('user') === "true" ? true : false) : false;
-  const [authUser, setAuthUser] = useState(userLoged);
+  const [authUser, setAuthUser] = useState<boolean>(userLoged);
 
   useEffect(() => {
 
@@ -67,8 +67,8 @@ function App() {
   )
 }
 
-if(window.Cypress){
-  window.store = store
-}
+// if(window.Cypress){
+//   window.store = store
+// }
 
 export default App

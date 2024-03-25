@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react"
+import { Dispatch, FormEvent, useEffect, useReducer, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext/auth"
 import logo from '../assets/Logo.png'
@@ -7,17 +7,29 @@ import { BasicBtnStyled } from "../components/Button/BtnStyled"
 import styled from "styled-components"
 import { colors } from "../styles/colors"
 
-export const Login = ({setAuthUser}) => {
+interface FormData {
+    userName: string
+    password: string
+}
+
+interface LoginProp {
+    setAuthUser: (value: boolean) => void
+    authUser: boolean
+}
+
+export const Login = ({ setAuthUser } : LoginProp) => {
+
+    
     const navigator = useNavigate()
-    const [ formData, setFormData ] = useReducer((formData, newItem) => { return ({...formData, ...newItem} )}, {userName: '', password:''})
-    const [ errorMsg, setErrorMsg] = useState('')
+    const [ formData, setFormData ] = useReducer((formData : FormData, newItem: {}) => { return ({...formData, ...newItem} )}, {userName: '', password:''})
+    const [ errorMsg, setErrorMsg] = useState<string>('')
     const auth = useAuth()
     
 
     let location = useLocation()
     let from = location.state?.from?.pathname || "/"
 
-    const handleLogin = async (event) => {
+    const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (formData.userName === 'admin@admin.co' && formData.password === 'adminadmin') {

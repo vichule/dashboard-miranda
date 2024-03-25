@@ -3,7 +3,7 @@ import { KpiCard } from "../components/KPI/KpiCard"
 import { BedKpi, CalendarKpi, ChInKpi, ChOutKpi } from "../styles/icons"
 import { colors } from "../styles/colors"
 
-import { SwiperReview } from "../components/Swipers/SwiperReview"
+import { SwiperReview } from "../components/Swipers/SwiperReview.jsx"
 
 export const Dashboard = () => {
 
