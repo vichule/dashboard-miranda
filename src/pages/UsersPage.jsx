@@ -33,6 +33,7 @@ export const Users = () => {
     const [filter, setFilter] = useState('none')
     const [currentTab, setCurrenTab] = useState('none')
     const [order, setOrder] = useState('none')
+    const [search, setSearch] = useState("")
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -59,7 +60,7 @@ export const Users = () => {
                 
             }
 
-            const orderedUsers = newUsers.sort((a, b) => {
+            let orderedUsers = newUsers.sort((a, b) => {
                 switch (order) {
                     
                         
@@ -86,6 +87,11 @@ export const Users = () => {
                         return new Date(b.start_date) - new Date(a.start_date);
                 }
             })
+
+            if (search) {
+                const fixedSearch = search.toLowerCase();
+                orderedUsers = orderedUsers.filter((user) => user.first_name.toLowerCase().includes(fixedSearch));
+              }
             
             setUsers(orderedUsers)
 
@@ -93,7 +99,7 @@ export const Users = () => {
             console.log(usersDataError)
         }
 
-    },[dispatch, usersData, usersDataStatus, filter,order])
+    },[dispatch, usersData, usersDataStatus, filter,order,search])
 
     const handleFilter = (option) => {
         setFilter(option);
@@ -115,6 +121,7 @@ export const Users = () => {
                     <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}> All Employee </TabElement>
                     <TabElement onClick={()=> handleFilter("Active")} $isActive={currentTab === "Active" ? true : false}> Active Employee </TabElement>
                     <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive" ? true : false}> Inactive Employee </TabElement>
+                    <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
                 </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
                 <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
@@ -174,4 +181,15 @@ const TabMenu = styled.ul`
 const PaginationContainer = styled.div`
 display: flex;
 gap: 5em;
+`
+
+const SearchInput = styled.input`
+    border-radius: 1em;
+    padding: 1em;
+    background-color: #d6fdd69c;
+    border: 1px solid ${colors.hardGreen};
+    color: ${colors.hardGreen};
+    font-size: 1.3rem;
+    margin-left: 5em;
+    width: 40rem;
 `
