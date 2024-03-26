@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { bookingThunk, bookingsListThunk } from "./bookingsThunk";
+import { BookingInterface, BookingsInitialState } from "../interfaces/interfaces";
+import { RootState } from "../../app/store";
 
 
 
-const initialState = {
+const initialState: BookingsInitialState = {
     status: "idle",
     data: [],
     booking: {
@@ -41,7 +43,7 @@ export const bookingsSlice = createSlice({
         })
         .addCase(bookingsListThunk.rejected, (state, action) =>{
             state.status = 'rejected'
-            state.error = state.error.message
+            state.error = action.error.message || null
         })
         .addCase(bookingThunk.pending, (state) =>{
             state.booking.status = 'pending'
@@ -52,18 +54,18 @@ export const bookingsSlice = createSlice({
         })
         .addCase(bookingThunk.rejected, (state, action) =>{
             state.booking.status = 'rejected'
-            state.booking.error = action.error.message
+            state.booking.error = action.error.message || null
         })
     }
 })
 
-export const getBookingsData = (state) => state.bookings.data
-export const getBookingsStatus = (state) => state.bookings.status
-export const getBookingsError = (state) => state.bookings.error
+export const getBookingsData = (state: RootState) => state.bookings.data
+export const getBookingsStatus = (state: RootState) => state.bookings.status
+export const getBookingsError = (state: RootState) => state.bookings.error
 
-export const getBookingData = (state) => state.bookings.booking.data
-export const getBookingStatus = (state) => state.bookings.booking.status
-export const getBookingError = (state) => state.bookings.booking.error
+export const getBookingData = (state: RootState) => state.bookings.booking.data
+export const getBookingStatus = (state: RootState) => state.bookings.booking.status
+export const getBookingError = (state: RootState) => state.bookings.booking.error
 
 
 export const { addBooking, removeBooking, editBooking } = bookingsSlice.actions

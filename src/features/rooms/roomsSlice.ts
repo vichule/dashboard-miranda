@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { roomListThunk, roomThunk } from "./roomsThunk";
+import { RoomsInitialState } from "../interfaces/interfaces";
+import { RootState } from "../../app/store";
 
-const initialState = {
+const initialState: RoomsInitialState = {
     status: "idle",
     data: [],
     error: null,
@@ -39,7 +41,7 @@ const initialState = {
         })
         .addCase(roomListThunk.rejected, (state, action) => {
             state.status = 'rejected'
-            state.error = action.error.message
+            state.error = action.error.message || null
         })
         .addCase(roomThunk.pending, (state) =>{
             state.room.status = 'pending'
@@ -50,17 +52,17 @@ const initialState = {
         })
         .addCase(roomThunk.rejected, (state, action) =>{
             state.room.status = 'rejected'
-            state.room.error = action.error.message
+            state.room.error = action.error.message || null
         })
     }
   })
 
-  export const getRoomsData = (state) => state.rooms.data
-  export const getRoomsStatus = (state) => state.rooms.status
-  export const getRoomsError = (state) => state.rooms.error 
+  export const getRoomsData = (state: RootState) => state.rooms.data
+  export const getRoomsStatus = (state: RootState) => state.rooms.status
+  export const getRoomsError = (state: RootState) => state.rooms.error 
 
-  export const getRoomData = (state) => state.rooms.room.data
-  export const getRoomStatus = (state) => state.rooms.room.status
-  export const getRoomError = (state) => state.rooms.room.error 
+  export const getRoomData = (state: RootState) => state.rooms.room.data
+  export const getRoomStatus = (state: RootState) => state.rooms.room.status
+  export const getRoomError = (state: RootState) => state.rooms.room.error 
 
   export const { addRoom, removeRoom, editRoom } = roomsSlice.actions

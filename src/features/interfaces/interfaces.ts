@@ -22,3 +22,78 @@ export interface ContactsInitialState {
     status: string;
     error: string | null;
 }
+
+export interface BookingInterface {
+    id: number,
+    first_name: string,
+    last_name: string,
+    order_date: string,
+    check_in: string,
+    check_out: string,
+    notes: string,
+    room: number,
+    status: string,
+    room_type: string
+}
+
+export interface BookingItem {
+    data: BookingInterface | null;
+    status: string;
+    error: string | null;
+}
+export interface BookingsInitialState {
+    data: BookingInterface[];
+    booking: BookingItem;
+    status: string;
+    error: string | null;
+}
+
+export interface RoomInterface {
+    id: number,
+    room_type: string,
+    room_number: 304,
+    description: string,
+    price: number,
+    offer: boolean,
+    discount: number,
+    cancellation: string,
+    photos: string[],
+    amenities: string[],
+    status: string
+}
+
+export interface RoomItem {
+    data: RoomInterface | null;
+    status: string;
+    error: string | null;
+}
+export interface RoomsInitialState {
+    data: RoomInterface[];
+    room: RoomItem;
+    status: string;
+    error: string | null;
+}
+
+export interface UserInterface {
+    id: number,
+    first_name: string,
+    last_name: string,
+    email: string,
+    start_date: string,
+    description: string,
+    photo: string,
+    phone: string,
+    status: string
+}
+
+export interface UserItem {
+    data: UserInterface | null;
+    status: string;
+    error: string | null;
+}
+export interface UsersInitialState {
+    data: UserInterface[];
+    user: UserItem;
+    status: string;
+    error: string | null;
+}
