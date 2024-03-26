@@ -13,13 +13,20 @@ import { getCommentsListData, getCommentsListError, getCommentsListStatus, remov
 import { commentsListThunk } from "../../features/contact/contactThunk"
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ContactInterface } from "../../features/interfaces/interfaces";
+
+interface CommentInterface {
+    comment: ContactInterface,
+    e: React.MouseEvent<HTMLDivElement>
+}
 
 export const SwiperReview = () => {
-    const dispatch = useDispatch()
-    const commentsData = useSelector(getCommentsListData)
-    const commentsDataError = useSelector(getCommentsListError)
-    const commentsDataStatus = useSelector(getCommentsListStatus)
-    const [ comments, setComments] = useState([])
+    const dispatch = useAppDispatch()
+    const commentsData = useAppSelector(getCommentsListData)
+    const commentsDataError = useAppSelector(getCommentsListError)
+    const commentsDataStatus = useAppSelector(getCommentsListStatus)
+    const [ comments, setComments] = useState<ContactInterface[]>([])
 
     useEffect(() =>{
         let newComments = []
@@ -37,11 +44,11 @@ export const SwiperReview = () => {
         }
     },[dispatch, commentsData, commentsDataStatus])
 
-    const differenceDate = (date) => {
+    const differenceDate = (date: string) => {
         return Math.floor(((Date.now() - new Date(date).getTime()) )/(1000*60*60*24))
     }
 
-    const popUp = ({comment}) =>{
+    const popUp = ({comment}: CommentInterface) =>{
         Swal.fire({
             title: `Message from ${comment.first_name} ${comment.last_name}`,
             text: comment.message,
@@ -53,7 +60,7 @@ export const SwiperReview = () => {
           })
     }
 
-    const handleDelete = (comment, event) =>{
+    const handleDelete = (comment: ContactInterface, event: React.MouseEvent<SVGElement, MouseEvent>) =>{
         event.stopPropagation()
         dispatch(removeComment(comment))
     }

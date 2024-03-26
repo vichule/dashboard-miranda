@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { commentThunk, commentsListThunk } from "./contactThunk";
+import { ContactsInitialState } from "../interfaces/interfaces";
+import { RootState } from "../../app/store";
 
-const initialState = {
+const initialState: ContactsInitialState = {
     status: "idle",
     data: [],
     error: null,
@@ -43,7 +45,7 @@ export const contactSlice = createSlice({
         })
         .addCase(commentsListThunk.rejected, (state, action) =>{
             state.status = 'rejected'
-            state.error = action.error.message
+            state.error = action.error.message || null
         })
         .addCase(commentThunk.pending, (state) =>{
             state.comment.status = 'pending'
@@ -54,17 +56,17 @@ export const contactSlice = createSlice({
         })
         .addCase(commentThunk.rejected, (state, action) =>{
             state.comment.status = 'rejected'
-            state.comment.error = action.error.message
+            state.comment.error = action.error.message || null
         })
     }
 })
 
-export const getCommentsListData = (state) => state.contacts.data
-export const getCommentsListError = (state) => state.contacts.error
-export const getCommentsListStatus = (state) => state.contacts.status
+export const getCommentsListData = (state: RootState) => state.contacts.data
+export const getCommentsListError = (state: RootState) => state.contacts.error
+export const getCommentsListStatus = (state: RootState) => state.contacts.status
 
-export const getCommentData = (state) => state.contacts.comment.data
-export const getCommentError = (state) => state.contacts.comment.status
-export const getCommentStatus = (state) => state.contacts.comment.error 
+export const getCommentData = (state: RootState) => state.contacts.comment.data
+export const getCommentError = (state: RootState) => state.contacts.comment.status
+export const getCommentStatus = (state: RootState) => state.contacts.comment.error 
 
 export const { addComment, removeComment, editComment, editCommentStatus } = contactSlice.actions
