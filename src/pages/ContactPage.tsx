@@ -10,16 +10,18 @@ import { getCommentsListData, getCommentsListError, getCommentsListStatus } from
 import { commentsListThunk } from "../features/contact/contactThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { ContactInterface } from "../features/interfaces/interfaces"
 
 
 
 export const Contact = () => {
-    const dispatch = useDispatch()
-    const commentsData = useSelector(getCommentsListData)
-    const commentsDataError = useSelector(getCommentsListError)
-    const commentsDataStatus = useSelector(getCommentsListStatus)
-    const [ contacts, setContacts] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const dispatch = useAppDispatch()
+    const commentsData = useAppSelector(getCommentsListData)
+    const commentsDataError = useAppSelector(getCommentsListError)
+    const commentsDataStatus = useAppSelector(getCommentsListStatus)
+    const [ contacts, setContacts] = useState<ContactInterface[]>([])
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 4;
     const firstPage = (currentPage - 1) * rows
@@ -27,10 +29,10 @@ export const Contact = () => {
     let displayedRows = contacts.slice(firstPage, LastPage)
     const totalPages = Math.ceil(contacts.length / rows);
     
-    const [filter, setFilter] = useState(false)
-    const [currentTab, setCurrenTab] = useState('none')
+    const [filter, setFilter] = useState<boolean>(false)
+    const [currentTab, setCurrenTab] = useState<boolean>(false)
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
       };
 
@@ -50,7 +52,7 @@ export const Contact = () => {
 
             const orderedComments = newComments.sort((a, b) => {
                 
-                 return new Date(a.date) - new Date(b.date);
+                 return new Date(a.date).getTime() - new Date(b.date).getTime();
                 
             })
             
@@ -61,7 +63,7 @@ export const Contact = () => {
         }
     },[dispatch, commentsData, commentsDataStatus,filter])
 
-    const handleFilter = (option) => {
+    const handleFilter = (option: boolean) => {
         setFilter(option);
         setCurrenTab(option)
       };

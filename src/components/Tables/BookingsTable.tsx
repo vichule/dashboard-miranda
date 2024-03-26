@@ -6,16 +6,22 @@ import { removeBooking } from '../../features/bookings/bookingsSlice'
 import { colors } from '../../styles/colors'
 import styled from 'styled-components'
 import { CancelStyled, CheckinStyled, CheckoutStyled, ProgressStyled, RowContainer, TdContainer } from './ContainersStyled'
+import { BookingInterface } from '../../features/interfaces/interfaces'
 
-export const BookingsTable = ({ data }) => {
+interface BookingDataInterface{
+    data: BookingInterface[]
+}
+
+
+export const BookingsTable = ({ data }: BookingDataInterface) => {
     const navigator = useNavigate()
     const dispatch = useDispatch()
 
-    const handleInfo = (id) =>{
+    const handleInfo = (id: number) =>{
         navigator(`/bookings/booking/${id}`)
     }
     
-    const handleDelete = (booking, e) =>{
+    const handleDelete = (booking: BookingInterface, e: React.MouseEvent<SVGElement, MouseEvent>) =>{
         e.stopPropagation()
         dispatch(removeBooking(booking))
     }

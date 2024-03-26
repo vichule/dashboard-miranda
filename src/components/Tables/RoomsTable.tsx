@@ -5,17 +5,22 @@ import { DeleteIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
 import { removeRoom } from '../../features/rooms/roomsSlice'
 import { CheckinStyled, CheckoutStyled, RowContainer, TdContainer } from './ContainersStyled'
+import { RoomInterface } from '../../features/interfaces/interfaces'
 
-export const RoomsTable = ({ data }) => {
+interface RoomDataInterface{
+    data: RoomInterface[]
+}
+
+export const RoomsTable = ({ data }: RoomDataInterface) => {
 
     const dispatch = useDispatch()
     const navigator = useNavigate()
 
-    const handleInfo = (id) =>{
+    const handleInfo = (id: number) =>{
         navigator(`/rooms/room/${id}`)
     }
     
-    const handleDelete = (room, e) =>{
+    const handleDelete = (room: RoomInterface, e: React.MouseEvent<SVGElement, MouseEvent>) =>{
         e.stopPropagation()
         dispatch(removeRoom(room))
     }

@@ -4,16 +4,22 @@ import { editCommentStatus, removeComment } from '../../features/contact/contact
 import { DeleteIcon } from '../../styles/icons'
 import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
 import { useEffect } from 'react'
+import { ContactComment, ContactInterface } from '../../features/interfaces/interfaces'
+import { useAppDispatch } from '../../app/hooks'
 
-export const ContactTable = ({ data  }) => {
+interface CommentDataInterface{
+    data: ContactInterface[]
+}
+
+export const ContactTable = ({ data  }: CommentDataInterface) => {
     let dataFiltered = ([])
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const handleDelete = (comment, event) =>{
+    const handleDelete = (comment: ContactInterface, event: React.MouseEvent<SVGElement, MouseEvent>) =>{
         dispatch(removeComment(comment))
     }
 
-    const handleEdit = (comment, event) =>{
+    const handleEdit = (comment: ContactInterface, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
        dispatch(editCommentStatus(comment.id))
     }
     
@@ -21,7 +27,7 @@ export const ContactTable = ({ data  }) => {
     
     return(
         <>
-            {data.map((json) => (
+            {data.map((json: ContactInterface) => (
 
                     <tr key={json.id}>
                         <td>

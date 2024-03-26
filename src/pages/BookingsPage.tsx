@@ -9,16 +9,18 @@ import { bookingsListThunk } from "../features/bookings/bookingsThunk"
 import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
 import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { BookingInterface } from "../features/interfaces/interfaces"
 
 
 
 export const Bookings = () => {
-    const bookingsData = useSelector(getBookingsData)
-    const bookingsDataError = useSelector(getBookingsError)
-    const bookingsDataStatus = useSelector(getBookingsStatus)
-    const dispatch = useDispatch()
-    const [ bookings, setBookings] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const bookingsData = useAppSelector(getBookingsData)
+    const bookingsDataError = useAppSelector(getBookingsError)
+    const bookingsDataStatus = useAppSelector(getBookingsStatus)
+    const dispatch = useAppDispatch()
+    const [ bookings, setBookings] = useState<BookingInterface[]>([])
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 10;
     const firstPage = (currentPage - 1) * rows
@@ -26,11 +28,11 @@ export const Bookings = () => {
     const displayedBookings = bookings.slice(firstPage, LastPage)
     const totalPages = Math.ceil(bookings.length / rows);
 
-    const [filter, setFilter] = useState('none')
-    const [order, setOrder] = useState('none');
-    const [currentTab, setCurrenTab] = useState('none')
+    const [filter, setFilter] = useState<string>('none')
+    const [order, setOrder] = useState<string>('none');
+    const [currentTab, setCurrenTab] = useState<string>('none')
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
       };
 
@@ -67,12 +69,12 @@ export const Bookings = () => {
                         return 0;
                         
                     case 'check_in':
-                        return new Date(a.check_in) - new Date(b.check_in)
+                        return new Date(a.check_in).getTime() - new Date(b.check_in).getTime()
                     case 'check_out':
-                        return new Date(a.check_out) - new Date(b.check_out)
+                        return new Date(a.check_out).getTime() - new Date(b.check_out).getTime()
                     
                     default:
-                        return new Date(a.order_date) - new Date(b.order_date);
+                        return new Date(a.order_date).getTime() - new Date(b.order_date).getTime()
                 }
             })
             
@@ -84,12 +86,12 @@ export const Bookings = () => {
         }
     },[dispatch, bookingsData, bookingsDataStatus, filter,order])
 
-    const handleFilter = (option) => {
+    const handleFilter = (option: string) => {
         setFilter(option);
         setCurrenTab(option)
       };
 
-      const handleOrder = (e) => {
+      const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         setOrder(e.target.value)

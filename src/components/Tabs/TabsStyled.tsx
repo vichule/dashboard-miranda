@@ -8,7 +8,7 @@ export const TabMenu = styled.ul`
     width: 85%;
     align-items: flex-end;
 `
-export const TabElement = styled.li`
+export const TabElement = styled.li<{$isActive?:boolean}>`
     cursor: pointer;
     font-size: 1.4rem;
     font-weight: 600;
@@ -21,7 +21,13 @@ export const TabElement = styled.li`
         } */
     `
 
-export default function TabLi({onClick, isActive, children}){
+interface TabsProp{
+    onClick: React.MouseEventHandler<HTMLLIElement>,
+    isActive: boolean,
+    children: React.ReactElement
+}
+
+export default function TabLi({onClick, isActive, children}: TabsProp){
     return(
         <TabElement onClick={onClick} $isActive={isActive}>
             {children}

@@ -11,17 +11,19 @@ import { useNavigate } from "react-router-dom"
 import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { colors } from "../styles/colors"
 import { TabElement } from "../components/Tabs/TabsStyled"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { UserInterface } from "../features/interfaces/interfaces"
 
 
 
 export const Users = () => {
-    const dispatch = useDispatch()
-    const usersData = useSelector(getUsersData)
-    const usersDataError = useSelector(getUsersError)
-    const usersDataStatus = useSelector(getUsersStatus)
+    const dispatch = useAppDispatch()
+    const usersData = useAppSelector(getUsersData)
+    const usersDataError = useAppSelector(getUsersError)
+    const usersDataStatus = useAppSelector(getUsersStatus)
 
-    const [ users, setUsers] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const [ users, setUsers] = useState<UserInterface[]>([])
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 5;
     const firstPage = (currentPage - 1) * rows
@@ -30,11 +32,11 @@ export const Users = () => {
     const totalPages = Math.ceil(users.length / rows);
     const navigator = useNavigate()
 
-    const [filter, setFilter] = useState('none')
-    const [currentTab, setCurrenTab] = useState('none')
-    const [order, setOrder] = useState('none')
+    const [filter, setFilter] = useState<string>('none')
+    const [currentTab, setCurrenTab] = useState<string>('none')
+    const [order, setOrder] = useState<string>('none')
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
       };
 
@@ -64,7 +66,7 @@ export const Users = () => {
                     
                         
                     case 'oldest':
-                        return new Date(a.start_date) - new Date(b.start_date)
+                        return new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
                     case 'asc':
                         if (a.first_name <  b.first_name) {
                             return -1;
@@ -83,7 +85,7 @@ export const Users = () => {
                             return 0;
                     
                     default:
-                        return new Date(b.start_date) - new Date(a.start_date);
+                        return new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
                 }
             })
             
@@ -95,12 +97,12 @@ export const Users = () => {
 
     },[dispatch, usersData, usersDataStatus, filter,order])
 
-    const handleFilter = (option) => {
+    const handleFilter = (option: string) => {
         setFilter(option);
         setCurrenTab(option)
       };
 
-      const handleOrder = (e) => {
+      const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         setOrder(e.target.value)

@@ -10,18 +10,20 @@ import { roomListThunk } from "../features/rooms/roomsThunk"
 import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
 import { useNavigate } from "react-router-dom"
 import { TabElement, TabMenu } from "../components/Tabs/TabsStyled"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { RoomInterface } from "../features/interfaces/interfaces"
 
 
 
 export const Rooms = () => {
-    const roomsData = useSelector(getRoomsData)
-    const roomsDataStatus = useSelector(getRoomsStatus)
-    const roomsDataError = useSelector(getRoomsError)
-    const dispatch = useDispatch()
+    const roomsData = useAppSelector(getRoomsData)
+    const roomsDataStatus = useAppSelector(getRoomsStatus)
+    const roomsDataError = useAppSelector(getRoomsError)
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
     
-    const [ rooms, setRooms] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
+    const [ rooms, setRooms] = useState<RoomInterface[]>([])
+    const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 4;
     const firstPage = (currentPage - 1) * rows
@@ -29,9 +31,9 @@ export const Rooms = () => {
     const displayedRows = rooms.slice(firstPage, LastPage)
     const totalPages = Math.ceil(rooms.length / rows);
 
-    const [filter, setFilter] = useState('none')
-    const [currentTab, setCurrenTab] = useState('none')
-    const [order, setOrder] = useState('none');
+    const [filter, setFilter] = useState<string>('none')
+    const [currentTab, setCurrenTab] = useState<string>('none')
+    const [order, setOrder] = useState<string>('none');
 
 
 
@@ -98,7 +100,7 @@ export const Rooms = () => {
         
     },[dispatch, roomsDataStatus, roomsData, filter,order])
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
       };
 
@@ -106,12 +108,12 @@ export const Rooms = () => {
         navigator('/rooms/newroom')
     }
 
-    const handleFilter = (option) => {
+    const handleFilter = (option: string) => {
         setFilter(option);
         setCurrenTab(option)
     };
 
-    const handleOrder = (e) => {
+    const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         setOrder(e.target.value)

@@ -3,10 +3,15 @@ import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
 import { colors } from '../../styles/colors'
 import { BasicBtnStyled } from '../Button/BtnStyled'
+import { UserInterface } from '../../features/interfaces/interfaces'
 
-export const UsersTable = ({ data }) => {
+interface UserDataInterface{
+    data: UserInterface[]
+}
+
+export const UsersTable = ({ data }: UserDataInterface) => {
     const navigator = useNavigate()
-    const handleEdit = (id) =>{
+    const handleEdit = (id: number) =>{
         navigator(`/users/user/${id}`)
     }
 
