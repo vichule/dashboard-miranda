@@ -6,7 +6,7 @@ import { useState } from "react"
 
 
 export const Layout = () => {
-    const [isSideMenuOpen, setIsSideMenuOpen] = useState(true)
+    const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(true)
     const toggleSideMenu = () => {
         setIsSideMenuOpen(!isSideMenuOpen)
       }

@@ -7,10 +7,13 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ThemeButtonStyled } from "../Button/BtnTheme";
 
+interface TopMenuProp {
+    toggleMenu: React.MouseEventHandler<HTMLButtonElement>,
+    isSideMenuOpen: boolean
+}
 
 
-
-export const TopMenu = ({ toggleMenu, isSideMenuOpen}) => {
+export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
     const auth = useAuth()
     const locationPath = useLocation().pathname
     const [ theme, setTheme ] = useState(true)

@@ -6,7 +6,10 @@ import MyPic from "../../assets/profilePic.jpeg"
 import { BasicBtnStyled } from "../Button/BtnStyled";
 import { CalendarIconMenu, DashboardIconMenu, KeyIconMenu, PuzzleIconMenu, UserIconMenu } from "../../styles/icons";
 
-export const LateralMenu = ({ isOpen }) => {
+interface LateralProp {
+    isOpen: boolean
+}
+export const LateralMenu = ({ isOpen }: LateralProp) => {
 
 
 
