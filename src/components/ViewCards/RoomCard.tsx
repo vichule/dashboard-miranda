@@ -1,10 +1,13 @@
 import styled from "styled-components"
 import { colors } from "../../styles/colors"
+import { RoomInterface } from "../../features/interfaces/interfaces"
+
+interface RoomProp{
+    room: RoomInterface
+}
 
 
-
-
-export const RoomCard = ({room}) => {
+export const RoomCard = ({room}: RoomProp) => {
 
     const amenities = room.amenities
     const photos = room.photos

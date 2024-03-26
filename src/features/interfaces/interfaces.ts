@@ -51,7 +51,7 @@ export interface BookingsInitialState {
 export interface RoomInterface {
     id: number,
     room_type: string,
-    room_number: 304,
+    room_number: number,
     description: string,
     price: number,
     offer: boolean,

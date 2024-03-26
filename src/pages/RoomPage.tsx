@@ -6,6 +6,8 @@ import { roomListThunk, roomThunk } from "../features/rooms/roomsThunk"
 import { RoomCard } from "../components/ViewCards/RoomCard"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import styled from "styled-components"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { RoomInterface } from "../features/interfaces/interfaces"
 
 
 
@@ -14,9 +16,9 @@ export const RoomID = () =>{
     const roomsData = useSelector(getRoomsData)
     const roomsDataError = useSelector(getRoomsError)
     const roomsDataStatus = useSelector(getRoomsStatus)
-    const room = useSelector(getRoomData)
+    const room = useAppSelector(getRoomData)
     const { id } = useParams()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
     //const [ room, setRoom ] = useState({  })
@@ -29,7 +31,7 @@ export const RoomID = () =>{
     }
 
     const api = async () => {
-        await dispatch(roomThunk(parseInt(id))).unwrap();
+        await dispatch(roomThunk(parseInt(id || ''))).unwrap();
         setSpinner(false)
     }
 
@@ -39,27 +41,12 @@ export const RoomID = () =>{
         
     }, [api, id]);
 
-    // useEffect(() => {
-    //     let specificRoom = ({})
-    //     if (roomsDataStatus === "idle") {
-    //         dispatch(roomListThunk())
-    //       } else if (roomsDataStatus === "pending") {
-           
-    //       } else if (roomsDataStatus === "fulfilled") {
-    //         specificRoom = roomsData.find((room) => room.id.toString() === id)
-    //         setRoom(specificRoom)
-    //         setAmenities(specificRoom.amenities)
-    //         setPhotos(specificRoom.photos)
-    //     } else if (roomsDataStatus === 'rejected'){
-    //         console.log(roomsDataError)
-    //     }
-    //   }, [dispatch,roomsDataStatus,roomsData])
 
     return(
         <>
             <MainContainer style={{padding: '1em'}}>
                 <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
-                {spinner ? <p>Loading</p> : <RoomCard room={room} />}
+                {spinner ? <p>Loading</p> : <RoomCard room={room as RoomInterface} />}
             </MainContainer>
             
         </>

@@ -1,12 +1,16 @@
 import styled from "styled-components"
 import { colors } from "../../styles/colors"
+import { BookingInterface, RoomInterface } from "../../features/interfaces/interfaces"
 
+interface BookingProps{
+    booking: BookingInterface,
+    room: RoomInterface
+}
 
+export const BookingCard = ({booking , room}: BookingProps) => {
 
-export const BookingCard = ({booking, room}) => {
-
-    const amenities = room.amenities
-    const photos = room.photos
+    const amenities = room?.amenities
+    const photos = room?.photos
 
     return(
         <>

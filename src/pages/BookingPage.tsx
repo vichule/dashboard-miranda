@@ -8,50 +8,30 @@ import { getRoomData, getRoomsData } from "../features/rooms/roomsSlice"
 import { BookingCard } from "../components/ViewCards/BookingCard"
 import { BasicBtnStyled, GreenBtnStyled } from "../components/Button/BtnStyled"
 import styled from "styled-components"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { BookingInterface, RoomInterface } from "../features/interfaces/interfaces"
 
 
 
 export const BookingID = () =>{
 
-    const roomsData = useSelector(getRoomsData)
+    const roomsData = useAppSelector(getRoomsData)
     const { id } = useParams()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
-    const booking = useSelector(getBookingData)
-    const [ room, setRoom ] = useState([])
+    const booking = useAppSelector(getBookingData)
+    const [ room, setRoom ] = useState<RoomInterface>()
     const handleBack = () =>{
         navigator(-1)
     }
-    const [ spinner, setSpinner ] = useState(true)
-    let bookingRoom = ({})
-
-    // useEffect(() => {
-    //     let specificBooking = ({})
-    //     let bookingRoom = ({})
-        
-    //     if (bookingsDataStatus === "idle") {
-    //         dispatch(bookingsListThunk())
-    //         dispatch(roomListThunk())
-    //       } else if (bookingDataStatus === "pending") {
-           
-    //       } else if (bookingsDataStatus === "fulfilled") {
-    //         specificBooking = bookingsData.find((room) => room.id.toString() === id)
-    //         setRoom(specificRoom)
-    //         bookingRoom = roomsData.find((room) => room.id.toString() === specificBooking.room.toString())
-    //         setBooking(specificBooking)            
-            
-    //         setPhotos(bookingRoom.photos)
-    //         setAmenities(bookingRoom.amenities)
-    //     } else if (bookingsDataStatus === 'rejected'){
-    //         console.log(bookingsDataError)
-    //     }
-    //   }, [dispatch, id, bookingsData])
+    const [ spinner, setSpinner ] = useState<boolean>(true)
+    let bookingRoom : RoomInterface = {} as RoomInterface
 
     const api = async () => {
         await dispatch(roomListThunk()).unwrap();
-        await dispatch(bookingThunk(parseInt(id))).unwrap();
-        bookingRoom = roomsData.find((room) => room.id === booking.room)
+        await dispatch(bookingThunk(parseInt(id || ''))).unwrap();
+        bookingRoom = roomsData.find((room) => room.id === booking?.room) || {} as RoomInterface
         setRoom(bookingRoom)
         if(room === bookingRoom){
             setSpinner(false)
@@ -71,7 +51,7 @@ export const BookingID = () =>{
         <>
             <MainContainer style={{padding: '1em'}}>
                 <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
-                {spinner ? <p>Loading</p> : <BookingCard booking={booking} room={room}/>}
+                {spinner ? <p>Loading</p> : <BookingCard booking={booking as BookingInterface} room={room as RoomInterface}/>}
             </MainContainer>
             
         </>
