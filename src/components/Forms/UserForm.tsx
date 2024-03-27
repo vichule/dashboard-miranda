@@ -2,9 +2,17 @@ import styled from "styled-components"
 import { colors } from "../../styles/colors"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
+import { UserInterface } from "../../features/interfaces/interfaces"
+import React from "react"
 
+interface UserFormProps{
+    user: UserInterface,
+    change: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    save: React.FormEventHandler<HTMLFormElement>,
+    remove: React.MouseEventHandler<HTMLButtonElement>,
+}
 
-export const UserForm = ({user, change, save, remove}) => {
+export const UserForm = ({user, change, save, remove}: UserFormProps) => {
     
     
 
@@ -42,7 +50,7 @@ export const UserForm = ({user, change, save, remove}) => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
-                        <TextAreaForms name="description" id="description" cols="30" rows="5" value={user.description} onChange={change}></TextAreaForms>
+                        <TextAreaForms name="description" id="description" cols={30} rows={5} value={user.description} onChange={change}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>

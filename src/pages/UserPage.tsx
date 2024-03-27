@@ -5,23 +5,25 @@ import { useCallback, useEffect, useState } from "react"
 import { userListThunk, userThunk } from "../features/users/usersThunk"
 import { UserForm } from "../components/Forms/UserForm"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { UserInterface } from "../features/interfaces/interfaces"
 
 
 export const UserID = () => {
     const navigator = useNavigate()
     const { id } = useParams()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [ spinner, setSpinner ] = useState(true)
 
-    const usersData = useSelector(getUsersData)
-    const usersDataStatus = useSelector(getUsersStatus)
-    const usersDataError = useSelector(getUsersError)
+    const usersData = useAppSelector(getUsersData)
+    const usersDataStatus = useAppSelector(getUsersStatus)
+    const usersDataError = useAppSelector(getUsersError)
 
     const userData = useSelector(getUserData)
     const userDataStatus = useSelector(getUserStatus)
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<UserInterface>({
         
-        id: "",
+        id: 0,
         first_name: "",
         last_name:"",
         email: "",
@@ -32,17 +34,6 @@ export const UserID = () => {
         status: ""
         })
 
-    // const api = useCallback(async () => {
-    //     await dispatch(userThunk(parseInt(id))).unwrap();
-        
-    //     setUser(userData)
-    //     setSpinner(false)
-    // }, [id, dispatch, user]);
-
-    // useEffect(() => {
-    //     api();
-        
-    // }, [api, id]);
 
     useEffect(() => {
         if (usersDataStatus === "idle") {
@@ -50,7 +41,7 @@ export const UserID = () => {
           } else if (usersDataStatus === "pending") {
            
           } else if (usersDataStatus === "fulfilled") {
-            const specificUser = usersData.find((user) => user.id.toString() === id);
+            const specificUser = usersData.find((user) => user.id.toString() === id) || {} as UserInterface;
             setUser(specificUser)
             setSpinner(false)
            
@@ -61,19 +52,17 @@ export const UserID = () => {
         navigator(-1)
     }
 
-    const handleDeleteUser = (event) =>{
+    const handleDeleteUser = (event: React.MouseEvent<HTMLButtonElement>) =>{
         event.preventDefault()
         navigator('/users')
         dispatch(removeUser(user))
-        console.log('delete')
     }
-    const handleSaveUser = (event) =>{
+    const handleSaveUser = (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
         dispatch(editUser(user))
         navigator('/users')
-        console.log('save')
     }
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setUser((prevUser) => ({ ...prevUser, [name]: value }));
       };

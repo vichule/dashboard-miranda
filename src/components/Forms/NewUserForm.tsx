@@ -5,16 +5,25 @@ import { useEffect, useState } from "react"
 import { userListThunk } from "../../features/users/usersThunk"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 
-
+interface NewUserProp extends EventTarget{
+            first_name: HTMLFormElement,
+            last_name: HTMLFormElement
+            email: HTMLFormElement
+            start_date: HTMLFormElement
+            description: HTMLFormElement
+            phone: HTMLFormElement
+            status: HTMLFormElement
+}
 
 export const NewUserForm = () =>{
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
-    const usersData = useSelector(getUsersData)
-    const usersDataError = useSelector(getUsersError)
-    const usersDataStatus = useSelector(getUsersStatus)
-    const [ userId, setUserId ] = useState(0)
+    const usersData = useAppSelector(getUsersData)
+    const usersDataError = useAppSelector(getUsersError)
+    const usersDataStatus = useAppSelector(getUsersStatus)
+    const [ userId, setUserId ] = useState<number>(0)
 
     useEffect(()=>{
         if (usersDataStatus === 'idle'){
@@ -32,19 +41,20 @@ export const NewUserForm = () =>{
         navigator('/users')
     }
 
-    const handleCreate = (event)=>{
+    const handleCreate = (event: React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
+        const formUser = event.target as NewUserProp
         const newUser ={
             
             id: userId,
-            first_name: event.target.first_name.value,
-            last_name: event.target.last_name.value,
-            email: event.target.email.value,
-            start_date: event.target.start_date.value,
-            description: event.target.description.value,
-            phone: event.target.phone.value,
+            first_name: formUser.first_name.value,
+            last_name: formUser.last_name.value,
+            email: formUser.email.value,
+            start_date: formUser.start_date.value,
+            description: formUser.description.value,
+            phone: formUser.phone.value,
             photo:"http://dummyimage.com/105x100.png/dddddd/000000",
-            status: event.target.status.value 
+            status: formUser.status.value 
         }
         dispatch(addUser(newUser))
         navigator('/users')
@@ -84,7 +94,7 @@ export const NewUserForm = () =>{
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
-                        <TextAreaForms name="description" id="description" cols="30" rows="10"></TextAreaForms>
+                        <TextAreaForms name="description" id="description" cols={30} rows={10}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>

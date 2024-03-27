@@ -5,16 +5,24 @@ import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { roomListThunk } from "../../features/rooms/roomsThunk"
 import { addRoom, getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 
-
+interface NewRoomProp extends EventTarget{
+            room_type: HTMLFormElement,
+            room_number: HTMLFormElement,
+            price: HTMLFormElement,
+            description: HTMLFormElement,
+            cancellation: HTMLFormElement
+           
+}
 
 export const NewRoomForm = () =>{
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
-    const roomsData = useSelector(getRoomsData)
-    const roomsDataError = useSelector(getRoomsError)
-    const roomsDataStatus = useSelector(getRoomsStatus)
-    const [ roomId, setRoomId ] = useState(0)
+    const roomsData = useAppSelector(getRoomsData)
+    const roomsDataError = useAppSelector(getRoomsError)
+    const roomsDataStatus = useAppSelector(getRoomsStatus)
+    const [ roomId, setRoomId ] = useState<number>(0)
 
     useEffect(()=>{
         if (roomsDataStatus === 'idle'){
@@ -32,17 +40,18 @@ export const NewRoomForm = () =>{
         navigator('/rooms')
     }
 
-    const handleCreate = (event)=>{
+    const handleCreate = (event: React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
+        const formRoom = event.target as NewRoomProp
         const newRoom ={
             
             id: roomId,
-            room_type: event.target.room_type.value,
-            room_number: event.target.room_number.value,
-            price: event.target.price.value,
+            room_type: formRoom.room_type.value,
+            room_number: formRoom.room_number.value,
+            price: formRoom.price.value,
             offer: true,
-            description: event.target.description.value,
-            cancellation: event.target.cancellation.value,
+            description: formRoom.description.value,
+            cancellation: formRoom.cancellation.value,
             photos:[
                 "https://images.unsplash.com/photo-1444201983204-c43cbd584d93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI0fHxzaW5nbGUlMjByb29tJTIwaG90ZWx8ZW58MHx8MHx8fDA%3D",
                 "https://images.unsplash.com/photo-1576354302919-96748cb8299e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNpbmdsZSUyMHJvb20lMjBob3RlbHxlbnwwfHwwfHx8MA%3D%3D",
@@ -90,11 +99,11 @@ export const NewRoomForm = () =>{
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
-                        <TextAreaForms name="description" id="description" cols="30" rows="8"></TextAreaForms>
+                        <TextAreaForms name="description" id="description" cols={30} rows={8}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="cancellation">Cancellation</LabelForms>
-                        <TextAreaForms name="cancellation" id="cancellation" cols="30" rows="2"></TextAreaForms>
+                        <TextAreaForms name="cancellation" id="cancellation" cols={30} rows={2}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="amenities">Amenities</LabelForms>
