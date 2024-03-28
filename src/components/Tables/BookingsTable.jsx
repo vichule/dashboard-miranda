@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { removeBooking } from '../../features/bookings/bookingsSlice'
 import { colors } from '../../styles/colors'
 import styled from 'styled-components'
-import { CancelStyled, CheckinStyled, CheckoutStyled, ProgressStyled, RowContainer, TdContainer } from './ContainersStyled'
+import { CancelStyled, CheckinStyled, CheckoutStyled, ProgressStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
 
 export const BookingsTable = ({ data }) => {
@@ -54,9 +54,9 @@ export const BookingsTable = ({ data }) => {
                         <TdContainer>
                             <p>{json.check_out}</p>
                         </TdContainer>
-                        <TdContainer>
+                        <SubjectContainer>
                             <TdText>{json.notes}</TdText>
-                        </TdContainer>
+                        </SubjectContainer>
                         <TdContainer>
                             <p>{json.room_type}</p>
                         </TdContainer>

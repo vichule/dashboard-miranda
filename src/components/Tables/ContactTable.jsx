@@ -5,6 +5,7 @@ import { DeleteIcon } from '../../styles/icons'
 import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
 import { useEffect } from 'react'
 import Swal from 'sweetalert2'
+import { SubjectContainer, TdContainer } from './ContainersStyled'
 
 export const ContactTable = ({ data  }) => {
     let dataFiltered = ([])
@@ -39,25 +40,25 @@ export const ContactTable = ({ data  }) => {
             {data.map((json) => (
 
                     <tr key={json.id}>
-                        <td>
+                        <TdContainer>
                             <h2>{json.date}</h2>
                             <p>#{json.id}</p>
-                            </td>
-                        <td>
+                            </TdContainer>
+                        <TdContainer>
                             <h2>{json.first_name} {json.last_name}</h2>
                             <p>{json.email}</p>
                             <p>{json.phone}</p>
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <SubjectContainer>
                             <h2>{json.subject}</h2>
                             <TdText>{json.message}</TdText>
-                        </td>
-                        <td>
+                        </SubjectContainer>
+                        <TdContainer>
                             {json.status ? <BtnPublish onClick={ (e) => handleEdit(json, e)}>Publish</BtnPublish> : <BtnArchive onClick={ (e) => handleEdit(json, e)}>Archive</BtnArchive>}
-                        </td>
-                        <td>
+                        </TdContainer>
+                        <TdContainer>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
-                        </td>
+                        </TdContainer>
                         
                     </tr>
 
@@ -65,3 +66,4 @@ export const ContactTable = ({ data  }) => {
         </>
     )
 }
+

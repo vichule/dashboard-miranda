@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { DeleteIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
 import { removeRoom } from '../../features/rooms/roomsSlice'
-import { CheckinStyled, CheckoutStyled, RowContainer, TdContainer } from './ContainersStyled'
+import { CheckinStyled, CheckoutStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
 
 export const RoomsTable = ({ data }) => {
@@ -53,9 +53,9 @@ export const RoomsTable = ({ data }) => {
                         <TdContainer>
                             <p>Floor 1</p>
                         </TdContainer>
-                        <TdContainer>
+                        <SubjectContainer>
                             <p>{json.amenities.join(', ')}</p>
-                        </TdContainer>
+                        </SubjectContainer>
                         <TdContainer>
                             <TdText>{json.price}/Night</TdText>
                         </TdContainer>

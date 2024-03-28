@@ -20,6 +20,7 @@ export const TdStyled = styled.th `
     font-weight: 600;
     padding: 1em 0em;
     border-bottom: 2px solid ${colors.whiteSemi};
+    text-align: center;
     
 `
 

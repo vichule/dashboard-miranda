@@ -47,4 +47,12 @@ export const RowContainer = styled.tr`
 
 export const TdContainer = styled.td`
     padding: 1em;
+    width: 34em;
+    text-align: center;
+`
+
+export const SubjectContainer = styled.td`
+    padding: 2em;
+    width: 200em;
+    text-align: left;
 `

@@ -25,15 +25,15 @@ export const UsersTable = ({ data }) => {
                                 <p>{json.start_date}</p>
                             </UserInfoText>
                         </td>
-                        <td>
+                        <DescriptionTd>
                             <p>{json.description}</p>
-                        </td>
-                        <td>
+                        </DescriptionTd>
+                        <TdStyled>
                             <p>{json.phone}</p>
-                        </td>
-                        <td>
+                        </TdStyled>
+                        <TdStyled>
                             {json.status === 'Active' ? <StatusActive>{json.status}</StatusActive> : <StatusInactive>{json.status}</StatusInactive>}
-                        </td>
+                        </TdStyled>
                         <td>
                             <BasicBtnStyled onClick={()=> handleEdit(json.id)}>Edit</BasicBtnStyled>
                         </td>
@@ -48,6 +48,7 @@ const UserImgTable = styled.img`
     width: 8.5rem;
     height: 8.5rem;
     border-radius: 2rem;
+    margin-right: 1em;
 `
 
 const UserInfoText = styled.div`
@@ -63,4 +64,16 @@ const StatusActive = styled.p`
 const StatusInactive = styled.p`
     color: ${colors.red};
     font-size: 2rem;
+`
+
+const TdStyled = styled.td`
+    padding: 1em;
+    width: 34em;
+    text-align: center;
+`
+
+const DescriptionTd = styled.td`
+    padding: 0em 0em 5em 2em;
+    text-align: left;
+    width: 34em;
 `
