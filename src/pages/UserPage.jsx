@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react"
 import { userListThunk, userThunk } from "../features/users/usersThunk"
 import { UserForm } from "../components/Forms/UserForm"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
+import Swal from "sweetalert2"
 
 
 export const UserID = () => {
@@ -63,15 +64,26 @@ export const UserID = () => {
 
     const handleDeleteUser = (event) =>{
         event.preventDefault()
-        navigator('/users')
-        dispatch(removeUser(user))
-        console.log('delete')
+        Swal.fire({
+            title: "This will delete the user",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                navigator('/users')
+                dispatch(removeUser(user))
+              Swal.fire("Done!", "The user has been deleted.", "success");
+            }
+          })
     }
     const handleSaveUser = (event) =>{
         event.preventDefault()
         dispatch(editUser(user))
         navigator('/users')
-        console.log('save')
     }
     const handleChange = (event) => {
         const { name, value } = event.target;

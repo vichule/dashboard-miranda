@@ -55,7 +55,20 @@ export const SwiperReview = () => {
 
     const handleDelete = (comment, event) =>{
         event.stopPropagation()
-        dispatch(removeComment(comment))
+        Swal.fire({
+            title: "This will delete the comment",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removeComment(comment))
+              Swal.fire("Done!", "The comment has been deleted.", "success");
+            }
+          })
     }
 
 

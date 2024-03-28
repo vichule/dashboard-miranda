@@ -4,13 +4,28 @@ import { editCommentStatus, removeComment } from '../../features/contact/contact
 import { DeleteIcon } from '../../styles/icons'
 import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
 import { useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 export const ContactTable = ({ data  }) => {
     let dataFiltered = ([])
     const dispatch = useDispatch()
 
     const handleDelete = (comment, event) =>{
-        dispatch(removeComment(comment))
+        
+        Swal.fire({
+            title: "This will delete the comment",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removeComment(comment))
+              Swal.fire("Done!", "The comment has been deleted.", "success");
+            }
+          })
     }
 
     const handleEdit = (comment, event) =>{

@@ -6,6 +6,7 @@ import { removeBooking } from '../../features/bookings/bookingsSlice'
 import { colors } from '../../styles/colors'
 import styled from 'styled-components'
 import { CancelStyled, CheckinStyled, CheckoutStyled, ProgressStyled, RowContainer, TdContainer } from './ContainersStyled'
+import Swal from 'sweetalert2'
 
 export const BookingsTable = ({ data }) => {
     const navigator = useNavigate()
@@ -17,7 +18,21 @@ export const BookingsTable = ({ data }) => {
     
     const handleDelete = (booking, e) =>{
         e.stopPropagation()
-        dispatch(removeBooking(booking))
+        
+        Swal.fire({
+            title: "This will delete the booking",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removeBooking(booking))
+              Swal.fire("Done!", "The booking has been deleted.", "success");
+            }
+          })
     }
 
     return(

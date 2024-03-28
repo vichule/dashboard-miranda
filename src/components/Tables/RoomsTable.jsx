@@ -5,6 +5,7 @@ import { DeleteIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
 import { removeRoom } from '../../features/rooms/roomsSlice'
 import { CheckinStyled, CheckoutStyled, RowContainer, TdContainer } from './ContainersStyled'
+import Swal from 'sweetalert2'
 
 export const RoomsTable = ({ data }) => {
 
@@ -17,7 +18,21 @@ export const RoomsTable = ({ data }) => {
     
     const handleDelete = (room, e) =>{
         e.stopPropagation()
-        dispatch(removeRoom(room))
+        Swal.fire({
+            title: "This will delete the room",
+            text: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removeRoom(room))
+              Swal.fire("Done!", "The room has been deleted.", "success");
+            }
+          })
+        
     }
 
     return(
