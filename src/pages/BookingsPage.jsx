@@ -29,6 +29,7 @@ export const Bookings = () => {
     const [filter, setFilter] = useState('none')
     const [order, setOrder] = useState('none');
     const [currentTab, setCurrenTab] = useState('none')
+    const [search, setSearch] = useState("")
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -53,7 +54,7 @@ export const Bookings = () => {
                 
             }
 
-            const orderedBookings = newBookings.sort((a, b) => {
+            let orderedBookings = newBookings.sort((a, b) => {
                 switch (order) {
                     case 'guest':
                         const nameA = a.first_name
@@ -76,13 +77,17 @@ export const Bookings = () => {
                 }
             })
             
+            if (search) {
+                const fixedSearch = search.toLowerCase();
+                orderedBookings = orderedBookings.filter((bookings) => bookings.first_name.toLowerCase().includes(fixedSearch));
+              }
            
             setBookings(orderedBookings)
 
         }else if(bookingsDataStatus === 'rejected'){
             console.log(bookingsDataError)
         }
-    },[dispatch, bookingsData, bookingsDataStatus, filter,order])
+    },[dispatch, bookingsData, bookingsDataStatus, filter,order, search])
 
     const handleFilter = (option) => {
         setFilter(option);
@@ -105,6 +110,7 @@ export const Bookings = () => {
                     <TabElement onClick={()=> handleFilter("Check-in")} $isActive={currentTab === "Check-in" ? true : false}> Checking In </TabElement>
                     <TabElement onClick={()=> handleFilter("Check-out")} $isActive={currentTab === "Check-out" ? true : false}> Checking Out </TabElement>
                     <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress" ? true : false}> In Progress </TabElement>
+                    <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
                 </TabMenu>
 
                 <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
@@ -159,4 +165,15 @@ const BookingsMenu = styled.div`
 const PaginationContainer = styled.div`
     display: flex;
     gap: 5em;
+`
+
+const SearchInput = styled.input`
+    border-radius: 1em;
+    padding: 1em;
+    background-color: #d6fdd69c;
+    border: 1px solid ${colors.hardGreen};
+    color: ${colors.hardGreen};
+    font-size: 1.3rem;
+    margin-left: 5em;
+    width: 40rem;
 `
