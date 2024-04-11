@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "jest",
     "cy": "cypress open",
-    "dev-test": "vite --host"
+    "dev-test": "vite --host",
+    "deploy": "npm run build && aws s3 sync ./dist s3://dashboard-miranda-web --delete --acl public-read"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
