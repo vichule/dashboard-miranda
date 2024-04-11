@@ -2,7 +2,7 @@ Dashboard Hotel Miranda -
 
 Deploy Website s3 amazon:
 
-http://dashboard-miranda-web.s3-website.eu-south-2.amazonaws.com/
+http://dashboard-miranda-v.s3-website.eu-west-3.amazonaws.com/
 
 
 
