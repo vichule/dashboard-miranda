@@ -1,10 +1,7 @@
 import styled from "styled-components"
-import data from '../data/rooms.json'
 import { useEffect, useState } from "react"
-import { colors } from "../styles/colors"
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { RoomsTable } from "../components/Tables/RoomsTable"
-import { useDispatch, useSelector } from "react-redux"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../features/rooms/roomsSlice"
 import { roomListThunk } from "../features/rooms/roomsThunk"
 import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"

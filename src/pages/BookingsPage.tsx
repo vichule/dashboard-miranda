@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import data from '../data/bookings.json'
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
 import { BookingsTable } from "../components/Tables/BookingsTable"
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { bookingsListThunk } from "../features/bookings/bookingsThunk"
 import { GreenBtnStyled, OrderSelect } from "../components/Button/BtnStyled"
@@ -19,6 +18,7 @@ export const Bookings = () => {
     const bookingsDataError = useAppSelector(getBookingsError)
     const bookingsDataStatus = useAppSelector(getBookingsStatus)
     const dispatch = useAppDispatch()
+    const navigator = useNavigate()
     const [ bookings, setBookings] = useState<BookingInterface[]>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
 
@@ -103,6 +103,10 @@ export const Bookings = () => {
 
     }
 
+    const handleNew = () => {
+        navigator('/bookings/newbooking')
+    }
+
     return (
         <>
             <BookingsContainer>
@@ -114,7 +118,7 @@ export const Bookings = () => {
                     <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress" ? true : false}> In Progress </TabElement>
                     <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
                 </TabMenu>
-
+                <GreenBtnStyled onClick={handleNew}>+ New Booking</GreenBtnStyled>
                 <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
                             <option value="date">Order Date</option>
                             <option value="guest">Guest</option>

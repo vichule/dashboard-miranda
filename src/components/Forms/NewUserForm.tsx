@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { addUser, getUsersData, getUsersError, getUsersStatus } from "../../features/users/usersSlice"
 import { useEffect, useState } from "react"
