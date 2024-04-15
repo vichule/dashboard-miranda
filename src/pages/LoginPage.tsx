@@ -17,6 +17,8 @@ interface LoginProp {
     authUser: boolean
 }
 
+const baseUrl = import.meta.env.VITE_API_BASEURL + '/login';
+
 export const Login = ({ setAuthUser } : LoginProp) => {
 
     
@@ -32,16 +34,40 @@ export const Login = ({ setAuthUser } : LoginProp) => {
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        if (formData.userName === 'admin@admin.co' && formData.password === 'adminadmin') {
-            setAuthUser(true)
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(navigator(from, { replace: true }))
-                }, 500)
-            })
+        // if (formData.userName === 'admin@admin.co' && formData.password === 'adminadmin') {
+        //     setAuthUser(true)
+        //     return new Promise((resolve) => {
+        //         setTimeout(() => {
+        //             resolve(navigator(from, { replace: true }))
+        //         }, 500)
+        //     })
             
-        } else {
-            setErrorMsg('Incorrect values')
+        // } else {
+        //     setErrorMsg('Incorrect values')
+        // }
+
+        try {
+            const response = (await fetch(baseUrl, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: formData.userName,
+                    password: formData.password
+                })
+            }));
+            if (!response.ok) {
+                setErrorMsg(`Incorrect values, ${response.status}`)
+            } else {
+                const data = await response.json()
+                localStorage.setItem("token", data.token)
+                setAuthUser(true)
+                navigator(from, { replace: true })
+            }
+    
+        } catch (error) {
+            setErrorMsg(`Login failed, ${error}`)
         }
     }
 
