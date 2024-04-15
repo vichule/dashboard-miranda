@@ -6,7 +6,6 @@ const baseUrl = import.meta.env.VITE_API_BASEURL
 export const apiCall = async (endpoint: string, method: string, body?: allInterfaces) => {
     const result = await fetch(`${baseUrl}/${endpoint}`, {
         method: `${method}`,
-        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
           token: `${localStorage.getItem('token')}`,
