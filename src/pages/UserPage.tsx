@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { editUser, getUserData, getUserStatus, getUsersData, getUsersError, getUsersStatus, removeUser } from "../features/users/usersSlice"
-import { useCallback, useEffect, useState } from "react"
-import { userListThunk, userThunk } from "../features/users/usersThunk"
+import { getUserData, getUserStatus, getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
+import { useEffect, useState } from "react"
+import { editUserThunk, removeUserThunk, userListThunk, userThunk } from "../features/users/usersThunk"
 import { UserForm } from "../components/Forms/UserForm"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import Swal from "sweetalert2"
@@ -20,11 +19,9 @@ export const UserID = () => {
     const usersDataStatus = useAppSelector(getUsersStatus)
     const usersDataError = useAppSelector(getUsersError)
 
-    const userData = useSelector(getUserData)
-    const userDataStatus = useSelector(getUserStatus)
     const [user, setUser] = useState<UserInterface>({
         
-        id: 0,
+        _id: '',
         first_name: "",
         last_name:"",
         email: "",
@@ -32,7 +29,8 @@ export const UserID = () => {
         description: "",
         phone: "",
         photo: "",
-        status: ""
+        status: "",
+        password: ""
         })
 
 
@@ -42,7 +40,7 @@ export const UserID = () => {
           } else if (usersDataStatus === "pending") {
            
           } else if (usersDataStatus === "fulfilled") {
-            const specificUser = usersData.find((user) => user.id.toString() === id) || {} as UserInterface;
+            const specificUser = usersData.find((user) => user._id === id) || {} as UserInterface;
             setUser(specificUser)
             setSpinner(false)
            
@@ -66,14 +64,14 @@ export const UserID = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 navigator('/users')
-                dispatch(removeUser(user))
+                dispatch(removeUserThunk(user))
               Swal.fire("Done!", "The user has been deleted.", "success");
             }
           })
     }
     const handleSaveUser = (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
-        dispatch(editUser(user))
+        dispatch(editUserThunk(user))
         navigator('/users')
     }
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {

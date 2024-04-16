@@ -75,7 +75,7 @@ export interface RoomsInitialState {
 }
 
 export interface UserInterface {
-    id: number,
+    _id?: string,
     first_name: string,
     last_name: string,
     email: string,
@@ -83,7 +83,8 @@ export interface UserInterface {
     description: string,
     photo: string,
     phone: string,
-    status: string
+    status: string,
+    password: string
 }
 
 export interface UserItem {

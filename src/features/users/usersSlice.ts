@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { userListThunk, userThunk } from "./usersThunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addUserThunk, editUserThunk, removeUserThunk, userListThunk, userThunk } from "./usersThunk";
 import { UsersInitialState } from "../interfaces/interfaces";
 import { RootState } from "../../app/store";
 
@@ -18,21 +18,7 @@ const initialState: UsersInitialState = {
 export const usersSlice = createSlice({
     name: 'users',
     initialState: initialState,
-    reducers: {
-        addUser(state, action){
-            state.data = [action.payload, ...state.data]
-        },
-        removeUser(state, action){
-
-            const userSelect = state.data.findIndex(user=> user.id === action.payload.id)
-            state.data.splice(userSelect, 1);
-        },
-        editUser(state, action){
-            
-            const userId = state.data.findIndex((user) => user.id == action.payload.id)
-            state.data[userId] = action.payload;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) =>{
         builder
         .addCase(userListThunk.pending, (state) =>{
@@ -57,6 +43,43 @@ export const usersSlice = createSlice({
             state.user.status = 'rejected'
             state.user.error = action.error.message || null
         })
+        .addCase(addUserThunk.fulfilled, (state, action) => {
+            state.user.status = 'fulfilled'
+            state.data = [action.payload, ...state.data]
+            state.status = 'idle'
+        })
+        .addCase(removeUserThunk.fulfilled, (state, action) =>{
+            state.user.status = 'fulfilled'
+            const userSelect = state.data.findIndex(user=> user._id === action.payload.id)
+            state.data.splice(userSelect, 1);
+            state.status = 'idle'
+        })
+        .addCase(editUserThunk.fulfilled, (state, action) => {
+            state.user.status = 'fulfilled'
+            const userId = state.data.findIndex((user) => user._id == action.payload.id)
+            state.data[userId] = action.payload;
+            state.status = 'idle'
+        })
+        .addMatcher(
+            isAnyOf(
+              addUserThunk.pending,
+              removeUserThunk.pending,
+              editUserThunk.pending
+            ),
+            (state) => {
+              state.status = 'pending';
+            }
+          )
+          .addMatcher(
+            isAnyOf(
+              addUserThunk.rejected,
+              removeUserThunk.rejected,
+              editUserThunk.rejected
+            ),
+            (state) => {
+              state.status = 'rejected';
+            }
+          )
     }
 })
 
@@ -68,4 +91,3 @@ export const getUserData = (state: RootState) => state.users.user.data
 export const getUserError = (state: RootState) => state.users.user.status
 export const getUserStatus = (state: RootState) => state.users.user.error 
 
-export const { addUser, removeUser, editUser } = usersSlice.actions

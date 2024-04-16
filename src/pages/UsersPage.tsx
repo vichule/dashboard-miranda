@@ -1,10 +1,7 @@
 import styled from "styled-components"
-import data from '../data/users.json'
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
-import { BookingsTable } from "../components/Tables/BookingsTable"
 import { useEffect, useState } from "react"
 import { UsersTable } from "../components/Tables/UsersTable"
-import { useDispatch, useSelector } from "react-redux"
 import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
 import { userListThunk } from "../features/users/usersThunk"
 import { useNavigate } from "react-router-dom"

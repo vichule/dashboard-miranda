@@ -11,7 +11,7 @@ interface UserDataInterface{
 
 export const UsersTable = ({ data }: UserDataInterface) => {
     const navigator = useNavigate()
-    const handleEdit = (id: number) =>{
+    const handleEdit = (id: string | undefined) =>{
         navigator(`/users/user/${id}`)
     }
 
@@ -20,12 +20,12 @@ export const UsersTable = ({ data }: UserDataInterface) => {
         <>
             {data.map((json) => (
 
-                    <tr key={json.id}>
+                    <tr key={json._id}>
                         <td style={{display: 'flex'}}>
                             <UserImgTable src={json.photo} alt="" />
                             <UserInfoText>
                                 <h2>{json.first_name} {json.last_name}</h2>
-                                <p>#{json.id}</p>
+                                <p>#{json._id}</p>
                                 <p>{json.email}</p>
                                 <p>{json.start_date}</p>
                             </UserInfoText>
@@ -40,7 +40,7 @@ export const UsersTable = ({ data }: UserDataInterface) => {
                             {json.status === 'Active' ? <StatusActive>{json.status}</StatusActive> : <StatusInactive>{json.status}</StatusInactive>}
                         </TdStyled>
                         <td>
-                            <BasicBtnStyled onClick={()=> handleEdit(json.id)}>Edit</BasicBtnStyled>
+                            <BasicBtnStyled onClick={()=> handleEdit(json._id)}>Edit</BasicBtnStyled>
                         </td>
                     </tr>
 

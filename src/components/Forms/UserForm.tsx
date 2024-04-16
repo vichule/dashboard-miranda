@@ -1,32 +1,30 @@
-import styled from "styled-components"
-import { colors } from "../../styles/colors"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { UserInterface } from "../../features/interfaces/interfaces"
 import React from "react"
 
-interface UserFormProps{
+interface UserFormProps {
     user: UserInterface,
     change: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
     save: React.FormEventHandler<HTMLFormElement>,
     remove: React.MouseEventHandler<HTMLButtonElement>,
 }
 
-export const UserForm = ({user, change, save, remove}: UserFormProps) => {
-    
-    
+export const UserForm = ({ user, change, save, remove }: UserFormProps) => {
 
-    return(
+
+
+    return (
         <>
             <FormContainer>
                 <FormStyled onSubmit={save}>
                     <InputContainer>
                         <LabelForms htmlFor="first_name">First Name</LabelForms>
-                        <InputForms type="text" name="first_name" id='first_name'value={user.first_name} onChange={change}/>
+                        <InputForms type="text" name="first_name" id='first_name' value={user.first_name} onChange={change} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="last_name">Last Name</LabelForms>
-                        <InputForms type="text" name="last_name" id="last_name" value={user.last_name} onChange={change}/>
+                        <InputForms type="text" name="last_name" id="last_name" value={user.last_name} onChange={change} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="job">Job</LabelForms>
@@ -38,15 +36,15 @@ export const UserForm = ({user, change, save, remove}: UserFormProps) => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="email">Email</LabelForms>
-                        <InputForms type="email" name="email" id="email" value={user.email} onChange={change}/>
+                        <InputForms type="email" name="email" id="email" value={user.email} onChange={change} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="phone">Phone</LabelForms>
-                        <InputForms type="tel" name="phone" id="phone" value={user.phone} onChange={change}/>
+                        <InputForms type="tel" name="phone" id="phone" value={user.phone} onChange={change} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="start_date">Start Date</LabelForms>
-                        <InputForms type="date" name="start_date" id="start_date" value={user.start_date} onChange={change}/>
+                        <InputForms type="date" name="start_date" id="start_date" value={user.start_date} onChange={change} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
@@ -59,6 +57,10 @@ export const UserForm = ({user, change, save, remove}: UserFormProps) => {
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>
+                    <InputContainer>
+                        <LabelForms htmlFor="password">Password</LabelForms>
+                        <InputForms type="password" name="password" value={user.password} onChange={change}/>
+                    </InputContainer>
                     </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Save Changes</GreenBtnStyled>

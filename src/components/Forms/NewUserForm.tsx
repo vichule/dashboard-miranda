@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import { addUser, getUsersData, getUsersError, getUsersStatus } from "../../features/users/usersSlice"
+import { getUsersData, getUsersError, getUsersStatus } from "../../features/users/usersSlice"
 import { useEffect, useState } from "react"
-import { userListThunk } from "../../features/users/usersThunk"
+import { addUserThunk, userListThunk } from "../../features/users/usersThunk"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
@@ -14,6 +14,7 @@ interface NewUserProp extends EventTarget{
             description: HTMLFormElement
             phone: HTMLFormElement
             status: HTMLFormElement
+            password: HTMLFormElement
 }
 
 export const NewUserForm = () =>{
@@ -30,7 +31,7 @@ export const NewUserForm = () =>{
         } else if (usersDataStatus === 'pending'){
 
         } else if (usersDataStatus === 'fulfilled'){
-            setUserId(usersData.length + 1)
+            //setUserId(usersData.length + 1)
         } else if (usersDataStatus === 'rejected'){
             console.log(usersDataError)
         }
@@ -45,7 +46,7 @@ export const NewUserForm = () =>{
         const formUser = event.target as NewUserProp
         const newUser ={
             
-            id: userId,
+            //id: userId,
             first_name: formUser.first_name.value,
             last_name: formUser.last_name.value,
             email: formUser.email.value,
@@ -53,9 +54,10 @@ export const NewUserForm = () =>{
             description: formUser.description.value,
             phone: formUser.phone.value,
             photo:"http://dummyimage.com/105x100.png/dddddd/000000",
-            status: formUser.status.value 
+            status: formUser.status.value,
+            password: formUser.password.value
         }
-        dispatch(addUser(newUser))
+        dispatch(addUserThunk(newUser))
         navigator('/users')
     }
 
@@ -101,6 +103,10 @@ export const NewUserForm = () =>{
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>
+                    </InputContainer>
+                    <InputContainer>
+                        <LabelForms htmlFor="password">Password</LabelForms>
+                        <InputForms type="password" name="password" />
                     </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Create User</GreenBtnStyled>
