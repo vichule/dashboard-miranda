@@ -31,7 +31,7 @@ export interface BookingInterface {
     check_in: string,
     check_out: string,
     notes: string,
-    room: number,
+    room: string,
     status: string,
     room_type: string
 }
@@ -49,7 +49,7 @@ export interface BookingsInitialState {
 }
 
 export interface RoomInterface {
-    id: number,
+    _id?: string,
     room_type: string,
     room_number: number,
     description: string,

@@ -31,7 +31,7 @@ export const BookingID = () =>{
     const api = async () => {
         await dispatch(roomListThunk()).unwrap();
         await dispatch(bookingThunk(parseInt(id || ''))).unwrap();
-        bookingRoom = roomsData.find((room) => room.id === booking?.room) || {} as RoomInterface
+        bookingRoom = roomsData.find((room) => room._id === booking?.room) || {} as RoomInterface
         setRoom(bookingRoom)
         if(room === bookingRoom){
             setSpinner(false)

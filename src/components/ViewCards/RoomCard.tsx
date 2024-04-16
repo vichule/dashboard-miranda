@@ -18,7 +18,7 @@ export const RoomCard = ({room}: RoomProp) => {
                 <TextContainer>
                     <CardHeader>Room Information</CardHeader>
                     <CardSubTitle>Room ID:</CardSubTitle>
-                    <CardId>ID #{room.id}</CardId>
+                    <CardId>ID #{room._id}</CardId>
                     <CardGrid>
                         <CardFlexContainer>
                             <CardSubTitle>Room Type:</CardSubTitle>

@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
-import { roomListThunk } from "../../features/rooms/roomsThunk"
-import { addRoom, getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
+import { addRoomThunk, roomListThunk } from "../../features/rooms/roomsThunk"
+import { getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 
 interface NewRoomProp extends EventTarget{
@@ -11,7 +11,8 @@ interface NewRoomProp extends EventTarget{
             room_number: HTMLFormElement,
             price: HTMLFormElement,
             description: HTMLFormElement,
-            cancellation: HTMLFormElement
+            cancellation: HTMLFormElement,
+            amenities: HTMLFormElement
            
 }
 
@@ -29,7 +30,7 @@ export const NewRoomForm = () =>{
         } else if (roomsDataStatus === 'pending'){
 
         } else if (roomsDataStatus === 'fulfilled'){
-            setRoomId(roomsData.length + 1)
+            //setRoomId(roomsData.length + 1)
         } else if (roomsDataStatus === 'rejected'){
             console.log(roomsDataError)
         }
@@ -44,7 +45,7 @@ export const NewRoomForm = () =>{
         const formRoom = event.target as NewRoomProp
         const newRoom ={
             
-            id: roomId,
+            // _id: roomId.toString(),
             room_type: formRoom.room_type.value,
             room_number: formRoom.room_number.value,
             price: formRoom.price.value,
@@ -56,21 +57,11 @@ export const NewRoomForm = () =>{
                 "https://images.unsplash.com/photo-1576354302919-96748cb8299e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNpbmdsZSUyMHJvb20lMjBob3RlbHxlbnwwfHwwfHx8MA%3D%3D",
                 "https://images.unsplash.com/photo-1619128395560-8a749ac9926d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHNpbmdsZSUyMGJlZCUyMGhvdGVsfGVufDB8fDB8fHww"
               ],
-            status:"available",
+            status:"Available",
             discount: 20, 
-            amenities:[
-                "Air conditioner",
-                "Breakfast",
-                "Cleaning",
-                "Grocery",
-                "Shop near",
-                "Smart Security",
-                "Kitchen",
-                "Shower",
-                "Towels"
-              ],
+            amenities: [formRoom.amenities.value],
         }
-        dispatch(addRoom(newRoom))
+        dispatch(addRoomThunk(newRoom))
         navigator('/rooms')
     }
 
@@ -106,7 +97,7 @@ export const NewRoomForm = () =>{
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="amenities">Amenities</LabelForms>
-                        <SelectForms name="amenities" id="amenities" multiple>
+                        <SelectForms multiple name="amenities" id="amenities" required >
                             <option value="Air conditioner">Air Conditioner</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Cleaning">Cleaning</option>

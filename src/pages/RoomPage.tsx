@@ -31,7 +31,7 @@ export const RoomID = () =>{
     }
 
     const api = async () => {
-        await dispatch(roomThunk(parseInt(id || ''))).unwrap();
+        await dispatch(roomThunk((id || ''))).unwrap();
         setSpinner(false)
     }
 
@@ -39,7 +39,7 @@ export const RoomID = () =>{
         api();
         
         
-    }, [api, id]);
+    }, [id]);
 
 
     return(

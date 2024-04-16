@@ -4,14 +4,15 @@ type allInterfaces = RoomInterface | BookingInterface | ContactInterface | UserI
 const baseUrl = import.meta.env.VITE_API_BASEURL
 
 export const apiCall = async (endpoint: string, method: string, body?: allInterfaces) => {
-    const result = await fetch(`${baseUrl}/${endpoint}`, {
-        method: `${method}`,
-        headers: {
-          "Content-Type": "application/json",
-          token: `${localStorage.getItem('token')}`,
-        },
-         body: JSON.stringify(body)
-      });
-      const response = await result.json();
-      return response
+  //console.log(`Bearer ${localStorage.getItem('token')}`)
+  const result = await fetch(`${baseUrl}/${endpoint}`, {
+    method: `${method}`,
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    },
+    body: JSON.stringify(body)
+  });
+  const response = await result.json();
+  return await response
 }

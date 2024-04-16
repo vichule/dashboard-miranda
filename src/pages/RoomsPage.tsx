@@ -43,9 +43,9 @@ export const Rooms = () => {
 
         } else if (roomsDataStatus === 'fulfilled'){
             if (filter === 'available'){
-                newRooms = roomsData.filter((room) => room.status === "available" )
+                newRooms = roomsData.filter((room) => room.status === "Available" )
             }else if(filter === 'booked'){
-                newRooms = roomsData.filter((room) => room.status === "booked" )
+                newRooms = roomsData.filter((room) => room.status === "Booked" )
             }else{
                 newRooms = [...roomsData]
                 

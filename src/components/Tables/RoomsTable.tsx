@@ -3,10 +3,11 @@ import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
 import { DeleteIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
-import { removeRoom } from '../../features/rooms/roomsSlice'
 import { CheckinStyled, CheckoutStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
 import { RoomInterface } from '../../features/interfaces/interfaces'
+import { removeRoomThunk } from '../../features/rooms/roomsThunk'
+import { useAppDispatch } from '../../app/hooks'
 
 interface RoomDataInterface{
     data: RoomInterface[]
@@ -14,10 +15,10 @@ interface RoomDataInterface{
 
 export const RoomsTable = ({ data }: RoomDataInterface) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
-    const handleInfo = (id: number) =>{
+    const handleInfo = (id: string | undefined) =>{
         navigator(`/rooms/room/${id}`)
     }
     
@@ -33,7 +34,7 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
             confirmButtonText: "Yes",
           }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(removeRoom(room))
+                dispatch(removeRoomThunk(room))
               Swal.fire("Done!", "The room has been deleted.", "success");
             }
           })
@@ -44,11 +45,11 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
         <>
             {data.map((json) => (
 
-                    <RowContainer key={json.id} onClick={()=> handleInfo(json.id)}>
+                    <RowContainer key={json._id} onClick={()=> handleInfo(json._id)}>
                         <TdContainer style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                             <RoomsImgStyled src={json.photos[0]} alt="" />
                             <div>
-                                <p>#{json.id}</p>
+                                <p>#{json._id}</p>
                                 <h2>{json.room_number}</h2>
                             </div>
                         </TdContainer>
@@ -65,8 +66,8 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
                             <TdText>{json.price}/Night</TdText>
                         </TdContainer>
                         <TdContainer>
-                            {json.status === 'available' && <CheckinStyled>{json.status}</CheckinStyled>}
-                            {json.status === 'booked' && <CheckoutStyled>{json.status}</CheckoutStyled>}
+                            {json.status === 'Available' && <CheckinStyled>{json.status}</CheckinStyled>}
+                            {json.status === 'Booked' && <CheckoutStyled>{json.status}</CheckoutStyled>}
                         </TdContainer>
                         <TdContainer>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>

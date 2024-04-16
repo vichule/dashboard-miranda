@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { roomListThunk, roomThunk } from "./roomsThunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addRoomThunk, editRoomThunk, removeRoomThunk, roomListThunk, roomThunk } from "./roomsThunk";
 import { RoomsInitialState } from "../interfaces/interfaces";
 import { RootState } from "../../app/store";
 
@@ -17,19 +17,7 @@ const initialState: RoomsInitialState = {
   export const roomsSlice = createSlice({
     name: 'rooms',
     initialState: initialState,
-    reducers: {
-        addRoom(state, action){
-            state.data = [action.payload, ...state.data]
-        },
-        removeRoom(state, action){
-            const roomSelect = state.data.findIndex(room=> room.id === action.payload.id)
-            state.data.splice(roomSelect, 1);
-        },
-        editRoom(state, action){
-            const roomId = state.data.findIndex((room) => room.id == action.payload.id)
-            state.data[roomId] = action.payload;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) =>{
         builder
         .addCase(roomListThunk.pending, (state) => {
@@ -54,6 +42,43 @@ const initialState: RoomsInitialState = {
             state.room.status = 'rejected'
             state.room.error = action.error.message || null
         })
+        .addCase(addRoomThunk.fulfilled, (state, action) => {
+            state.room.status = 'fulfilled'
+            state.data = [action.payload, ...state.data]
+            state.status = 'idle'
+        })
+        .addCase(removeRoomThunk.fulfilled, (state, action) =>{
+            state.room.status = 'fulfilled'
+            const roomSelect = state.data.findIndex(room=> room._id === action.payload.id)
+            state.data.splice(roomSelect, 1);
+            state.status = 'idle'
+        })
+        .addCase(editRoomThunk.fulfilled, (state, action) => {
+            state.room.status = 'fulfilled'
+            const roomId = state.data.findIndex((room) => room._id == action.payload.id)
+            state.data[roomId] = action.payload;
+            state.status = 'idle'
+        })
+        .addMatcher(
+            isAnyOf(
+              addRoomThunk.pending,
+              removeRoomThunk.pending,
+              editRoomThunk.pending
+            ),
+            (state) => {
+              state.status = 'pending';
+            }
+          )
+          .addMatcher(
+            isAnyOf(
+              addRoomThunk.rejected,
+              removeRoomThunk.rejected,
+              editRoomThunk.rejected
+            ),
+            (state) => {
+              state.status = 'rejected';
+            }
+          )
     }
   })
 
@@ -64,5 +89,3 @@ const initialState: RoomsInitialState = {
   export const getRoomData = (state: RootState) => state.rooms.room.data
   export const getRoomStatus = (state: RootState) => state.rooms.room.status
   export const getRoomError = (state: RootState) => state.rooms.room.error 
-
-  export const { addRoom, removeRoom, editRoom } = roomsSlice.actions
