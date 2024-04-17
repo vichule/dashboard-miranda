@@ -1,5 +1,5 @@
 export interface ContactInterface {
-    id: number,
+    _id?: string,
     first_name: string,
     last_name: string,
     email: string,
@@ -24,14 +24,14 @@ export interface ContactsInitialState {
 }
 
 export interface BookingInterface {
-    id: number,
+    _id?: string,
     first_name: string,
     last_name: string,
     order_date: string,
     check_in: string,
     check_out: string,
     notes: string,
-    room: string,
+    room: RoomInterface,
     status: string,
     room_type: string
 }

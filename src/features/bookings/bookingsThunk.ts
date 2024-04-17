@@ -1,18 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import data from '../../data/bookings.json'
+import { apiCall } from "../../utils/apiCall";
+import { BookingInterface } from "../interfaces/interfaces";
 
 export const bookingsListThunk = createAsyncThunk('bookings/fetchBookings', async () => {
-    return new Promise<any>((resolve) => {
-        setTimeout(() => {
-            resolve(data)
-        }, 200)
-    })
+    return apiCall('bookings', 'GET')
 })
 
-export const bookingThunk = createAsyncThunk('bookings/fetchBooking', async (id: number) => {
-    return new Promise<any>((resolve) => {
-        setTimeout(() => {
-            resolve((data.find((booking) => booking.id === id) || null));
-        }, 200)
-    })
+export const bookingThunk = createAsyncThunk('bookings/fetchBooking', async (id: string) => {
+    return apiCall(`bookings/${id}`, 'GET')
+})
+
+export const addBookingThunk = createAsyncThunk('bookings/addBooking', async (booking: BookingInterface) =>{
+    return apiCall('bookings', 'POST', booking)
+})
+
+export const removeBookingThunk = createAsyncThunk('bookings/removeBooking', async (booking: BookingInterface) =>{
+    return apiCall(`bookings/${booking._id}`, 'DELETE')
+})
+
+export const editBookingThunk = createAsyncThunk('bookings/editBooking', async (booking: BookingInterface) =>{
+    return apiCall(`bookings/${booking._id}`,'PUT', booking)
 })

@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { TdText } from './StyledTable'
 import { DeleteIcon } from '../../styles/icons'
-import { useDispatch } from 'react-redux'
-import { removeBooking } from '../../features/bookings/bookingsSlice'
 import { CancelStyled, CheckinStyled, CheckoutStyled, ProgressStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
 import { BookingInterface } from '../../features/interfaces/interfaces'
+import { removeBookingThunk } from '../../features/bookings/bookingsThunk'
+import { useAppDispatch } from '../../app/hooks'
 
 interface BookingDataInterface{
     data: BookingInterface[]
@@ -14,9 +14,9 @@ interface BookingDataInterface{
 
 export const BookingsTable = ({ data }: BookingDataInterface) => {
     const navigator = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const handleInfo = (id: number) =>{
+    const handleInfo = (id: string | undefined) =>{
         navigator(`/bookings/booking/${id}`)
     }
     
@@ -33,7 +33,7 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
             confirmButtonText: "Yes",
           }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(removeBooking(booking))
+                dispatch(removeBookingThunk(booking))
               Swal.fire("Done!", "The booking has been deleted.", "success");
             }
           })
@@ -43,10 +43,10 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
         <>
             {data.map((json) => (
 
-                    <RowContainer key={json.id} onClick={()=> handleInfo(json.id)}>
+                    <RowContainer key={json._id} onClick={()=> handleInfo(json._id)}>
                         <TdContainer>
                             <h2>{json.first_name} {json.last_name}</h2>
-                            <p>#{json.id}</p>
+                            <p>#{json._id}</p>
                             </TdContainer>
                         <TdContainer>
                             

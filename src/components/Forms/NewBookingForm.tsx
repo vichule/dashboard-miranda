@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { addBooking, getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
-import { bookingsListThunk } from "../../features/bookings/bookingsThunk"
+import { getBookingsData, getBookingsError, getBookingsStatus } from "../../features/bookings/bookingsSlice"
+import { addBookingThunk, bookingsListThunk } from "../../features/bookings/bookingsThunk"
 
 interface NewBookingProp extends EventTarget {
     first_name: HTMLFormElement,
@@ -33,7 +33,7 @@ export const NewBookingForm = () => {
         } else if (bookingsDataStatus === 'pending') {
 
         } else if (bookingsDataStatus === 'fulfilled') {
-            setBookingId(bookingsData.length + 1)
+            //setBookingId(bookingsData.length + 1)
         } else if (bookingsDataStatus === 'rejected') {
             console.log(bookingsDataError)
         }
@@ -48,7 +48,7 @@ export const NewBookingForm = () => {
         const formBooking = event.target as NewBookingProp
         const newBooking = {
 
-            id: bookingId,
+            //id: bookingId,
             first_name: formBooking.first_name.value,
             last_name: formBooking.last_name.value,
             order_date: formBooking.order_date.value,
@@ -58,14 +58,9 @@ export const NewBookingForm = () => {
             room: formBooking.room.value,
             status: "In progress",
             discount: 20,
-            room_type: [
-                "Suite",
-                "Single Bed",
-                "Double Bed",
-                "Double Superior"
-            ],
+            room_type: formBooking.room_type.value,
         }
-        dispatch(addBooking(newBooking))
+        dispatch(addBookingThunk(newBooking))
         navigator('/bookings')
     }
 

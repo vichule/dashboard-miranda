@@ -18,7 +18,7 @@ export const BookingCard = ({booking , room}: BookingProps) => {
                 <TextContainer>
                     <div>
                         <CardHeader>{booking.first_name} {booking.last_name}</CardHeader>
-                        <CardId>ID #{booking.id}</CardId>
+                        <CardId>ID #{booking._id}</CardId>
                     </div>
                     <CardGrid>
                         <CardFlexContainer>

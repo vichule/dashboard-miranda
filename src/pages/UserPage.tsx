@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { getUserData, getUserStatus, getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
+import { getUsersData, getUsersError, getUsersStatus } from "../features/users/usersSlice"
 import { useEffect, useState } from "react"
 import { editUserThunk, removeUserThunk, userListThunk, userThunk } from "../features/users/usersThunk"
 import { UserForm } from "../components/Forms/UserForm"

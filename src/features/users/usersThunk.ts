@@ -17,7 +17,7 @@ export const addUserThunk = createAsyncThunk('users/addUser', async (user: UserI
 })
 
 export const removeUserThunk = createAsyncThunk('users/removeRoom', async (user: UserInterface) => {
-    return apiCall(`users/${user._id}`, 'DELETE',)
+    return apiCall(`users/${user._id}`, 'DELETE')
 })
 
 export const editUserThunk = createAsyncThunk('users/editRoom', async (user: UserInterface) => {

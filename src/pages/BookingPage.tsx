@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux"
 import { getBookingData, getBookingError, getBookingStatus, getBookingsData, getBookingsError, getBookingsStatus } from "../features/bookings/bookingsSlice"
 import { useNavigate, useParams } from "react-router-dom"
 import { useCallback, useEffect, useState } from "react"
@@ -15,27 +14,32 @@ import { BookingInterface, RoomInterface } from "../features/interfaces/interfac
 
 export const BookingID = () =>{
 
-    const roomsData = useAppSelector(getRoomsData)
+    //const roomsData = useAppSelector(getRoomsData)
     const { id } = useParams()
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
     const booking = useAppSelector(getBookingData)
-    const [ room, setRoom ] = useState<RoomInterface>()
+    //const [ room, setRoom ] = useState<RoomInterface>()
     const handleBack = () =>{
         navigator(-1)
     }
     const [ spinner, setSpinner ] = useState<boolean>(true)
-    let bookingRoom : RoomInterface = {} as RoomInterface
+    //let bookingRoom : RoomInterface = {} as RoomInterface
 
     const api = async () => {
-        await dispatch(roomListThunk()).unwrap();
-        await dispatch(bookingThunk(parseInt(id || ''))).unwrap();
-        bookingRoom = roomsData.find((room) => room._id === booking?.room) || {} as RoomInterface
-        setRoom(bookingRoom)
-        if(room === bookingRoom){
-            setSpinner(false)
-        }
+        //await dispatch(roomListThunk()).unwrap();
+        
+        await dispatch(bookingThunk(id || '')).unwrap();
+        //await dispatch(roomThunk(booking?.room || '')).unwrap();
+        
+        //bookingRoom = roomData.find((room) => room._id === booking?.room) || {} as RoomInterface
+        // setRoom(bookingRoom)
+        // console.log(bookingRoom)
+        // if(room === bookingRoom){
+        //     setSpinner(false)
+        // }
+        setSpinner(false)
         
     }
 
@@ -43,7 +47,7 @@ export const BookingID = () =>{
         api();
         
         
-    }, [api, id]);
+    }, [id]);
     
 
 
@@ -51,7 +55,7 @@ export const BookingID = () =>{
         <>
             <MainContainer style={{padding: '1em'}}>
                 <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
-                {spinner ? <p>Loading</p> : <BookingCard booking={booking as BookingInterface} room={room as RoomInterface}/>}
+                {spinner ? <p>Loading</p> : <BookingCard booking={booking as BookingInterface} room={booking?.room as RoomInterface}/>}
             </MainContainer>
             
         </>

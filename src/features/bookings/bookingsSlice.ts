@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { bookingThunk, bookingsListThunk } from "./bookingsThunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { addBookingThunk, bookingThunk, bookingsListThunk, editBookingThunk, removeBookingThunk } from "./bookingsThunk";
 import { BookingInterface, BookingsInitialState } from "../interfaces/interfaces";
 import { RootState } from "../../app/store";
 
@@ -14,48 +14,73 @@ const initialState: BookingsInitialState = {
         error: null
     },
     error: null,
-  };
+};
 
 export const bookingsSlice = createSlice({
     name: 'bookings',
     initialState: initialState,
-    reducers: {
-        addBooking(state, action){
-            state.data = [action.payload, ...state.data]
-        },
-        removeBooking(state, action){
-            const bookingSelect = state.data.findIndex(booking=> booking.id === action.payload.id)
-            state.data.splice(bookingSelect, 1);
-        },
-        editBooking(state, action){
-            const bookingId = state.data.findIndex((booking) => booking.id == action.payload.id)
-            state.data[bookingId] = action.payload;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(bookingsListThunk.pending, (state) =>{
-            state.status = 'pending'
-        })
-        .addCase(bookingsListThunk.fulfilled, (state, action) =>{
-            state.status = 'fulfilled'
-            state.data = action.payload
-        })
-        .addCase(bookingsListThunk.rejected, (state, action) =>{
-            state.status = 'rejected'
-            state.error = action.error.message || null
-        })
-        .addCase(bookingThunk.pending, (state) =>{
-            state.booking.status = 'pending'
-        })
-        .addCase(bookingThunk.fulfilled, (state, action) =>{
-            state.booking.status = 'fulfilled'
-            state.booking.data = action.payload
-        })
-        .addCase(bookingThunk.rejected, (state, action) =>{
-            state.booking.status = 'rejected'
-            state.booking.error = action.error.message || null
-        })
+            .addCase(bookingsListThunk.pending, (state) => {
+                state.status = 'pending'
+            })
+            .addCase(bookingsListThunk.fulfilled, (state, action) => {
+                state.status = 'fulfilled'
+                state.data = action.payload
+            })
+            .addCase(bookingsListThunk.rejected, (state, action) => {
+                state.status = 'rejected'
+                state.error = action.error.message || null
+            })
+            .addCase(bookingThunk.pending, (state) => {
+                state.booking.status = 'pending'
+            })
+            .addCase(bookingThunk.fulfilled, (state, action) => {
+                state.booking.status = 'fulfilled'
+                state.booking.data = action.payload
+            })
+            .addCase(bookingThunk.rejected, (state, action) => {
+                state.booking.status = 'rejected'
+                state.booking.error = action.error.message || null
+            })
+            .addCase(addBookingThunk.fulfilled, (state, action) => {
+                state.booking.status = 'fulfilled'
+                state.data = [action.payload, ...state.data]
+                state.status = 'idle'
+            })
+            .addCase(removeBookingThunk.fulfilled, (state, action) => {
+                state.booking.status = 'fulfilled'
+                const bookingSelect = state.data.findIndex(booking => booking._id === action.payload.id)
+                state.data.splice(bookingSelect, 1);
+                state.status = 'idle'
+            })
+            .addCase(editBookingThunk.fulfilled, (state, action) => {
+                state.booking.status = 'fulfilled'
+                const bookingId = state.data.findIndex((booking) => booking._id == action.payload.id)
+                state.data[bookingId] = action.payload;
+                state.status = 'idle'
+            })
+            .addMatcher(
+                isAnyOf(
+                    addBookingThunk.pending,
+                    removeBookingThunk.pending,
+                    editBookingThunk.pending
+                ),
+                (state) => {
+                    state.status = 'pending';
+                }
+            )
+            .addMatcher(
+                isAnyOf(
+                    addBookingThunk.rejected,
+                    removeBookingThunk.rejected,
+                    editBookingThunk.rejected
+                ),
+                (state) => {
+                    state.status = 'rejected';
+                }
+            )
     }
 })
 
@@ -67,5 +92,3 @@ export const getBookingData = (state: RootState) => state.bookings.booking.data
 export const getBookingStatus = (state: RootState) => state.bookings.booking.status
 export const getBookingError = (state: RootState) => state.bookings.booking.error
 
-
-export const { addBooking, removeBooking, editBooking } = bookingsSlice.actions
