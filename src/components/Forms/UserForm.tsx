@@ -52,14 +52,14 @@ export const UserForm = ({ user, change, save, remove }: UserFormProps) => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>
-                        <SelectForms name="status" id="status" onChange={change}>
+                        <SelectForms name="status" id="status" value={user.status} onChange={change}>
                             <option value="Status">Status</option>
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>
                     <InputContainer>
                         <LabelForms htmlFor="password">Password</LabelForms>
-                        <InputForms type="password" name="password" value={user.password} onChange={change}/>
+                        <InputForms type="password" name="password" onChange={change}/>
                     </InputContainer>
                     </InputContainer>
                     <BtnContainerForm>

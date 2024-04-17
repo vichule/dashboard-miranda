@@ -1,20 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import data from '../../data/comments.json'
+import { apiCall } from "../../utils/apiCall";
+import { ContactInterface } from "../interfaces/interfaces";
 
 export const commentsListThunk = createAsyncThunk('contacts/fetchComments', async () =>{
-    return new Promise<any>((resolve) => {
-        setTimeout(() => {
-            resolve(data)
-        }, 200)
-    })
+    return apiCall('contacts', 'GET')
 
 })
 
 
-export const commentThunk = createAsyncThunk('users/fetchComment', async (id: number) => {
-    return new Promise<any>((resolve) => {
-        setTimeout(() => {
-            resolve((data.find((comment) => comment.id === id) || null));
-        }, 200)
-    })
+export const commentThunk = createAsyncThunk('contacts/fetchComment', async (id: string) => {
+    return apiCall(`contacts/${id}`, 'GET')
+})
+
+export const addCommentThunk = createAsyncThunk('contacts/addComment', async (comment: ContactInterface) =>{
+    return apiCall('contacts', 'POST', comment)
+})
+
+export const removeCommentThunk = createAsyncThunk('contacts/removeComment', async (comment: ContactInterface) => {
+    return apiCall(`contacts/${comment._id}`, 'DELETE')
+})
+
+export const editCommentThunk = createAsyncThunk('contacts/editComment', async (comment: ContactInterface) => {
+    return apiCall(`contacts/${comment._id}`, 'PUT', comment)
 })

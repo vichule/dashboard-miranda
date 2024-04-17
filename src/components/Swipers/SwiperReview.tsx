@@ -8,9 +8,8 @@ import "swiper/css/navigation";
 import { colors } from "../../styles/colors";
 import styled from "styled-components";
 import { CheckIcon, CrossIcon } from "../../styles/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { getCommentsListData, getCommentsListError, getCommentsListStatus, removeComment } from "../../features/contact/contactSlice"
-import { commentsListThunk } from "../../features/contact/contactThunk"
+import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../../features/contact/contactSlice"
+import { commentsListThunk, removeCommentThunk } from "../../features/contact/contactThunk"
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -72,7 +71,7 @@ export const SwiperReview = () => {
             confirmButtonText: "Yes",
           }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(removeComment(comment))
+                dispatch(removeCommentThunk(comment))
               Swal.fire("Done!", "The comment has been deleted.", "success");
             }
           })
@@ -92,7 +91,7 @@ export const SwiperReview = () => {
 
             >
                 {comments.map((comment) => (
-                <SwiperSlide key={comment.id}>
+                <SwiperSlide key={comment._id}>
                     <ReviewContainer>
                         
                         <CardContainer >

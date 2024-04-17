@@ -1,13 +1,12 @@
-import { useDispatch } from 'react-redux'
 import { TdText } from './StyledTable'
-import { editCommentStatus, removeComment } from '../../features/contact/contactSlice'
+// import { editCommentStatus } from '../../features/contact/contactSlice'
 import { DeleteIcon } from '../../styles/icons'
 import { BtnArchive, BtnPublish } from '../Button/BtnStyled'
-import { useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { SubjectContainer, TdContainer } from './ContainersStyled'
-import { ContactComment, ContactInterface } from '../../features/interfaces/interfaces'
+import { ContactInterface } from '../../features/interfaces/interfaces'
 import { useAppDispatch } from '../../app/hooks'
+import { editCommentThunk, removeCommentThunk } from '../../features/contact/contactThunk'
 
 interface CommentDataInterface{
     data: ContactInterface[]
@@ -29,14 +28,14 @@ export const ContactTable = ({ data  }: CommentDataInterface) => {
             confirmButtonText: "Yes",
           }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(removeComment(comment))
+                dispatch(removeCommentThunk(comment))
               Swal.fire("Done!", "The comment has been deleted.", "success");
             }
           })
     }
 
-    const handleEdit = (comment: ContactInterface, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
-       dispatch(editCommentStatus(comment.id))
+    const handleEdit = (comment: ContactInterface, event: React.MouseEvent<HTMLButtonElement, MouseEvent>, publish: boolean) =>{
+       dispatch(editCommentThunk({ ...comment, status: publish }))
     }
     
     
@@ -45,10 +44,10 @@ export const ContactTable = ({ data  }: CommentDataInterface) => {
         <>
             {data.map((json: ContactInterface) => (
 
-                    <tr key={json.id}>
+                    <tr key={json._id}>
                         <TdContainer>
                             <h2>{json.date}</h2>
-                            <p>#{json.id}</p>
+                            <p>#{json._id}</p>
                             </TdContainer>
                         <TdContainer>
                             <h2>{json.first_name} {json.last_name}</h2>
@@ -60,7 +59,7 @@ export const ContactTable = ({ data  }: CommentDataInterface) => {
                             <TdText>{json.message}</TdText>
                         </SubjectContainer>
                         <TdContainer>
-                            {json.status ? <BtnPublish onClick={ (e) => handleEdit(json, e)}>Publish</BtnPublish> : <BtnArchive onClick={ (e) => handleEdit(json, e)}>Archive</BtnArchive>}
+                            {json.status ? <BtnPublish onClick={ (e) => handleEdit(json, e, false)}>Publish</BtnPublish> : <BtnArchive onClick={ (e) => handleEdit(json, e, true)}>Archive</BtnArchive>}
                         </TdContainer>
                         <TdContainer>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
