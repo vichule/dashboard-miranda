@@ -53,7 +53,6 @@ export const UserForm = ({ user, change, save, remove }: UserFormProps) => {
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>
                         <SelectForms name="status" id="status" value={user.status} onChange={change}>
-                            <option value="Status">Status</option>
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>

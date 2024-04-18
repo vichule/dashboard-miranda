@@ -6,45 +6,50 @@ import { addRoomThunk, roomListThunk } from "../../features/rooms/roomsThunk"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 
-interface NewRoomProp extends EventTarget{
-            room_type: HTMLFormElement,
-            room_number: HTMLFormElement,
-            price: HTMLFormElement,
-            description: HTMLFormElement,
-            cancellation: HTMLFormElement,
-            amenities: HTMLFormElement
-           
+interface NewRoomProp extends EventTarget {
+    room_type: HTMLFormElement,
+    room_number: HTMLFormElement,
+    price: HTMLFormElement,
+    description: HTMLFormElement,
+    cancellation: HTMLFormElement,
+    amenities: HTMLFormElement
+
 }
 
-export const NewRoomForm = () =>{
+export const NewRoomForm = () => {
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
     const roomsData = useAppSelector(getRoomsData)
     const roomsDataError = useAppSelector(getRoomsError)
     const roomsDataStatus = useAppSelector(getRoomsStatus)
-    const [ roomId, setRoomId ] = useState<number>(0)
+    const [roomId, setRoomId] = useState<number>(0)
 
-    useEffect(()=>{
-        if (roomsDataStatus === 'idle'){
+    useEffect(() => {
+        if (roomsDataStatus === 'idle') {
             dispatch(roomListThunk())
-        } else if (roomsDataStatus === 'pending'){
+        } else if (roomsDataStatus === 'pending') {
 
-        } else if (roomsDataStatus === 'fulfilled'){
+        } else if (roomsDataStatus === 'fulfilled') {
             //setRoomId(roomsData.length + 1)
-        } else if (roomsDataStatus === 'rejected'){
+        } else if (roomsDataStatus === 'rejected') {
             console.log(roomsDataError)
         }
-    },[roomsData,roomsDataStatus,dispatch])
+    }, [roomsData, roomsDataStatus, dispatch])
 
-    const handleBack = () =>{
+    const handleBack = () => {
         navigator('/rooms')
     }
 
-    const handleCreate = (event: React.FormEvent<HTMLFormElement>)=>{
+    const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formRoom = event.target as NewRoomProp
-        const newRoom ={
-            
+        const amenitiesOptions = formRoom.amenities.selectedOptions;
+        const amenitiesArr: string[] = [];
+        for (let i = 0; i < amenitiesOptions.length; i++) {
+            amenitiesArr.push(amenitiesOptions[i].value)
+        }
+        const newRoom = {
+
             // _id: roomId.toString(),
             room_type: formRoom.room_type.value,
             room_number: formRoom.room_number.value,
@@ -52,20 +57,20 @@ export const NewRoomForm = () =>{
             offer: true,
             description: formRoom.description.value,
             cancellation: formRoom.cancellation.value,
-            photos:[
+            photos: [
                 "https://images.unsplash.com/photo-1444201983204-c43cbd584d93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI0fHxzaW5nbGUlMjByb29tJTIwaG90ZWx8ZW58MHx8MHx8fDA%3D",
                 "https://images.unsplash.com/photo-1576354302919-96748cb8299e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNpbmdsZSUyMHJvb20lMjBob3RlbHxlbnwwfHwwfHx8MA%3D%3D",
                 "https://images.unsplash.com/photo-1619128395560-8a749ac9926d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHNpbmdsZSUyMGJlZCUyMGhvdGVsfGVufDB8fDB8fHww"
-              ],
-            status:"Available",
-            discount: 20, 
-            amenities: [formRoom.amenities.value],
+            ],
+            status: "Available",
+            discount: 20,
+            amenities: amenitiesArr,
         }
         dispatch(addRoomThunk(newRoom))
         navigator('/rooms')
     }
 
-    return(
+    return (
         <>
             <FormContainer>
                 <FormStyled onSubmit={handleCreate}>
@@ -73,7 +78,7 @@ export const NewRoomForm = () =>{
                         <LabelForms htmlFor="room_number">Room Number</LabelForms>
                         <InputForms type="number" name="room_number" />
                     </InputContainer>
-                    
+
                     <InputContainer>
                         <LabelForms htmlFor="room_type">Room Type</LabelForms>
                         <SelectForms name="room_type" id="room_type">
@@ -119,7 +124,7 @@ export const NewRoomForm = () =>{
                     </BtnContainerForm>
                 </FormStyled>
             </FormContainer>
-            
+
         </>
     )
 }

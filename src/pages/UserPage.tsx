@@ -41,7 +41,7 @@ export const UserID = () => {
            
           } else if (usersDataStatus === "fulfilled") {
             const specificUser = usersData.find((user) => user._id === id) || {} as UserInterface;
-            setUser(specificUser)
+            setUser({...specificUser, password: ''})
             setSpinner(false)
            
         }

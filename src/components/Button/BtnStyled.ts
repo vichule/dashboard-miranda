@@ -27,6 +27,7 @@ export const GreenBtnStyled = styled.button`
     background-color: ${colors.hardGreen};
     color: ${colors.whiteSemi};
     transition: all ease 300ms;
+    margin-left: 2rem;
 
     &:hover{
         background-color: ${colors.btnBack2};
