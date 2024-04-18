@@ -15,6 +15,7 @@ interface NewUserProp extends EventTarget{
             phone: HTMLFormElement
             status: HTMLFormElement
             password: HTMLFormElement
+            job: HTMLFormElement
 }
 
 export const NewUserForm = () =>{
@@ -55,7 +56,8 @@ export const NewUserForm = () =>{
             phone: formUser.phone.value,
             photo:"http://dummyimage.com/105x100.png/dddddd/000000",
             status: formUser.status.value,
-            password: formUser.password.value
+            password: formUser.password.value,
+            job: formUser.job.value
         }
         dispatch(addUserThunk(newUser))
         navigator('/users')
@@ -76,9 +78,9 @@ export const NewUserForm = () =>{
                     <InputContainer>
                         <LabelForms htmlFor="job">Job</LabelForms>
                         <SelectForms name="job" id="job">
-                            <option value="true">Room Service</option>
-                            <option value="false">Manager</option>
-                            <option value="false">Recepcionist</option>
+                            <option value="Room Service">Room Service</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Recepcionist">Recepcionist</option>
                         </SelectForms>
                     </InputContainer>
                     <InputContainer>
@@ -106,7 +108,8 @@ export const NewUserForm = () =>{
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="password">Password</LabelForms>
-                        <InputForms type="password" name="password" />
+                        <InputForms type="password" name="password" style={{width: '750px'}}/>
+                    </InputContainer><InputContainer>
                     </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Create User</GreenBtnStyled>

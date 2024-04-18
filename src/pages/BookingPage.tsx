@@ -14,31 +14,19 @@ import { BookingInterface, RoomInterface } from "../features/interfaces/interfac
 
 export const BookingID = () =>{
 
-    //const roomsData = useAppSelector(getRoomsData)
     const { id } = useParams()
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
     const booking = useAppSelector(getBookingData)
-    //const [ room, setRoom ] = useState<RoomInterface>()
     const handleBack = () =>{
         navigator(-1)
     }
     const [ spinner, setSpinner ] = useState<boolean>(true)
-    //let bookingRoom : RoomInterface = {} as RoomInterface
 
     const api = async () => {
-        //await dispatch(roomListThunk()).unwrap();
         
         await dispatch(bookingThunk(id || '')).unwrap();
-        //await dispatch(roomThunk(booking?.room || '')).unwrap();
-        
-        //bookingRoom = roomData.find((room) => room._id === booking?.room) || {} as RoomInterface
-        // setRoom(bookingRoom)
-        // console.log(bookingRoom)
-        // if(room === bookingRoom){
-        //     setSpinner(false)
-        // }
         setSpinner(false)
         
     }

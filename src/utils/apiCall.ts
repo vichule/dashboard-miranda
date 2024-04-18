@@ -4,7 +4,6 @@ type allInterfaces = RoomInterface | BookingInterface | ContactInterface | UserI
 const baseUrl = import.meta.env.VITE_API_BASEURL
 
 export const apiCall = async (endpoint: string, method: string, body?: allInterfaces) => {
-  //console.log(`Bearer ${localStorage.getItem('token')}`)
   const result = await fetch(`${baseUrl}/${endpoint}`, {
     method: `${method}`,
     headers: {

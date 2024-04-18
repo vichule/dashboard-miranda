@@ -28,10 +28,10 @@ export const UserForm = ({ user, change, save, remove }: UserFormProps) => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="job">Job</LabelForms>
-                        <SelectForms name="job" id="job" onChange={change}>
-                            <option value="true">Room Service</option>
-                            <option value="false">Manager</option>
-                            <option value="false">Recepcionist</option>
+                        <SelectForms name="job" id="job" onChange={change} value={user.job}>
+                            <option value="Room Service">Room Service</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Recepcionist">Recepcionist</option>
                         </SelectForms>
                     </InputContainer>
                     <InputContainer>
@@ -56,10 +56,12 @@ export const UserForm = ({ user, change, save, remove }: UserFormProps) => {
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>
-                    <InputContainer>
-                        <LabelForms htmlFor="password">Password</LabelForms>
-                        <InputForms type="password" name="password" onChange={change}/>
                     </InputContainer>
+                    <InputContainer style={{width: '750px'}}>
+                        <LabelForms htmlFor="password">New Password</LabelForms>
+                        <InputForms type="password" name="password" onChange={change} placeholder="Type your new password if want to change it"/>
+                    </InputContainer>
+                    <InputContainer>
                     </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Save Changes</GreenBtnStyled>

@@ -14,14 +14,18 @@ export const InputContainer = styled.div`
 `
 
 export const BtnContainerForm = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 170px);
-    gap: 20em;
+    display: flex;
+    justify-content: space-around;
+    width: 750px;
 `
 
 export const FormStyled = styled.form`
     background-color: ${colors.white};
-    width: 600px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 360px));
+    grid-template-rows: 1fr 0fr;
+    gap: 2em;
+    width: 800px;
     border-radius: 2em;
     padding: 3em;
 `
@@ -41,12 +45,13 @@ export const InputForms = styled.input`
 `
 
 export const TextAreaForms = styled.textarea`
-border-radius: 1em;
+    border-radius: 1em;
     padding: 1em;
     background-color: #d6fdd69c;
     border: none;
     color: ${colors.hardGreen};
     font-size: 1.3rem;
+    max-height: 8rem;
 `
 
 export const SelectForms = styled.select`

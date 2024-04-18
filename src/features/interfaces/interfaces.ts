@@ -84,7 +84,8 @@ export interface UserInterface {
     photo: string,
     phone: string,
     status: string,
-    password: string
+    password: string,
+    job: string
 }
 
 export interface UserItem {

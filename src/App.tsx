@@ -21,6 +21,7 @@ import { UserID } from './pages/UserPage'
 import { NewUserPage } from './pages/NewUserPage'
 import { NewRoomPage } from './pages/NewRoomPage'
 import { NewBookingPage } from './pages/NewBookingPage'
+import { RoomForm } from './components/Forms/RoomForm'
 
 
 
@@ -55,6 +56,7 @@ function App() {
                     <Route path='rooms' element={<RequireAuth authUser={authUser}><Rooms/></RequireAuth>}/>
                     <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='rooms/newroom' element={<NewRoomPage/>}/>
+                    <Route path='rooms/editroom/:id' element={<RoomForm/>}/>
                     <Route path='users' element={<RequireAuth authUser={authUser}><Users/></RequireAuth>}/>
                     <Route path='users/user/:id' element={<UserID />} />
                     <Route path="/users/newuser" element={<NewUserPage/>}/>

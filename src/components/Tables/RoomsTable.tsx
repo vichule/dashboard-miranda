@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
-import { DeleteIcon } from '../../styles/icons'
+import { DeleteIcon, EditIcon } from '../../styles/icons'
 import { useDispatch } from 'react-redux'
 import { CheckinStyled, CheckoutStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
@@ -41,6 +41,12 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
         
     }
 
+    const handleEdit = (id: string | undefined, e: React.MouseEvent<SVGElement, MouseEvent>) => {
+        e.stopPropagation()
+        navigator(`/rooms/editroom/${id}`)
+        console.log(id)
+    }
+
     return(
         <>
             {data.map((json) => (
@@ -70,6 +76,7 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
                             {json.status === 'Booked' && <CheckoutStyled>{json.status}</CheckoutStyled>}
                         </TdContainer>
                         <TdContainer>
+                            <EditIcon onClick={ (e) => handleEdit(json._id, e)}/>
                             <DeleteIcon onClick={ (e) => handleDelete(json, e)}/>
                         </TdContainer>
                     </RowContainer>

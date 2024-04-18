@@ -21,7 +21,6 @@ export const RoomID = () =>{
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
-    //const [ room, setRoom ] = useState({  })
  
     const [ spinner, setSpinner ] = useState(true)
 

@@ -30,7 +30,8 @@ export const UserID = () => {
         phone: "",
         photo: "",
         status: "",
-        password: ""
+        password: "",
+        job: ""
         })
 
 
