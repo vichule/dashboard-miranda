@@ -82,8 +82,8 @@ export const Contact = () => {
             <BotContainer>
                 <ContactMenu>
                     <TabMenu>
-                        <TabElement onClick={()=> handleFilter(false)} $isActive={currentTab === false ? true : false}> All Contacts </TabElement>
-                        <TabElement onClick={()=> handleFilter(true)} $isActive={currentTab === true ? true : false}> Archived </TabElement>
+                        <TabElement onClick={()=> handleFilter(false)} $isActive={currentTab === false}> All Contacts </TabElement>
+                        <TabElement onClick={()=> handleFilter(true)} $isActive={currentTab === true}> Archived </TabElement>
                     </TabMenu>
                     
                 </ContactMenu>

@@ -117,9 +117,9 @@ export const Users = () => {
             <UsersContainer>
             <UsersMenu>
                 <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}> All Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Active")} $isActive={currentTab === "Active" ? true : false}> Active Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive" ? true : false}> Inactive Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none"}> All Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Active")} $isActive={currentTab === "Active"}> Active Employee </TabElement>
+                    <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive"}> Inactive Employee </TabElement>
                     <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
                 </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>

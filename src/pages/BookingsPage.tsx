@@ -112,10 +112,10 @@ export const Bookings = () => {
             <BookingsContainer>
             <BookingsMenu>
                 <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}> All Bookings </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-in")} $isActive={currentTab === "Check-in" ? true : false}> Checking In </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-out")} $isActive={currentTab === "Check-out" ? true : false}> Checking Out </TabElement>
-                    <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress" ? true : false}> In Progress </TabElement>
+                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none"}> All Bookings </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-in")} $isActive={currentTab === "Check-in"}> Checking In </TabElement>
+                    <TabElement onClick={()=> handleFilter("Check-out")} $isActive={currentTab === "Check-out"}> Checking Out </TabElement>
+                    <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress"}> In Progress </TabElement>
                     <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
                 </TabMenu>
                 <GreenBtnStyled onClick={handleNew}>+ New Booking</GreenBtnStyled>

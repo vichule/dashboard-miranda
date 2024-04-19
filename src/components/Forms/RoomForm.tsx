@@ -31,15 +31,10 @@ export const RoomForm = () => {
         navigator('/rooms')
     }
 
+    
+
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
-        // if (name === 'amenities') {
-        //     const amenitiesOptions = formRoom.amenities.selectedOptions;
-        //     const amenitiesArr: string[] = [];
-        //     for (let i = 0; i < amenitiesOptions.length; i++) {
-        //         amenitiesArr.push(amenitiesOptions[i].value)
-        //     }
-        // }
         setRoom((prevRoom) => ({ ...prevRoom, [name]: value }));
     };
 

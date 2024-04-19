@@ -124,13 +124,13 @@ export const Rooms = () => {
                 <RoomsMenu>
                     <TabMenu>
                         
-                        <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none" ? true : false}>
+                        <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none"}>
                             All Rooms
                         </TabElement>
-                        <TabElement onClick={()=> handleFilter("available")} $isActive={currentTab === "available" ? true : false}>
+                        <TabElement onClick={()=> handleFilter("available")} $isActive={currentTab === "available"}>
                             Available Rooms
                         </TabElement>
-                        <TabElement onClick={()=> handleFilter("booked")} $isActive={currentTab === "booked" ? true : false}>
+                        <TabElement onClick={()=> handleFilter("booked")} $isActive={currentTab === "booked"}>
                             Booked Rooms
                         </TabElement>
                     </TabMenu>

@@ -16,6 +16,7 @@ interface NewBookingProp extends EventTarget {
     room: HTMLFormElement
     status: HTMLFormElement
     room_type: HTMLFormElement
+    discount: HTMLFormElement
 
 }
 
@@ -57,7 +58,7 @@ export const NewBookingForm = () => {
             notes: formBooking.notes.value,
             room: formBooking.room.value,
             status: "In progress",
-            discount: 20,
+            discount: formBooking.discount.value,
             room_type: formBooking.room_type.value,
         }
         dispatch(addBookingThunk(newBooking))
@@ -77,7 +78,10 @@ export const NewBookingForm = () => {
                         <LabelForms htmlFor="last_name">Last Name</LabelForms>
                         <InputForms type="text" name="last_name" />
                     </InputContainer>
-                    
+                    <InputContainer>
+                        <LabelForms htmlFor="discount">Discount</LabelForms>
+                        <InputForms type="number" name="discount" />
+                    </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="order_date">Order Date</LabelForms>
                         <InputForms type="date" name="order_date"/>
@@ -92,7 +96,7 @@ export const NewBookingForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room">Room</LabelForms>
-                        <InputForms type="number" name="room" />
+                        <InputForms type="text" name="room" />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room_type">Room Type</LabelForms>
@@ -107,7 +111,8 @@ export const NewBookingForm = () => {
                         <LabelForms htmlFor="notes">Notes</LabelForms>
                         <TextAreaForms name="notes" id="notes" cols={30} rows={8}></TextAreaForms>
                     </InputContainer>
-                    
+                    <InputContainer>
+                    </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Create Booking</GreenBtnStyled>
                         <BasicBtnStyled onClick={handleBack}>Cancel</BasicBtnStyled>
