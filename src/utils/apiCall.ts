@@ -1,7 +1,7 @@
 import { BookingInterface, ContactInterface, RoomInterface, UserInterface } from "../features/interfaces/interfaces";
 
 type allInterfaces = RoomInterface | BookingInterface | ContactInterface | UserInterface
-const baseUrl = import.meta.env.VITE_API_BASEURL
+const baseUrl = import.meta.env.VITE_API_DEPLOY
 
 export const apiCall = async (endpoint: string, method: string, body?: allInterfaces) => {
   const result = await fetch(`${baseUrl}/${endpoint}`, {

@@ -17,7 +17,7 @@ interface LoginProp {
     authUser: boolean
 }
 
-const baseUrl = import.meta.env.VITE_API_BASEURL + '/login';
+const baseUrl = import.meta.env.VITE_API_DEPLOY + '/login';
 
 export const Login = ({ setAuthUser } : LoginProp) => {
 

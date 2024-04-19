@@ -22,6 +22,7 @@ import { NewUserPage } from './pages/NewUserPage'
 import { NewRoomPage } from './pages/NewRoomPage'
 import { NewBookingPage } from './pages/NewBookingPage'
 import { RoomForm } from './components/Forms/RoomForm'
+import { BookingForm } from './components/Forms/BookingForm'
 
 
 
@@ -53,6 +54,7 @@ function App() {
                     <Route path='bookings' element={<RequireAuth authUser={authUser}><Bookings/></RequireAuth>}/>
                     <Route path='bookings/booking/:id' element={<BookingID />} />
                     <Route path='bookings/newbooking' element={<NewBookingPage/>}/>
+                    <Route path='bookings/editbooking/:id' element={<BookingForm />} />
                     <Route path='rooms' element={<RequireAuth authUser={authUser}><Rooms/></RequireAuth>}/>
                     <Route path='rooms/room/:id' element={<RoomID />} />
                     <Route path='rooms/newroom' element={<NewRoomPage/>}/>

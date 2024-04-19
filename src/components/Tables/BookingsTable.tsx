@@ -41,7 +41,7 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
 
     const handleEdit = (id: string | undefined, e: React.MouseEvent<SVGElement, MouseEvent>) => {
         e.stopPropagation()
-
+        navigator(`/bookings/editbooking/${id}`)
         console.log(id)
     }
 

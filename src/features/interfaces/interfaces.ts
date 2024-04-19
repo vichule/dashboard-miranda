@@ -33,7 +33,8 @@ export interface BookingInterface {
     notes: string,
     room: RoomInterface,
     status: string,
-    room_type: string
+    room_type: string,
+    discount: number
 }
 
 export interface BookingItem {

@@ -40,7 +40,9 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
       [`/users/user/${id}`]: `Users > Edit User #${id}`,
       '/users/newuser': 'Users > New User',
       '/rooms/newroom': 'Rooms > New Room',
-      '/bookings/newbooking': 'Bookings > New Booking'
+      [`/rooms/editroom/${id}`]: `Rooms > Edit Room #${id}`,
+      '/bookings/newbooking': 'Bookings > New Booking',
+      [`/bookings/editbooking/${id}`]: `Bookings > Edit Booking #${id}`,
     }
 
     const currentNamePage = namePaths[locationPath] || 'Error Path Name'
