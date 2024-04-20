@@ -46,19 +46,17 @@ export const bookingsSlice = createSlice({
             })
             .addCase(addBookingThunk.fulfilled, (state, action) => {
                 state.booking.status = 'fulfilled'
-                state.data = [action.payload, ...state.data]
+                state.data.push(action.payload)
                 state.status = 'idle'
             })
             .addCase(removeBookingThunk.fulfilled, (state, action) => {
                 state.booking.status = 'fulfilled'
-                const bookingSelect = state.data.findIndex(booking => booking._id === action.payload.id)
-                state.data.splice(bookingSelect, 1);
+                state.data.filter(booking => booking._id === action.payload.id)
                 state.status = 'idle'
             })
             .addCase(editBookingThunk.fulfilled, (state, action) => {
                 state.booking.status = 'fulfilled'
-                const bookingId = state.data.findIndex((booking) => booking._id == action.payload.id)
-                state.data[bookingId] = action.payload;
+                state.data.map((booking) => booking._id == action.payload.id ? action.payload : booking)
                 state.status = 'idle'
             })
             .addMatcher(

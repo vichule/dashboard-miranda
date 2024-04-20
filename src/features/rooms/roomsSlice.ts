@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { addRoomThunk, editRoomThunk, removeRoomThunk, roomListThunk, roomThunk } from "./roomsThunk";
-import { RoomsInitialState } from "../interfaces/interfaces";
+import { RoomInterface, RoomsInitialState } from "../interfaces/interfaces";
 import { RootState } from "../../app/store";
 
 const initialState: RoomsInitialState = {
@@ -44,19 +44,17 @@ const initialState: RoomsInitialState = {
         })
         .addCase(addRoomThunk.fulfilled, (state, action) => {
             state.room.status = 'fulfilled'
-            state.data = [action.payload, ...state.data]
+            state.data.push(action.payload)
             state.status = 'idle'
         })
         .addCase(removeRoomThunk.fulfilled, (state, action) =>{
             state.room.status = 'fulfilled'
-            const roomSelect = state.data.findIndex(room=> room._id === action.payload.id)
-            state.data.splice(roomSelect, 1);
+            state.data.filter(room=> room._id === action.payload.id)
             state.status = 'idle'
         })
         .addCase(editRoomThunk.fulfilled, (state, action) => {
             state.room.status = 'fulfilled'
-            const roomId = state.data.findIndex((room) => room._id == action.payload.id)
-            state.data[roomId] = action.payload;
+            state.data.map(room => room._id == action.payload.id ? action.payload : room)
             state.status = 'idle'
         })
         .addMatcher(

@@ -46,6 +46,13 @@ export const BookingForm = () => {
     })
 
     const bookingRoom = booking.room
+    const initFetch = () => {
+        dispatch(bookingThunk(id || ''))
+    }
+
+    useEffect(() => {
+        initFetch()
+    },[])
 
     useEffect(() => {
         if (bookingStatus === 'idle') {
@@ -77,7 +84,6 @@ export const BookingForm = () => {
         const formBooking = event.target as BookingProp
         const newBooking = {
 
-            //id: bookingId,
             first_name: formBooking.first_name.value,
             last_name: formBooking.last_name.value,
             order_date: formBooking.order_date.value,
@@ -87,7 +93,7 @@ export const BookingForm = () => {
             room: bookingRoom,
             status: formBooking.status.value,
             discount: formBooking.discount.value,
-            room_type: formBooking.room_type.value,
+            room_type: bookingRoom.room_type,
         }
         dispatch(editBookingThunk({...booking,...newBooking}))
         navigator('/bookings')
@@ -121,7 +127,7 @@ export const BookingForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room">Room</LabelForms>
-                        <InputForms type="string" name="room" value={bookingRoom._id}/>
+                        <InputForms type="string" name="room" value={bookingRoom._id} disabled={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="discount">Discount</LabelForms>
@@ -129,7 +135,7 @@ export const BookingForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room_type">Room Type</LabelForms>
-                        <SelectForms name="room_type" id="room_type" value={booking.room_type} onChange={handleChange}>
+                        <SelectForms name="room_type" id="room_type" value={booking.room_type} onChange={handleChange} disabled={true}>
                             <option value="Single Bed">Single Bed</option>
                             <option value="Double Bed">Double Bed</option>
                             <option value="Double Superior">Double Superior</option>

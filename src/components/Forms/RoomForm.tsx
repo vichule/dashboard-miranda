@@ -31,7 +31,9 @@ export const RoomForm = () => {
         navigator('/rooms')
     }
 
-    
+    const initFetch = () => {
+        dispatch(roomThunk(id || ''))
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -52,6 +54,10 @@ export const RoomForm = () => {
         photos: [],
         amenities: []
     })
+
+    useEffect(() => {
+        initFetch()
+    },[])
 
     useEffect(() => {
         if (roomDataStatus === "idle") {
@@ -76,7 +82,6 @@ export const RoomForm = () => {
         }
         const newRoom = {
 
-            // _id: roomId.toString(),
             room_type: formRoom.room_type.value,
             room_number: formRoom.room_number.value,
             price: formRoom.price.value,

@@ -23,6 +23,7 @@ export const NewRoomForm = () => {
     const roomsDataError = useAppSelector(getRoomsError)
     const roomsDataStatus = useAppSelector(getRoomsStatus)
     const [roomId, setRoomId] = useState<number>(0)
+    
 
     useEffect(() => {
         if (roomsDataStatus === 'idle') {
@@ -50,7 +51,6 @@ export const NewRoomForm = () => {
         }
         const newRoom = {
 
-            // _id: roomId.toString(),
             room_type: formRoom.room_type.value,
             room_number: formRoom.room_number.value,
             price: formRoom.price.value,

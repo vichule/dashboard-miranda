@@ -17,16 +17,7 @@ const initialState: ContactsInitialState = {
 export const contactSlice = createSlice({
     name: 'contacts',
     initialState: initialState,
-    reducers: {
-        // editComment(state, action){
-        //     const commentId = state.data.findIndex((comment) => comment._id == action.payload.id)
-        //     state.data[commentId] = action.payload;
-        // },
-        // editCommentStatus: (state,action)=>{
-        //     const newStatus = state.data.map((comment)=> comment._id === action.payload ? {...comment,status:!comment.status} : comment) 
-        //     state.data = newStatus 
-        // },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(commentsListThunk.pending, (state) => {
@@ -53,13 +44,15 @@ export const contactSlice = createSlice({
             })
             .addCase(addCommentThunk.fulfilled, (state, action) => {
                 state.comment.status = 'fulfilled'
-                state.data = [action.payload, ...state.data]
+                // state.data = [action.payload, ...state.data]
+                state.data.push(action.payload)
                 state.status = 'idle'
             })
             .addCase(removeCommentThunk.fulfilled, (state, action) => {
                 state.comment.status = 'fulfilled'
-                const commentSelect = state.data.findIndex(comment => comment._id === action.payload.id)
-                state.data.splice(commentSelect, 1);
+                // const commentSelect = state.data.findIndex(comment => comment._id === action.payload.id)
+                // state.data.splice(commentSelect, 1);
+                state.data.filter(comment => comment._id === action.payload.id)
                 state.status = 'idle'
             })
             .addCase(editCommentThunk.fulfilled, (state, action) => {

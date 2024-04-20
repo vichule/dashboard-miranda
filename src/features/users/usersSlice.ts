@@ -45,19 +45,21 @@ export const usersSlice = createSlice({
         })
         .addCase(addUserThunk.fulfilled, (state, action) => {
             state.user.status = 'fulfilled'
-            state.data = [action.payload, ...state.data]
+            //state.data = [action.payload, ...state.data]
+            state.data.push(action.payload)
             state.status = 'idle'
         })
         .addCase(removeUserThunk.fulfilled, (state, action) =>{
             state.user.status = 'fulfilled'
-            const userSelect = state.data.findIndex(user=> user._id === action.payload.id)
-            state.data.splice(userSelect, 1);
+            // const userSelect = state.data.findIndex(user=> user._id === action.payload.id)
+            // state.data.splice(userSelect, 1);
+            state.data.filter(user=> user._id === action.payload.id)
             state.status = 'idle'
         })
         .addCase(editUserThunk.fulfilled, (state, action) => {
             state.user.status = 'fulfilled'
-            const userId = state.data.findIndex((user) => user._id == action.payload.id)
-            state.data[userId] = action.payload;
+            const userIndex = state.data.findIndex((user) => user._id == action.payload.id)
+            state.data[userIndex] = action.payload;
             state.status = 'idle'
         })
         .addMatcher(
