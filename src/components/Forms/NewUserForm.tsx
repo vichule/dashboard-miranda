@@ -69,15 +69,15 @@ export const NewUserForm = () =>{
                 <FormStyled onSubmit={handleCreate}>
                     <InputContainer>
                         <LabelForms htmlFor="first_name">First Name</LabelForms>
-                        <InputForms type="text" name="first_name" />
+                        <InputForms type="text" name="first_name" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="last_name">Last Name</LabelForms>
-                        <InputForms type="text" name="last_name" />
+                        <InputForms type="text" name="last_name" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="job">Job</LabelForms>
-                        <SelectForms name="job" id="job">
+                        <SelectForms name="job" id="job" required={true}>
                             <option value="Room Service">Room Service</option>
                             <option value="Manager">Manager</option>
                             <option value="Recepcionist">Recepcionist</option>
@@ -85,30 +85,30 @@ export const NewUserForm = () =>{
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="email">Email</LabelForms>
-                        <InputForms type="email" name="email"/>
+                        <InputForms type="email" name="email" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="phone">Phone</LabelForms>
-                        <InputForms type="tel" name="phone" />
+                        <InputForms type="tel" name="phone" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="start_date">Start Date</LabelForms>
-                        <InputForms type="date" name="start_date"/>
+                        <InputForms type="date" name="start_date" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
-                        <TextAreaForms name="description" id="description" cols={30} rows={10}></TextAreaForms>
+                        <TextAreaForms name="description" id="description" cols={30} rows={10} required={true}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="status">Status</LabelForms>
-                        <SelectForms name="status" id="status" >
+                        <SelectForms name="status" id="status" required={true} >
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </SelectForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="password">Password</LabelForms>
-                        <InputForms type="password" name="password" style={{width: '750px'}}/>
+                        <InputForms type="password" name="password" style={{width: '750px'}} required={true}/>
                     </InputContainer><InputContainer>
                     </InputContainer>
                     <BtnContainerForm>

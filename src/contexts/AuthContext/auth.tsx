@@ -2,20 +2,20 @@ import { createContext, useContext } from "react";
 
 
 const AuthContext = createContext({
-        logout: ()=>{}
-    })
+    logout: () => { }
+})
 
 
-export const AuthProvider = ({ children }: {children: React.ReactElement}) => {
+export const AuthProvider = ({ children }: { children: React.ReactElement }) => {
 
     const logout = () => {
         localStorage.clear()
     }
-    
+
 
     return (
         <AuthContext.Provider value={{ logout: logout }}>
-            { children }
+            {children}
         </AuthContext.Provider>
     )
 }

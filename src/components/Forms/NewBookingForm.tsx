@@ -90,27 +90,27 @@ export const NewBookingForm = () => {
 
                     <InputContainer>
                         <LabelForms htmlFor="first_name">First Name</LabelForms>
-                        <InputForms type="text" name="first_name" />
+                        <InputForms type="text" name="first_name" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="last_name">Last Name</LabelForms>
-                        <InputForms type="text" name="last_name" />
+                        <InputForms type="text" name="last_name" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="discount">Discount</LabelForms>
-                        <InputForms type="number" name="discount" />
+                        <InputForms type="number" name="discount" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="order_date">Order Date</LabelForms>
-                        <InputForms type="date" name="order_date" />
+                        <InputForms type="date" name="order_date" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="check_in">Check In Date</LabelForms>
-                        <InputForms type="date" name="check_in" />
+                        <InputForms type="date" name="check_in" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="check_out">Check Out Date</LabelForms>
-                        <InputForms type="date" name="check_out" />
+                        <InputForms type="date" name="check_out" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room">Room</LabelForms>
@@ -122,7 +122,7 @@ export const NewBookingForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="notes">Notes</LabelForms>
-                        <TextAreaForms name="notes" id="notes" cols={30} rows={8}></TextAreaForms>
+                        <TextAreaForms name="notes" id="notes" cols={30} rows={8} required={true}></TextAreaForms>
                     </InputContainer>
                     <BtnContainerForm>
                         <GreenBtnStyled type="submit">Create Booking</GreenBtnStyled>

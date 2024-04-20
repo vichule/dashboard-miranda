@@ -76,12 +76,12 @@ export const NewRoomForm = () => {
                 <FormStyled onSubmit={handleCreate}>
                     <InputContainer>
                         <LabelForms htmlFor="room_number">Room Number</LabelForms>
-                        <InputForms type="number" name="room_number" />
+                        <InputForms type="number" name="room_number" required={true}/>
                     </InputContainer>
 
                     <InputContainer>
                         <LabelForms htmlFor="room_type">Room Type</LabelForms>
-                        <SelectForms name="room_type" id="room_type">
+                        <SelectForms name="room_type" id="room_type" required={true}>
                             <option value="Single Bed">Single Bed</option>
                             <option value="Double Bed">Double Bed</option>
                             <option value="Double Superior">Double Superior</option>
@@ -90,25 +90,25 @@ export const NewRoomForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="price">Price Per Night</LabelForms>
-                        <InputForms type="number" name="price" />
+                        <InputForms type="number" name="price" required={true}/>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="description">Description</LabelForms>
-                        <TextAreaForms name="description" id="description" cols={30} rows={8}></TextAreaForms>
+                        <TextAreaForms name="description" id="description" cols={30} rows={8} required={true}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="cancellation">Cancellation</LabelForms>
-                        <TextAreaForms name="cancellation" id="cancellation" cols={30} rows={2}></TextAreaForms>
+                        <TextAreaForms name="cancellation" id="cancellation" cols={30} rows={2} defaultValue={'Cancellation enable before 3 days since date order'}></TextAreaForms>
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="amenities">Amenities</LabelForms>
-                        <SelectForms multiple name="amenities" id="amenities" required >
+                        <SelectForms multiple name="amenities" id="amenities" required={true} >
                             <option value="Air conditioner">Air Conditioner</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Cleaning">Cleaning</option>
                             <option value="Grocery">Grocery</option>
                             <option value="Shop near">Shop near</option>
-                            <option value="24/7 Online Suppor">24/7 Online Suppor</option>
+                            <option value="24/7 Online Support">24/7 Online Suppor</option>
                             <option value="Smart Security">Smart Security</option>
                             <option value="High-speed Wifi">High-speed Wifi</option>
                             <option value="Kitchen">Kitchen</option>

@@ -42,7 +42,7 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
 
 export const LateralMenuStyled = styled.div`
     max-width: 30rem;
-    min-height: 970px;
+    min-height: 1320px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

@@ -34,7 +34,7 @@ const DashboardContainer = styled.div`
     
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 3em;
     height: 87rem;
     gap: 2em;

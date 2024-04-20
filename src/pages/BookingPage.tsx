@@ -12,40 +12,40 @@ import { BookingInterface, RoomInterface } from "../features/interfaces/interfac
 
 
 
-export const BookingID = () =>{
+export const BookingID = () => {
 
     const { id } = useParams()
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
 
     const booking = useAppSelector(getBookingData)
-    const handleBack = () =>{
+    const handleBack = () => {
         navigator(-1)
     }
-    const [ spinner, setSpinner ] = useState<boolean>(true)
+    const [spinner, setSpinner] = useState<boolean>(true)
 
     const api = async () => {
-        
+
         await dispatch(bookingThunk(id || '')).unwrap();
         setSpinner(false)
-        
+
     }
 
     useEffect(() => {
         api();
-        
-        
+
+
     }, [id]);
-    
 
 
-    return(
+
+    return (
         <>
-            <MainContainer style={{padding: '1em'}}>
+            <MainContainer style={{ padding: '1em' }}>
                 <GreenBtnStyled onClick={handleBack}>Back</GreenBtnStyled>
-                {spinner ? <p>Loading</p> : <BookingCard booking={booking as BookingInterface} room={booking?.room as RoomInterface}/>}
+                {spinner ? <p>Loading</p> : <BookingCard booking={booking as BookingInterface} room={booking?.room as RoomInterface} />}
             </MainContainer>
-            
+
         </>
     )
 }

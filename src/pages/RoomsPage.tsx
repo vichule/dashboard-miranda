@@ -39,10 +39,10 @@ export const Rooms = () => {
         if(roomsDataStatus === 'idle'){
             dispatch(roomListThunk())
         } else if (roomsDataStatus === 'pending'){
-            console.log(roomsDataStatus)
+            //console.log(roomsDataStatus)
 
         } else if (roomsDataStatus === 'fulfilled'){
-            console.log(roomsDataStatus)
+            //console.log(roomsDataStatus)
             if (filter === 'available'){
                 newRooms = roomsData.filter((room) => room.status === "Available" )
             }else if(filter === 'booked'){

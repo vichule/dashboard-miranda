@@ -25,6 +25,10 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
         navigator('/login')
     }
 
+    const handleContact = () => {
+        navigator('/contact')
+    }
+
     const toggleTheme = () => {
         setTheme(!theme)
       }
@@ -55,8 +59,8 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
                 </div>
                 <h1>{currentNamePage}</h1>
                     <NavIcons>
-                        <button>{icons.mail}</button>
-                        <button>{icons.bell}</button>
+                        <button onClick={handleContact}>{icons.mail}</button>
+                        {/* <button>{icons.bell}</button> */}
                         <button onClick={handleLogout} id="logout">{icons.logout}</button>
                     </NavIcons>
                 {/* <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button> */}

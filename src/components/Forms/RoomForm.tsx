@@ -63,7 +63,7 @@ export const RoomForm = () => {
         if (roomDataStatus === "idle") {
             dispatch(roomThunk(id || ''));
         } else if (roomDataStatus === "pending") {
-            console.log(roomDataStatus)
+            //console.log(roomDataStatus)
         } else if (roomDataStatus === "fulfilled") {
             const specificRoom = roomData as RoomInterface
             setRoom({ ...specificRoom })
@@ -140,7 +140,7 @@ export const RoomForm = () => {
                             <option value="Cleaning">Cleaning</option>
                             <option value="Grocery">Grocery</option>
                             <option value="Shop near">Shop near</option>
-                            <option value="24/7 Online Suppor">24/7 Online Suppor</option>
+                            <option value="24/7 Online Support">24/7 Online Suppor</option>
                             <option value="Smart Security">Smart Security</option>
                             <option value="High-speed Wifi">High-speed Wifi</option>
                             <option value="Kitchen">Kitchen</option>

@@ -52,7 +52,7 @@ export const BookingForm = () => {
 
     useEffect(() => {
         initFetch()
-    },[])
+    }, [])
 
     useEffect(() => {
         if (bookingStatus === 'idle') {
@@ -80,7 +80,7 @@ export const BookingForm = () => {
 
     const handleEdit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        
+
         const formBooking = event.target as BookingProp
         const newBooking = {
 
@@ -95,7 +95,7 @@ export const BookingForm = () => {
             discount: formBooking.discount.value,
             room_type: bookingRoom.room_type,
         }
-        dispatch(editBookingThunk({...booking,...newBooking}))
+        dispatch(editBookingThunk({ ...booking, ...newBooking }))
         navigator('/bookings')
     }
 
@@ -103,31 +103,31 @@ export const BookingForm = () => {
         <>
             <FormContainer>
                 <FormStyled onSubmit={handleEdit}>
-                    
+
                     <InputContainer>
                         <LabelForms htmlFor="first_name">First Name</LabelForms>
-                        <InputForms type="text" name="first_name" value={booking.first_name} onChange={handleChange}/>
+                        <InputForms type="text" name="first_name" value={booking.first_name} onChange={handleChange} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="last_name">Last Name</LabelForms>
-                        <InputForms type="text" name="last_name" value={booking.last_name} onChange={handleChange}/>
+                        <InputForms type="text" name="last_name" value={booking.last_name} onChange={handleChange} />
                     </InputContainer>
-                    
+
                     <InputContainer>
                         <LabelForms htmlFor="order_date">Order Date</LabelForms>
-                        <InputForms type="date" name="order_date" value={booking.order_date} onChange={handleChange}/>
+                        <InputForms type="date" name="order_date" value={booking.order_date} onChange={handleChange} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="check_in">Check In Date</LabelForms>
-                        <InputForms type="date" name="check_in" value={booking.check_in} onChange={handleChange}/>
+                        <InputForms type="date" name="check_in" value={booking.check_in} onChange={handleChange} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="check_out">Check Out Date</LabelForms>
-                        <InputForms type="date" name="check_out" value={booking.check_out} onChange={handleChange}/>
+                        <InputForms type="date" name="check_out" value={booking.check_out} onChange={handleChange} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room">Room</LabelForms>
-                        <InputForms type="string" name="room" value={bookingRoom._id} disabled={true}/>
+                        <InputForms type="string" name="room" value={bookingRoom._id} disabled={true} />
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="discount">Discount</LabelForms>
@@ -135,7 +135,7 @@ export const BookingForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="room_type">Room Type</LabelForms>
-                        <SelectForms name="room_type" id="room_type" value={booking.room_type} onChange={handleChange} disabled={true}>
+                        <SelectForms name="room_type" id="room_type" value={bookingRoom.room_type} onChange={handleChange} disabled={true}>
                             <option value="Single Bed">Single Bed</option>
                             <option value="Double Bed">Double Bed</option>
                             <option value="Double Superior">Double Superior</option>

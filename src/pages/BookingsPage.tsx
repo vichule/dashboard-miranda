@@ -19,7 +19,7 @@ export const Bookings = () => {
     const bookingsDataStatus = useAppSelector(getBookingsStatus)
     const dispatch = useAppDispatch()
     const navigator = useNavigate()
-    const [ bookings, setBookings] = useState<BookingInterface[]>([])
+    const [bookings, setBookings] = useState<BookingInterface[]>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 10;
@@ -35,25 +35,25 @@ export const Bookings = () => {
 
     const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
-      };
+    };
 
-    useEffect(() =>{
+    useEffect(() => {
         let newBookings = []
-        if(bookingsDataStatus === 'idle'){
+        if (bookingsDataStatus === 'idle') {
             dispatch(bookingsListThunk())
         }
-        if (bookingsDataStatus === 'pending'){
-            
-        }else if(bookingsDataStatus === 'fulfilled'){
-            if (filter === 'Check-in'){
-                newBookings = bookingsData.filter((booking) => booking.status === "Check-in" )
-            }else if(filter === 'Check-out'){
-                newBookings = bookingsData.filter((booking) => booking.status === "Check-out" )
-            }else if(filter === 'In progress'){
-                newBookings = bookingsData.filter((booking) => booking.status === "In progress" )
-            }else{
+        if (bookingsDataStatus === 'pending') {
+
+        } else if (bookingsDataStatus === 'fulfilled') {
+            if (filter === 'Check-in') {
+                newBookings = bookingsData.filter((booking) => booking.status === "Check-in")
+            } else if (filter === 'Check-out') {
+                newBookings = bookingsData.filter((booking) => booking.status === "Check-out")
+            } else if (filter === 'In progress') {
+                newBookings = bookingsData.filter((booking) => booking.status === "In progress")
+            } else {
                 newBookings = [...bookingsData]
-                
+
             }
 
             let orderedBookings = newBookings.sort((a, b) => {
@@ -68,35 +68,35 @@ export const Bookings = () => {
                             return 1;
                         }
                         return 0;
-                        
+
                     case 'check_in':
                         return new Date(a.check_in).getTime() - new Date(b.check_in).getTime()
                     case 'check_out':
                         return new Date(a.check_out).getTime() - new Date(b.check_out).getTime()
-                    
+
                     default:
                         return new Date(a.order_date).getTime() - new Date(b.order_date).getTime()
                 }
             })
-            
+
             if (search) {
                 const fixedSearch = search.toLowerCase();
                 orderedBookings = orderedBookings.filter((bookings) => bookings.first_name.toLowerCase().includes(fixedSearch));
-              }
-           
+            }
+
             setBookings(orderedBookings)
 
-        }else if(bookingsDataStatus === 'rejected'){
+        } else if (bookingsDataStatus === 'rejected') {
             console.log(bookingsDataError)
         }
-    },[dispatch, bookingsData, bookingsDataStatus, filter,order, search])
+    }, [dispatch, bookingsData, bookingsDataStatus, filter, order, search])
 
     const handleFilter = (option: string) => {
         setFilter(option);
         setCurrenTab(option)
-      };
+    };
 
-      const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         setOrder(e.target.value)
@@ -110,25 +110,25 @@ export const Bookings = () => {
     return (
         <>
             <BookingsContainer>
-            <BookingsMenu>
-                <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none"}> All Bookings </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-in")} $isActive={currentTab === "Check-in"}> Checking In </TabElement>
-                    <TabElement onClick={()=> handleFilter("Check-out")} $isActive={currentTab === "Check-out"}> Checking Out </TabElement>
-                    <TabElement onClick={()=> handleFilter("In progress")} $isActive={currentTab === "In progress"}> In Progress </TabElement>
-                    <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
-                </TabMenu>
-                <GreenBtnStyled onClick={handleNew}>+ New Booking</GreenBtnStyled>
-                <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
-                            <option value="date">Order Date</option>
-                            <option value="guest">Guest</option>
-                            <option value="check_in">Check In</option>
-                            <option value="check_out">Check Out</option>
-                            
-                </OrderSelect>
-            </BookingsMenu>
-            <TableStyled>
-                <thead>
+                <BookingsMenu>
+                    <TabMenu>
+                        <TabElement onClick={() => handleFilter("none")} $isActive={currentTab === "none"}> All Bookings </TabElement>
+                        <TabElement onClick={() => handleFilter("Check-in")} $isActive={currentTab === "Check-in"}> Checking In </TabElement>
+                        <TabElement onClick={() => handleFilter("Check-out")} $isActive={currentTab === "Check-out"}> Checking Out </TabElement>
+                        <TabElement onClick={() => handleFilter("In progress")} $isActive={currentTab === "In progress"}> In Progress </TabElement>
+                        <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e) => setSearch(e.target.value)} />
+                    </TabMenu>
+                    <GreenBtnStyled onClick={handleNew}>+ New Booking</GreenBtnStyled>
+                    <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
+                        <option value="date">Order Date</option>
+                        <option value="guest">Guest</option>
+                        <option value="check_in">Check In</option>
+                        <option value="check_out">Check Out</option>
+
+                    </OrderSelect>
+                </BookingsMenu>
+                <TableStyled>
+                    <thead>
                         <tr>
                             <TdStyled>Guest</TdStyled>
                             <TdStyled>Order Date</TdStyled>
@@ -138,18 +138,18 @@ export const Bookings = () => {
                             <TdStyled>Room Type</TdStyled>
                             <TdStyled>Status</TdStyled>
                         </tr>
-                </thead>
-                <tbody>
-                    <BookingsTable data={displayedBookings}/>
-                </tbody>
-                
-            </TableStyled>
-            <PaginationContainer>
+                    </thead>
+                    <tbody>
+                        <BookingsTable data={displayedBookings} />
+                    </tbody>
+
+                </TableStyled>
+                <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </PaginationContainer>
+                </PaginationContainer>
             </BookingsContainer>
         </>
     )

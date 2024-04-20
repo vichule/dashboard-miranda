@@ -55,7 +55,9 @@ const initialState: RoomsInitialState = {
         .addCase(editRoomThunk.fulfilled, (state, action) => {
             state.room.status = 'fulfilled'
             state.data.map(room => room._id == action.payload.id ? action.payload : room)
+            state.room.data = action.payload
             state.status = 'idle'
+            
         })
         .addMatcher(
             isAnyOf(
