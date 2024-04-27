@@ -54,5 +54,5 @@ export const TdContainer = styled.td`
 export const SubjectContainer = styled.td`
     padding: 2em;
     width: 200em;
-    text-align: left;
+    text-align: center;
 `

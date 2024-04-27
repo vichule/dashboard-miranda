@@ -20,7 +20,7 @@ export const UsersTable = ({ data }: UserDataInterface) => {
         <>
             {data.map((json) => (
 
-                    <tr key={json._id}>
+                    <tr key={json._id} style={{height: '12rem'}}>
                         <td style={{display: 'flex'}}>
                             <UserImgTable src={json.photo} alt="" />
                             <UserInfoText>
@@ -78,7 +78,7 @@ const TdStyled = styled.td`
 `
 
 const DescriptionTd = styled.td`
-    padding: 0em 0em 5em 2em;
-    text-align: left;
+    //padding: 0em 0em 5em 2em;
+    text-align: center;
     width: 34em;
 `

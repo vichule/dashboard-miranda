@@ -55,8 +55,8 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
                         <TdContainer style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                             <RoomsImgStyled src={json.photos[0]} alt="" />
                             <div>
-                                <p>#{json._id}</p>
-                                <h2>{json.room_number}</h2>
+                                {/* <p>#{json._id}</p> */}
+                                <h2>No. {json.room_number}</h2>
                             </div>
                         </TdContainer>
                         <TdContainer>
@@ -87,7 +87,7 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
 }
 
 const RoomsImgStyled = styled.img`
-    width: 200px;
-    height: 150px;
+    width: 150px;
+    height: 120px;
     border-radius: 2em;
 `

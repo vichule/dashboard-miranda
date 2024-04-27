@@ -22,7 +22,7 @@ export const Bookings = () => {
     const [bookings, setBookings] = useState<BookingInterface[]>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
 
-    const rows = 10;
+    const rows = 8;
     const firstPage = (currentPage - 1) * rows
     const LastPage = firstPage + rows;
     const displayedBookings = bookings.slice(firstPage, LastPage)

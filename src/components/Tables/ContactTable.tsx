@@ -44,7 +44,7 @@ export const ContactTable = ({ data  }: CommentDataInterface) => {
         <>
             {data.map((json: ContactInterface) => (
 
-                    <tr key={json._id}>
+                    <tr key={json._id} style={{height: '15rem'}}>
                         <TdContainer>
                             <h2>{json.date}</h2>
                             <p>#{json._id}</p>
