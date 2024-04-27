@@ -22,7 +22,7 @@ export const RoomCard = ({room}: RoomProp) => {
                     <CardGrid>
                         <CardFlexContainer>
                             <CardSubTitle>Room Type:</CardSubTitle>
-                            <CardPar>{room.room_type}/{room.room_number}</CardPar>
+                            <CardPar>{room.room_type} Number {room.room_number}</CardPar>
                         </CardFlexContainer>
                         <CardFlexContainer>
                             <CardSubTitle>Price</CardSubTitle>

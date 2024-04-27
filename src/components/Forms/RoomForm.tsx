@@ -134,6 +134,7 @@ export const RoomForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="amenities">Amenities</LabelForms>
+                        <p>You must hold down ctrl to select multiple</p>
                         <SelectForms multiple name="amenities" id="amenities" onChange={handleChange}>
                             <option value="Air conditioner">Air Conditioner</option>
                             <option value="Breakfast">Breakfast</option>

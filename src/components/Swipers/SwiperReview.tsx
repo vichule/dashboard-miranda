@@ -159,6 +159,7 @@ const ReviewContainer = styled.div`
     border-radius: 3em;
     transition: all ease 300ms;
     background-color: ${colors.white};
+    min-height: 21rem;
 
     &:hover{
         scale: 1.02;

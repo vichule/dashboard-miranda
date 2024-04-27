@@ -102,6 +102,7 @@ export const NewRoomForm = () => {
                     </InputContainer>
                     <InputContainer>
                         <LabelForms htmlFor="amenities">Amenities</LabelForms>
+                        <p>You must hold down ctrl to select multiple</p>
                         <SelectForms multiple name="amenities" id="amenities" required={true} >
                             <option value="Air conditioner">Air Conditioner</option>
                             <option value="Breakfast">Breakfast</option>

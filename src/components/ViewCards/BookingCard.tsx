@@ -36,7 +36,7 @@ export const BookingCard = ({booking , room}: BookingProps) => {
                             
                             <CardFlexContainer>
                                 <CardSubTitle>Room Info</CardSubTitle>
-                                <CardPar>{room.room_type}/{room.room_number}</CardPar>
+                                <CardPar>{room.room_type} Number {room.room_number}</CardPar>
                             </CardFlexContainer>
                             
                             <CardFlexContainer>
