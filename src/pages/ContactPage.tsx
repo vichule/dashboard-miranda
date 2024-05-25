@@ -1,11 +1,8 @@
 import styled from "styled-components"
 import { SwiperReview } from "../components/Swipers/SwiperReview"
 import { ContactTable } from "../components/Tables/ContactTable"
-import data from '../data/comments.json'
 import { useEffect, useState } from "react"
-import { colors } from "../styles/colors"
 import { TableStyled, TdStyled } from "../components/Tables/StyledTable"
-import { useDispatch, useSelector } from "react-redux"
 import { getCommentsListData, getCommentsListError, getCommentsListStatus } from "../features/contact/contactSlice"
 import { commentsListThunk } from "../features/contact/contactThunk"
 import { GreenBtnStyled } from "../components/Button/BtnStyled"

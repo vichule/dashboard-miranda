@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide} from "swiper/react";
 import { Keyboard, Navigation } from 'swiper/modules';
 
-import data from '../../data/comments.json'
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
