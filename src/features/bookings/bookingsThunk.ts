@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import data from '../../data/bookings.json'
 import { apiCall } from "../../utils/apiCall";
 import { BookingInterface } from "../interfaces/interfaces";
 
