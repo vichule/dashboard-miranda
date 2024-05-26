@@ -157,7 +157,7 @@ const ReviewContainer = styled.div`
     margin: 0em 3em;
     border-radius: 3em;
     transition: all ease 300ms;
-    background-color: ${colors.white};
+    background-color: ${({theme}) => theme.bgCard};
     min-height: 21rem;
 
     &:hover{
@@ -172,7 +172,7 @@ const CardContainer = styled.div`
 `
 
 const TextContainer = styled.div`
-    color: ${colors.hardGrey};
+    color: ${({theme}) => theme.subText};
     font-size:1.5rem;
     line-height: 2.5rem;
     display: -webkit-box;
@@ -197,14 +197,14 @@ const ImgUser = styled.img`
 `
 
 const TextUser = styled.p`
-    color:${colors.black};
+    color:${({theme}) => theme.mainText};
     font-size: 1.5rem;
     font-weight:600;
     line-height: 2rem;
 `
 
 const DateUser = styled.p`
-    color:${colors.lightGrey};
+    color:${colors.lightGreen};
     font-size: 1rem;
     font-weight:400;
     line-height: 2rem;

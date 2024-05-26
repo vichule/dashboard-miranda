@@ -20,7 +20,7 @@ export const lightTheme = {
 export const darkTheme = {
     main: colors.black,
     mainText: colors.white,
-    subText: colors.lightGrey,
+    subText: colors.white,
     subMain: colors.darkWhite,
     bg: colors.black,
     bgSecond: colors.blackGrey,

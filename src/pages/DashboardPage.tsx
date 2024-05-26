@@ -56,7 +56,7 @@ const BotContainer = styled.div`
     border-radius: 1em;
     justify-content: space-between;
     
-    background-color: ${colors.white};
+    background-color:${({theme}) => theme.bgSecond};
 `
 
 const HeaderReview = styled.h1`
@@ -64,4 +64,5 @@ const HeaderReview = styled.h1`
     font-size: 1.5rem;
     margin: 2em;
     font-weight: 500;
+    //color: ${({theme}) => theme.mainText};
 `
