@@ -8,8 +8,8 @@ export const BasicBtnStyled = styled.button`
     height: 3.5rem;
     border: none;
     border-radius: 8px;
-    background-color: ${colors.whiteSemi};
-    color: ${colors.hardGreen};
+    background-color: ${({theme}) => theme.btnBg};
+    color: ${({theme}) => theme.btnText};
     transition: all ease 300ms;
 
     &:hover{

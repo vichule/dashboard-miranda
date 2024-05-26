@@ -30,7 +30,7 @@ const KpiContainer = styled.div`
     padding: 3em;
     border-radius: 1em;
     transition: all ease 300ms;
-    background-color: ${colors.white};
+    background-color: ${({theme}) => theme.bgSecond};
     gap:2em;
     
 
@@ -69,7 +69,7 @@ const TextContainer = styled.div`
         font-size: 3rem;
         line-height: 4.6rem;
         font-weight: 600;
-        color: ${colors.blackSemi};
+        color: ${({theme}) => theme.mainText};
         display: flex;
     }
     p{

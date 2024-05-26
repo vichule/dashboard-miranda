@@ -1,10 +1,10 @@
 
-import styled from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
 import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ThemeButtonStyled } from "../Button/BtnTheme";
 
 interface TopMenuProp {
@@ -16,9 +16,15 @@ interface TopMenuProp {
 export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
     const auth = useAuth()
     const locationPath = useLocation().pathname
-    const [ theme, setTheme ] = useState(true)
     const { id } = useParams()
     const navigator = useNavigate()
+    const themeContext = useContext(ThemeContext)
+
+    if (!themeContext) {
+        throw new Error('ThemeContext error.');
+    }
+
+    const { theme, setTheme } = themeContext;
 
     const handleLogout = () => {
         auth.logout()
@@ -29,9 +35,6 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
         navigator('/contact')
     }
 
-    const toggleTheme = () => {
-        setTheme(!theme)
-      }
 
     const namePaths = {
       '/': 'Dashboard',
@@ -51,6 +54,8 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
 
     const currentNamePage = namePaths[locationPath] || 'Error Path Name'
 
+    console.log(theme)
+
     return (
         <>
             <HeaderNav>
@@ -60,11 +65,17 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
                 <h1>{currentNamePage}</h1>
                     <NavIcons>
                         <button onClick={handleContact}>{icons.mail}</button>
-                        {/* <button>{icons.bell}</button> */}
                         <button onClick={handleLogout} id="logout">{icons.logout}</button>
                     </NavIcons>
-                {/* <button onClick={toggleTheme}>{theme ? <LightsOn/> : <LightsOff/>}</button> */}
-                <ThemeButtonStyled onClick={toggleTheme} $isActive={theme}><LightsOn/></ThemeButtonStyled>
+                {theme === 'dark' ? <LightsOff onClick={() => {
+                        setTheme(theme === 'dark' ? 'light' : 'dark');
+                    }}>
+                        {theme}
+                    </LightsOff> : <LightsOn onClick={() => {
+                        setTheme(theme === 'dark' ? 'light' : 'dark');
+                    }}>
+                        {theme}
+                    </LightsOn>}
             </HeaderNav>
         </>
     )
@@ -72,7 +83,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
 
  const HeaderNav = styled.div`
     
-    background-color: ${colors.white};
+    background-color: ${({theme}) => theme.bgSecond};
     display: flex;
     align-items: center;
     padding: 3em 5em;
@@ -83,7 +94,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
         font-size: 2.8rem;
         font-weight: 600;
         line-height: 4.2rem;
-        color: ${colors.black}
+        color: ${({theme}) => theme.mainText}
     }
 
     button{

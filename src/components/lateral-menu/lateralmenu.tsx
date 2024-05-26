@@ -46,7 +46,7 @@ export const LateralMenuStyled = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: white;
+    background-color: ${({theme}) => theme.bgSecond};
     padding: 0em 3em;
     box-shadow: 0px 0px 5px 0px;
     align-items: center;
@@ -60,7 +60,7 @@ export const CardStyled = styled.div`
     padding: 3em;
     text-align: center;
     gap: 3em;
-    background-color: ${colors.white};
+    background-color: ${({theme}) => theme.bgCard};
 
     img{
         width: 40%;
@@ -70,13 +70,13 @@ export const CardStyled = styled.div`
     h2{
         margin: 0.5em 0em;
         font-size: 1.8rem;
-        color: ${colors.black};
+        color: ${({theme}) => theme.mainText};
     }
 
     p{
         margin: 0.5em 0em 1em 0em;
         font-size: 1.2rem;
-        color: ${colors.black};
+        color: ${colors.grey};
     }
 
 
@@ -99,7 +99,7 @@ export const LateralFooter = styled.div`
         font-size: 1.4rem;
         font-weight: 600;
         line-height: 2.5rem;
-        color: ${colors.black}
+        color: ${({theme}) => theme.mainText}
     }
 `
 
