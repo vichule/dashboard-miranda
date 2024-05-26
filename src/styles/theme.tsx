@@ -8,20 +8,30 @@ export const lightTheme = {
     main: colors.white,
     mainText: colors.black,
     subText: colors.lightGreen,
-    subMain: colors.white
+    subMain: colors.white,
+    bg: colors.whiteSemi,
+    bgSecond: colors.white,
+    bgCard: colors.white,
+    btnBg: colors.whiteSemi,
+    btnText: colors.hardGreen
 }
 
 export const darkTheme = {
     main: colors.black,
     mainText: colors.white,
     subText: colors.lightGrey,
-    subMain: colors.darkWhite
+    subMain: colors.darkWhite,
+    bg: colors.black,
+    bgSecond: colors.blackGrey,
+    bgCard: colors.blackSemi,
+    btnBg: colors.hardGreen,
+    btnText: colors.white
 }
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-        background-color: ${colors.whiteSemi};
-        color: ${colors.black};
+        background-color: ${({theme}) => theme.bg};
+        color: ${({theme}) => theme.mainText}
     }
 
     * {

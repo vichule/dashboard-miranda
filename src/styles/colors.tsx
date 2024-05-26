@@ -2,6 +2,8 @@
 export const colors = {
     black: 'black',
     blackSemi: '#393939',
+    blackGrey: '#202020',
+
     white: 'white',
     whiteSemi: '#f8f8f8',
     darkWhite: '#00000014',
