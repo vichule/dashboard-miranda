@@ -8,6 +8,7 @@ export const colors = {
     whiteSemi: '#f8f8f8',
     darkWhite: '#00000014',
     red: '#E23428',
+    redSemi: '#E234281C',
     lightRed: '#FFEDEC',
     orange: '#FF9C3A',
     hardOrange: '#FB9F44',

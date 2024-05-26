@@ -42,7 +42,7 @@ const KpiContainer = styled.div`
 `
 
 const IconContainer = styled.div`
-        background-color: ${colors.lightRed};
+        background-color: ${({theme}) => theme.bgKpi};
         width: 6.5rem;
         height: 6.5rem;
         display: flex;
