@@ -14,7 +14,8 @@ export const lightTheme = {
     bgCard: colors.white,
     btnBg: colors.whiteSemi,
     btnText: colors.hardGreen,
-    bgKpi: colors.lightRed
+    bgKpi: colors.lightRed,
+    borderColor: colors.whiteSemi
 }
 
 export const darkTheme = {
@@ -27,7 +28,8 @@ export const darkTheme = {
     bgCard: colors.blackSemi,
     btnBg: colors.hardGreen,
     btnText: colors.white,
-    bgKpi: colors.redSemi
+    bgKpi: colors.redSemi,
+    borderColor: '#f8f8f826'
 }
 
 export const GlobalStyles = createGlobalStyle`

@@ -14,42 +14,44 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
 
 
     return (
-        
-            isOpen && <LateralMenuStyled>
-                <LogoStyled src={Logo}/>
-                <UlStyled>
-                    <LiStyled><NavLinkStyled to='/'><DashboardIconMenu/> Dashboard </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/bookings'><CalendarIconMenu/> Bookings </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/rooms'><KeyIconMenu/> Rooms </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/contact'><PuzzleIconMenu/> Contact </NavLinkStyled></LiStyled>
-                    <LiStyled><NavLinkStyled to='/users'><UserIconMenu/> Users </NavLinkStyled></LiStyled>
-                </UlStyled>
-                <CardStyled>
-                    <img src={MyPic} alt="" />
-                    <h2>Javier Cabañas</h2>
-                    <p>fake.email@gmail.com</p>
-                    <BasicBtnStyled>Edit</BasicBtnStyled>
-                </CardStyled>
-                <LateralFooter>
-                    <h2>Travl Hotel Admin Dashboard</h2>
-                    <p>© 2024 All Rights Reserved</p>
-                    <p>Made with ♥ by JavierCB</p>
-                </LateralFooter>
-            </LateralMenuStyled>
-        
+
+        isOpen && <LateralMenuStyled>
+            <LogoStyled src={Logo} />
+            <UlStyled>
+                <LiStyled><NavLinkStyled to='/'><DashboardIconMenu /> Dashboard </NavLinkStyled></LiStyled>
+                <LiStyled><NavLinkStyled to='/bookings'><CalendarIconMenu /> Bookings </NavLinkStyled></LiStyled>
+                <LiStyled><NavLinkStyled to='/rooms'><KeyIconMenu /> Rooms </NavLinkStyled></LiStyled>
+                <LiStyled><NavLinkStyled to='/contact'><PuzzleIconMenu /> Contact </NavLinkStyled></LiStyled>
+                <LiStyled><NavLinkStyled to='/users'><UserIconMenu /> Users </NavLinkStyled></LiStyled>
+            </UlStyled>
+            <CardStyled>
+                <img src={MyPic} alt="" />
+                <h2>Javier Cabañas</h2>
+                <p>fake.email@gmail.com</p>
+                <BasicBtnStyled>Edit</BasicBtnStyled>
+            </CardStyled>
+            <LateralFooter>
+                <h2>Travl Hotel Admin Dashboard</h2>
+                <p>© 2024 All Rights Reserved</p>
+                <p>Made with ♥ by JavierCB</p>
+            </LateralFooter>
+        </LateralMenuStyled>
+
     )
 }
 
 export const LateralMenuStyled = styled.div`
     max-width: 30rem;
-    min-height: 1400px;
+    gap: 4em;
+    //min-height: 1300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-color: ${({theme}) => theme.bgSecond};
-    padding: 0em 3em;
-    box-shadow: 0px 0px 5px 0px;
+    background-color: ${({ theme }) => theme.bgSecond};
+    padding: 3em 3em;
+    box-shadow: -5px -6px 11px 0px black;
     align-items: center;
+    justify-content: flex-start;
+    z-index: 2;
 `
 
 export const CardStyled = styled.div`
@@ -60,7 +62,7 @@ export const CardStyled = styled.div`
     padding: 3em;
     text-align: center;
     gap: 3em;
-    background-color: ${({theme}) => theme.bgCard};
+    background-color: ${({ theme }) => theme.bgCard};
 
     img{
         width: 40%;
@@ -70,7 +72,7 @@ export const CardStyled = styled.div`
     h2{
         margin: 0.5em 0em;
         font-size: 1.8rem;
-        color: ${({theme}) => theme.mainText};
+        color: ${({ theme }) => theme.mainText};
     }
 
     p{
@@ -99,7 +101,7 @@ export const LateralFooter = styled.div`
         font-size: 1.4rem;
         font-weight: 600;
         line-height: 2.5rem;
-        color: ${({theme}) => theme.mainText}
+        color: ${({ theme }) => theme.mainText}
     }
 `
 
@@ -125,7 +127,7 @@ export const UlStyled = styled.ul`
     list-style: none;
 `
 
-export const LiStyled = styled.li `
+export const LiStyled = styled.li`
      margin-bottom: 20%;
 `
 

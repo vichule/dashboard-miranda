@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 
 
@@ -9,9 +8,7 @@ export const TableStyled = styled.table`
     text-align: left;
     padding: 0em 5em 0em 5em;
     border-spacing: 1rem 2em;
-    /* min-height: 80rem;
-    height: 50rem; */
-    background-color: ${colors.white};
+    background-color: ${({ theme }) => theme.bgSecond};
     margin-bottom: 2em;
 `
 
@@ -19,7 +16,7 @@ export const TdStyled = styled.th `
     font-size: 1.2rem;
     font-weight: 600;
     padding: 1em 0em;
-    border-bottom: 2px solid ${colors.whiteSemi};
+    border-bottom: 2px solid ${({ theme }) => theme.borderColor};
     text-align: center;
     height: 15rem;
     

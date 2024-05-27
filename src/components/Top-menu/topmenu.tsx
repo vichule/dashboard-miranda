@@ -1,5 +1,5 @@
 
-import styled, { ThemeContext } from "styled-components";
+import styled, { ThemeContext, useTheme } from "styled-components";
 import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
 import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
@@ -18,13 +18,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
     const locationPath = useLocation().pathname
     const { id } = useParams()
     const navigator = useNavigate()
-    const themeContext = useContext(ThemeContext)
-
-    if (!themeContext) {
-        throw new Error('ThemeContext error.');
-    }
-
-    const { theme, setTheme } = themeContext;
+    const { theme, setTheme } = useTheme();
 
     const handleLogout = () => {
         auth.logout()
@@ -88,7 +82,7 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
     align-items: center;
     padding: 3em 5em;
     gap: 3em;
-    box-shadow: 6px 0px 5px 0px;
+    //box-shadow: 6px 0px 5px 0px;
 
     h1{
         font-size: 2.8rem;

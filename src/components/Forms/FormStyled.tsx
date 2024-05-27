@@ -20,7 +20,7 @@ export const BtnContainerForm = styled.div`
 `
 
 export const FormStyled = styled.form`
-    background-color: ${colors.white};
+    background-color: ${({ theme }) => theme.bgSecond};
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 360px));
     grid-template-rows: 1fr 0fr;
