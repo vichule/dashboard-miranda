@@ -72,7 +72,7 @@ export const BookingCard = ({booking , room}: BookingProps) => {
     
     
     const CardContainer = styled.div`
-    background-color: ${colors.white};
+    background-color: ${({ theme }) => theme.bgSecond};
     width: 80%;
     height: 100%;
     display: flex;
@@ -99,7 +99,7 @@ export const BookingCard = ({booking , room}: BookingProps) => {
     
     const CardPar = styled.p`
     font-size: 1.5rem;
-    color: ${colors.blackSemi};
+    color:  ${({theme}) => theme.mainText};
     `
     const CardPicContainer =  styled.div`
     width: 50%;
@@ -114,12 +114,12 @@ export const BookingCard = ({booking , room}: BookingProps) => {
     
     const CardHeader = styled.h1`
     font-size: 4.5rem;
-    color: ${colors.black};
+    color:  ${({theme}) => theme.mainText};
     text-align: left;
     `
     
     const CardSubTitle = styled.h2`
-        color: ${colors.blackSemi};
+        color:  ${({theme}) => theme.mainText};
         font-size: 2.5rem;
     `
     
@@ -150,7 +150,7 @@ export const BookingCard = ({booking , room}: BookingProps) => {
     const CardDescription = styled.p`
         
         font-size: 1.5rem;
-        color: ${colors.blackSemi};
+        color:  ${({theme}) => theme.mainText};
     `
     const CardGap = styled.div`
         border-bottom: 2px solid #00000012;

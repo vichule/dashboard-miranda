@@ -57,7 +57,7 @@ export const RoomCard = ({room}: RoomProp) => {
 
 
 const CardContainer = styled.div`
-background-color: ${colors.white};
+background-color: ${({ theme }) => theme.bgSecond};
 width: 80%;
 height: 100%;
 display: flex;
@@ -84,7 +84,7 @@ gap: 2em;
 
 const CardPar = styled.p`
 font-size: 1.5rem;
-color: ${colors.blackSemi};
+color: ${({theme}) => theme.mainText};
 `
 const CardPicContainer =  styled.div`
 width: 50%;
@@ -104,7 +104,7 @@ text-align: left;
 `
 
 const CardSubTitle = styled.h2`
-    color: ${colors.blackSemi};
+    color: ${({theme}) => theme.mainText};
     font-size: 2.5rem;
 `
 
@@ -135,7 +135,7 @@ font-size: 1.5rem;
 const CardDescription = styled.p`
     
     font-size: 1.5rem;
-    color: ${colors.blackSemi};
+    color: ${({theme}) => theme.mainText};
 `
 const CardGap = styled.div`
     border-bottom: 2px solid #00000012;
