@@ -99,7 +99,7 @@ background-color: transparent;
 
 const CardHeader = styled.h1`
 font-size: 4.5rem;
-color: ${colors.black};
+color: ${({theme}) => theme.mainText};
 text-align: left;
 `
 
