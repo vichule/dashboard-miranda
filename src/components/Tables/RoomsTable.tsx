@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { TdText } from './StyledTable'
 import { useNavigate } from 'react-router-dom'
 import { DeleteIcon, EditIcon } from '../../styles/icons'
-import { useDispatch } from 'react-redux'
 import { CheckinStyled, CheckoutStyled, RowContainer, SubjectContainer, TdContainer } from './ContainersStyled'
 import Swal from 'sweetalert2'
 import { RoomInterface } from '../../features/interfaces/interfaces'
@@ -55,7 +54,6 @@ export const RoomsTable = ({ data }: RoomDataInterface) => {
                         <TdContainer style={{display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                             <RoomsImgStyled src={json.photos[0]} alt="" />
                             <div>
-                                {/* <p>#{json._id}</p> */}
                                 <h2>No. {json.room_number}</h2>
                             </div>
                         </TdContainer>

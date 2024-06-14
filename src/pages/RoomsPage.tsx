@@ -79,7 +79,14 @@ export const Rooms = () => {
                             return 1;
                         }
                         return 0;
-                    
+                    case 'priceDown':
+                        if (a.price > b.price) {
+                            return -1;
+                        }
+                        if (a.price < b.price) {
+                            return 1;
+                        }
+                        return 0;
                     default:
                         if (a.room_number < b.room_number) {
                             return -1;
