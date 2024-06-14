@@ -55,48 +55,19 @@ export const Rooms = () => {
             const orderedRooms = newRooms.sort((a, b) => {
                 switch (order) {
                     case 'roomUp':
-                        if (a.room_number < b.room_number) {
-                            return -1;
-                        }
-                        if (a.room_number > b.room_number) {
-                            return 1;
-                        }
-                        return 0;
+                        return a.room_number - b.room_number;
                     case 'roomDown':
-                        if (a.room_number > b.room_number) {
-                            return -1;
-                        }
-                        if (a.room_number < b.room_number) {
-                            return 1;
-                        }
-                        return 0;
-                        
+                        return b.room_number - a.room_number;
                     case 'priceUp':
-                        if (a.price < b.price) {
-                            return -1;
-                        }
-                        if (a.price > b.price) {
-                            return 1;
-                        }
-                        return 0;
+                        return a.price - b.price;
                     case 'priceDown':
-                        if (a.price > b.price) {
-                            return -1;
-                        }
-                        if (a.price < b.price) {
-                            return 1;
-                        }
-                        return 0;
+                        return b.price - a.price;
                     default:
-                        if (a.room_number < b.room_number) {
-                            return -1;
-                        }
-                        if (a.room_number > b.room_number) {
-                            return 1;
-                        }
-                        return 0;
+                        return a.room_number - b.room_number;
                 }
             })
+
+            console.log('Ordered Rooms:', orderedRooms); 
             
             setRooms(orderedRooms)
         } else if (roomsDataStatus === 'rejected'){
