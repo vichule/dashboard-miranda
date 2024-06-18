@@ -1,11 +1,8 @@
 
 import styled, { ThemeContext, useTheme } from "styled-components";
 import { ArrowClosed, ArrowOpened, LightsOff, LightsOn, icons } from "../../styles/icons";
-import { colors } from "../../styles/colors";
 import { useAuth } from "../../contexts/AuthContext/auth";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useContext, useState } from "react";
-import { ThemeButtonStyled } from "../Button/BtnTheme";
 
 interface TopMenuProp {
     toggleMenu: React.MouseEventHandler<HTMLButtonElement>,
@@ -48,7 +45,6 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
 
     const currentNamePage = namePaths[locationPath] || 'Error Path Name'
 
-    console.log(theme)
 
     return (
         <>
@@ -62,11 +58,11 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
                         <button onClick={handleLogout} id="logout">{icons.logout}</button>
                     </NavIcons>
                 {theme === 'dark' ? <LightsOff onClick={() => {
-                        setTheme(theme === 'dark' ? 'light' : 'dark');
+                        setTheme('light');
                     }}>
                         {theme}
                     </LightsOff> : <LightsOn onClick={() => {
-                        setTheme(theme === 'dark' ? 'light' : 'dark');
+                        setTheme('dark');
                     }}>
                         {theme}
                     </LightsOn>}
@@ -82,7 +78,6 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
     align-items: center;
     padding: 3em 5em;
     gap: 3em;
-    //box-shadow: 6px 0px 5px 0px;
 
     h1{
         font-size: 2.8rem;

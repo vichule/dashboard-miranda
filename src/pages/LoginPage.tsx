@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, useEffect, useReducer, useState } from "react"
+import { FormEvent, useReducer, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext/auth"
 import logo from '../assets/Logo.png'
@@ -34,17 +34,6 @@ export const Login = ({ setAuthUser } : LoginProp) => {
     const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        // if (formData.userName === 'admin@admin.co' && formData.password === 'adminadmin') {
-        //     setAuthUser(true)
-        //     return new Promise((resolve) => {
-        //         setTimeout(() => {
-        //             resolve(navigator(from, { replace: true }))
-        //         }, 500)
-        //     })
-            
-        // } else {
-        //     setErrorMsg('Incorrect values')
-        // }
 
         try {
             const response = (await fetch(baseUrl, {
