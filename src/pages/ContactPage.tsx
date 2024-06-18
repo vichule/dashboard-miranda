@@ -145,4 +145,5 @@ const ContactMenu = styled.div`
 const PaginationContainer = styled.div`
     display: flex;
     gap: 5em;
+    margin-bottom: 5em;
 `

@@ -67,7 +67,6 @@ export const Rooms = () => {
                 }
             })
 
-            console.log('Ordered Rooms:', orderedRooms); 
             
             setRooms(orderedRooms)
         } else if (roomsDataStatus === 'rejected'){

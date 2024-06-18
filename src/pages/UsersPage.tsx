@@ -19,7 +19,7 @@ export const Users = () => {
     const usersDataError = useAppSelector(getUsersError)
     const usersDataStatus = useAppSelector(getUsersStatus)
 
-    const [ users, setUsers] = useState<UserInterface[]>([])
+    const [users, setUsers] = useState<UserInterface[]>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 5;
@@ -36,52 +36,52 @@ export const Users = () => {
 
     const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
-      };
+    };
 
     const handleNew = () => {
         navigator('/users/newuser')
     }
 
 
-    useEffect(() =>{
+    useEffect(() => {
         let newUsers = []
-        if(usersDataStatus === 'idle'){
+        if (usersDataStatus === 'idle') {
             dispatch(userListThunk())
-        }else if(usersDataStatus === 'pending'){
+        } else if (usersDataStatus === 'pending') {
 
-        }else if (usersDataStatus === 'fulfilled'){
-            if (filter === 'Active'){
-                newUsers = usersData.filter((user) => user.status === "Active" )
-            }else if(filter === 'Inactive'){
-                newUsers = usersData.filter((user) => user.status === "Inactive" )
-            }else{
+        } else if (usersDataStatus === 'fulfilled') {
+            if (filter === 'Active') {
+                newUsers = usersData.filter((user) => user.status === "Active")
+            } else if (filter === 'Inactive') {
+                newUsers = usersData.filter((user) => user.status === "Inactive")
+            } else {
                 newUsers = [...usersData]
-                
+
             }
 
             let orderedUsers = newUsers.sort((a, b) => {
                 switch (order) {
-                    
-                        
+
+
                     case 'oldest':
                         return new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
                     case 'asc':
-                        if (a.first_name <  b.first_name) {
+                        if (a.first_name < b.first_name) {
                             return -1;
                         }
-                        if (a.first_name >  b.first_name) {
+                        if (a.first_name > b.first_name) {
                             return 1;
                         }
                         return 0;
                     case 'desc':
-                            if (a.first_name > b.first_name) {
-                                return -1;
-                            }
-                            if (a.first_name < b.first_name) {
-                                return 1;
-                            }
-                            return 0;
-                    
+                        if (a.first_name > b.first_name) {
+                            return -1;
+                        }
+                        if (a.first_name < b.first_name) {
+                            return 1;
+                        }
+                        return 0;
+
                     default:
                         return new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
                 }
@@ -90,22 +90,22 @@ export const Users = () => {
             if (search) {
                 const fixedSearch = search.toLowerCase();
                 orderedUsers = orderedUsers.filter((user) => user.first_name.toLowerCase().includes(fixedSearch));
-              }
-            
+            }
+
             setUsers(orderedUsers)
 
-        }else if(usersDataStatus === 'rejected'){
+        } else if (usersDataStatus === 'rejected') {
             console.log(usersDataError)
         }
 
-    },[dispatch, usersData, usersDataStatus, filter,order,search])
+    }, [dispatch, usersData, usersDataStatus, filter, order, search])
 
     const handleFilter = (option: string) => {
         setFilter(option);
         setCurrenTab(option)
-      };
+    };
 
-      const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         setOrder(e.target.value)
@@ -115,24 +115,24 @@ export const Users = () => {
     return (
         <>
             <UsersContainer>
-            <UsersMenu>
-                <TabMenu>
-                    <TabElement onClick={()=> handleFilter("none")} $isActive={currentTab === "none"}> All Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Active")} $isActive={currentTab === "Active"}> Active Employee </TabElement>
-                    <TabElement onClick={()=> handleFilter("Inactive")} $isActive={currentTab === "Inactive"}> Inactive Employee </TabElement>
-                    <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e)=> setSearch(e.target.value)}/>
-                </TabMenu>
-                <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
-                <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
-                            <option value="none">Newest</option>
-                            <option value="oldest">Oldest</option>
-                            <option value="asc">ABC</option>
-                            <option value="desc">CBA</option>
-                            
-                </OrderSelect>
-            </UsersMenu>
-            <TableStyled>
-                <thead>
+                <UsersMenu>
+                    <TabMenu>
+                        <TabElement onClick={() => handleFilter("none")} $isActive={currentTab === "none"}> All Employee </TabElement>
+                        <TabElement onClick={() => handleFilter("Active")} $isActive={currentTab === "Active"}> Active Employee </TabElement>
+                        <TabElement onClick={() => handleFilter("Inactive")} $isActive={currentTab === "Inactive"}> Inactive Employee </TabElement>
+                        <SearchInput type="text" name="searchBar" id="searchBar" placeholder="Search Name" onChange={(e) => setSearch(e.target.value)} />
+                    </TabMenu>
+                    <GreenBtnStyled onClick={handleNew}>+ New User</GreenBtnStyled>
+                    <OrderSelect name="order" id="order" onChange={(e) => handleOrder(e)}>
+                        <option value="none">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="asc">ABC</option>
+                        <option value="desc">CBA</option>
+
+                    </OrderSelect>
+                </UsersMenu>
+                <TableStyled>
+                    <thead>
                         <tr>
                             <TdStyled>Name</TdStyled>
                             <TdStyled>Job Desk</TdStyled>
@@ -140,18 +140,18 @@ export const Users = () => {
                             <TdStyled>Status</TdStyled>
                             <TdStyled>Options</TdStyled>
                         </tr>
-                </thead>
-                <tbody>
-                    <UsersTable data={displayedUsers}/>
-                </tbody>
-                
-            </TableStyled>
-            <PaginationContainer>
+                    </thead>
+                    <tbody>
+                        <UsersTable data={displayedUsers} />
+                    </tbody>
+
+                </TableStyled>
+                <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </PaginationContainer>
+                </PaginationContainer>
             </UsersContainer>
         </>
     )
@@ -178,8 +178,8 @@ const TabMenu = styled.ul`
 `
 
 const PaginationContainer = styled.div`
-display: flex;
-gap: 5em;
+    display: flex;
+    gap: 5em;
 `
 
 const SearchInput = styled.input`
