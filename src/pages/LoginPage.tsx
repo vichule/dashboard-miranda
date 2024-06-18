@@ -50,7 +50,6 @@ export const Login = ({ setAuthUser } : LoginProp) => {
                 setErrorMsg(`Incorrect values, ${response.status}`)
             } else {
                 const data = await response.json()
-                console.log("Login response data:", data);
                 localStorage.setItem("token", data.token)
                 auth.setAuthUser({ name: data.name, lastName: data.lastName, email: data.email });
                 setAuthUser(true)

@@ -7,13 +7,37 @@ import { BasicBtnStyled } from "../Button/BtnStyled";
 import { CalendarIconMenu, DashboardIconMenu, KeyIconMenu, PuzzleIconMenu, UserIconMenu } from "../../styles/icons";
 import { useAuth } from "../../contexts/AuthContext/auth";
 
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+
+const MySwal = withReactContent(Swal); 
+
 interface LateralProp {
     isOpen: boolean
 }
 export const LateralMenu = ({ isOpen }: LateralProp) => {
-    const { user } = useAuth()
-    console.log("User in LateralMenu:", user); 
+    const { user, setAuthUser } = useAuth();
 
+    const handleEdit = () => {
+        MySwal.fire({
+            title: 'Edit User',
+            html:
+                `<input id="name" class="swal2-input" placeholder="Name" value="${user.name || ''}">` +
+                `<input id="lastName" class="swal2-input" placeholder="Last Name" value="${user.lastName || ''}">` +
+                `<input id="email" class="swal2-input" placeholder="Email" value="${user.email || ''}">`,
+            focusConfirm: false,
+            preConfirm: () => {
+                const name = (document.getElementById('name') as HTMLInputElement).value;
+                const lastName = (document.getElementById('lastName') as HTMLInputElement).value;
+                const email = (document.getElementById('email') as HTMLInputElement).value;
+                return { name, lastName, email };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setAuthUser(result.value);
+            }
+        });
+    };
     return (
 
         isOpen && <LateralMenuStyled>
@@ -29,12 +53,12 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
                 <img src={MyPic} alt="" />
                 <h2>Welcome {user.name} {user.lastName}!</h2>
                 <p>{user.email}</p>
-                <BasicBtnStyled>Edit</BasicBtnStyled>
+                <BasicBtnStyled onClick={handleEdit}>Edit</BasicBtnStyled>
             </CardStyled>
             <LateralFooter>
                 <h2>Travl Hotel Admin Dashboard</h2>
                 <p>© 2024 All Rights Reserved</p>
-                <p>Made with ♥ by JavierCB</p>
+                <p>Made with ♥ by JavierCD</p>
             </LateralFooter>
         </LateralMenuStyled>
 
