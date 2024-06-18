@@ -1,27 +1,29 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState, ReactElement, useEffect } from "react";
 
-interface AuthContextProps {
+interface AuthContextType {
+    user: { firstName: string | null; lastName: string | null; email: string | null };
+    setAuthUser: (user: { firstName: string; lastName: string; email: string }) => void;
     logout: () => void;
-    user: { name: string | null; email: string | null };
-    setAuthUser: (user: { name: string; email: string }) => void;
 }
 
-const AuthContext = createContext<AuthContextProps>({
-    logout: () => {},
-    user: { name: null, email: null },
+const AuthContext = createContext<AuthContextType>({
+    user: { firstName: null, lastName: null, email: null },
     setAuthUser: () => {},
+    logout: () => {},
 });
 
-export const AuthProvider = ({ children }: { children: React.ReactElement }) => {
-    const [user, setUser] = useState<{ name: string | null; email: string | null }>({
-        name: localStorage.getItem("userName"),
+export const AuthProvider = ({ children }: { children: ReactElement }) => {
+    const [user, setUser] = useState<{ firstName: string | null; lastName: string | null; email: string | null }>({
+        firstName: localStorage.getItem("firstName"),
+        lastName: localStorage.getItem("lastName"),
         email: localStorage.getItem("userEmail"),
     });
 
-    const setAuthUser = (user: { name: string; email: string }) => {
-        console.log("Setting user:", user);
+    const setAuthUser = (user: { firstName: string; lastName: string; email: string }) => {
+        console.log("Setting user:", user);  // Debugging line
         setUser(user);
-        localStorage.setItem("userName", user.name);
+        localStorage.setItem("firstName", user.firstName);
+        localStorage.setItem("lastName", user.lastName);
         localStorage.setItem("userEmail", user.email);
     };
 
@@ -31,11 +33,11 @@ export const AuthProvider = ({ children }: { children: React.ReactElement }) => 
 
     const logout = () => {
         localStorage.clear();
-        setUser({ name: null, email: null });
+        setUser({ firstName: null, lastName: null, email: null });
     };
 
     return (
-        <AuthContext.Provider value={{ logout, user, setAuthUser }}>
+        <AuthContext.Provider value={{ user, setAuthUser, logout }}>
             {children}
         </AuthContext.Provider>
     );

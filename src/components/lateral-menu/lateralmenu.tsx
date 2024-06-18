@@ -27,7 +27,7 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
             </UlStyled>
             <CardStyled>
                 <img src={MyPic} alt="" />
-                <h2>{user.name}</h2>
+                <h2>Welcome {user.firstName} {user.lastName}!</h2>
                 <p>{user.email}</p>
                 <BasicBtnStyled>Edit</BasicBtnStyled>
             </CardStyled>
