@@ -51,6 +51,7 @@ export const Login = ({ setAuthUser } : LoginProp) => {
             } else {
                 const data = await response.json()
                 localStorage.setItem("token", data.token)
+                auth.setAuthUser({ name: data.first_name, email: data.email });
                 setAuthUser(true)
                 navigator(from, { replace: true })
             }

@@ -5,12 +5,13 @@ import Logo from "../../assets/travl.png"
 import MyPic from "../../assets/profilePic.jpeg"
 import { BasicBtnStyled } from "../Button/BtnStyled";
 import { CalendarIconMenu, DashboardIconMenu, KeyIconMenu, PuzzleIconMenu, UserIconMenu } from "../../styles/icons";
+import { useAuth } from "../../contexts/AuthContext/auth";
 
 interface LateralProp {
     isOpen: boolean
 }
 export const LateralMenu = ({ isOpen }: LateralProp) => {
-
+    const { user } = useAuth()
 
 
     return (
@@ -26,8 +27,8 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
             </UlStyled>
             <CardStyled>
                 <img src={MyPic} alt="" />
-                <h2>Javier Cabañas</h2>
-                <p>fake.email@gmail.com</p>
+                <h2>{user.name}</h2>
+                <p>{user.email}</p>
                 <BasicBtnStyled>Edit</BasicBtnStyled>
             </CardStyled>
             <LateralFooter>
