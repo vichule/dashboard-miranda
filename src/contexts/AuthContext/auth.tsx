@@ -1,28 +1,28 @@
 import { createContext, useContext, useState, ReactElement, useEffect } from "react";
 
 interface AuthContextType {
-    user: { firstName: string | null; lastName: string | null; email: string | null };
-    setAuthUser: (user: { firstName: string; lastName: string; email: string }) => void;
+    user: { name: string | null; lastName: string | null; email: string | null };
+    setAuthUser: (user: { name: string; lastName: string; email: string }) => void;
     logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-    user: { firstName: null, lastName: null, email: null },
+    user: { name: null, lastName: null, email: null },
     setAuthUser: () => {},
     logout: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: ReactElement }) => {
-    const [user, setUser] = useState<{ firstName: string | null; lastName: string | null; email: string | null }>({
-        firstName: localStorage.getItem("firstName"),
+    const [user, setUser] = useState<{ name: string | null; lastName: string | null; email: string | null }>({
+        name: localStorage.getItem("name"),
         lastName: localStorage.getItem("lastName"),
         email: localStorage.getItem("userEmail"),
     });
 
-    const setAuthUser = (user: { firstName: string; lastName: string; email: string }) => {
-        console.log("Setting user:", user);  // Debugging line
+    const setAuthUser = (user: { name: string; lastName: string; email: string }) => {
+        console.log("Setting user:", user);  
         setUser(user);
-        localStorage.setItem("firstName", user.firstName);
+        localStorage.setItem("name", user.name);
         localStorage.setItem("lastName", user.lastName);
         localStorage.setItem("userEmail", user.email);
     };
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactElement }) => {
 
     const logout = () => {
         localStorage.clear();
-        setUser({ firstName: null, lastName: null, email: null });
+        setUser({ name: null, lastName: null, email: null });
     };
 
     return (
