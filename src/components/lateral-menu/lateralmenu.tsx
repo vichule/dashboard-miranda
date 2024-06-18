@@ -12,7 +12,7 @@ interface LateralProp {
 }
 export const LateralMenu = ({ isOpen }: LateralProp) => {
     const { user } = useAuth()
-
+    console.log("User in LateralMenu:", user); 
 
     return (
 

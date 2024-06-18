@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface AuthContextProps {
     logout: () => void;
@@ -19,10 +19,15 @@ export const AuthProvider = ({ children }: { children: React.ReactElement }) => 
     });
 
     const setAuthUser = (user: { name: string; email: string }) => {
+        console.log("Setting user:", user);
         setUser(user);
         localStorage.setItem("userName", user.name);
         localStorage.setItem("userEmail", user.email);
     };
+
+    useEffect(() => {
+        console.log("User state updated:", user);
+    }, [user]);
 
     const logout = () => {
         localStorage.clear();
