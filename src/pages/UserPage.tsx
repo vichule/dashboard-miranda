@@ -7,6 +7,7 @@ import { GreenBtnStyled } from "../components/Button/BtnStyled"
 import Swal from "sweetalert2"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { UserInterface } from "../features/interfaces/interfaces"
+import { successToast } from "../components/Swal/myToast"
 
 
 export const UserID = () => {
@@ -73,6 +74,7 @@ export const UserID = () => {
     const handleSaveUser = (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
         dispatch(editUserThunk(user))
+        successToast.fire()
         navigator('/users')
     }
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
