@@ -9,8 +9,9 @@ import { useAuth } from "../../contexts/AuthContext/auth";
 
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { errorToast, successToast } from "../Swal/myToast";
 
-const MySwal = withReactContent(Swal); 
+const MySwal = withReactContent(Swal);
 
 interface LateralProp {
     isOpen: boolean
@@ -20,7 +21,7 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
 
     const handleEdit = () => {
         MySwal.fire({
-            title: 'Edit User',
+            title: 'Edit User Card',
             html:
                 `<input id="name" class="swal2-input" placeholder="Name" value="${user.name || ''}">` +
                 `<input id="lastName" class="swal2-input" placeholder="Last Name" value="${user.lastName || ''}">` +
@@ -35,6 +36,9 @@ export const LateralMenu = ({ isOpen }: LateralProp) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setAuthUser(result.value);
+                successToast.fire()
+            }else if(result.isDenied){
+                errorToast.fire()
             }
         });
     };
