@@ -45,6 +45,7 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
         console.log(id)
     }
 
+
     return (
         <>
             {data.map((json) => (
@@ -68,7 +69,7 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
                         <TdText>{json.notes}</TdText>
                     </SubjectContainer>
                     <TdContainer>
-                        <p>{json.room_type}</p>
+                        <p>{json.room.room_type}</p>
                     </TdContainer>
                     <TdContainer>
                         {json.status === 'Check-in' && <CheckinStyled>{json.status}</CheckinStyled>}

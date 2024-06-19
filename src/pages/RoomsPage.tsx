@@ -162,7 +162,7 @@ const RoomsContainer = styled.div`
 const RoomsMenu = styled.div`
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 95%;
 `
 
 
