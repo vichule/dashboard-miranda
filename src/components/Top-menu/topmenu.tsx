@@ -60,11 +60,9 @@ export const TopMenu = ({ toggleMenu, isSideMenuOpen}: TopMenuProp) => {
                 {theme === 'dark' ? <LightsOff onClick={() => {
                         setTheme('light');
                     }}>
-                        {theme}
                     </LightsOff> : <LightsOn onClick={() => {
                         setTheme('dark');
                     }}>
-                        {theme}
                     </LightsOn>}
             </HeaderNav>
         </>
