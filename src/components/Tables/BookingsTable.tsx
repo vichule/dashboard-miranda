@@ -42,7 +42,6 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
     const handleEdit = (id: string | undefined, e: React.MouseEvent<SVGElement, MouseEvent>) => {
         e.stopPropagation()
         navigator(`/bookings/editbooking/${id}`)
-        console.log(id)
     }
 
 
@@ -80,7 +79,7 @@ export const BookingsTable = ({ data }: BookingDataInterface) => {
                     </TdContainer>
                     <TdContainer>
                         <EditIcon onClick={(e) => handleEdit(json._id, e)} />
-                        <DeleteIcon onClick={(e) =>  handleDelete(json, e)}/>
+                        <DeleteIcon onClick={(e) => handleDelete(json, e)} />
                     </TdContainer>
                 </RowContainer>
 

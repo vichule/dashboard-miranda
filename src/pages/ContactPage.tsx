@@ -17,7 +17,7 @@ export const Contact = () => {
     const commentsData = useAppSelector(getCommentsListData)
     const commentsDataError = useAppSelector(getCommentsListError)
     const commentsDataStatus = useAppSelector(getCommentsListStatus)
-    const [ contacts, setContacts] = useState<ContactInterface[]>([])
+    const [contacts, setContacts] = useState<ContactInterface[]>([])
     const [currentPage, setCurrentPage] = useState<number>(1)
 
     const rows = 4;
@@ -25,85 +25,85 @@ export const Contact = () => {
     const LastPage = firstPage + rows;
     let displayedRows = contacts.slice(firstPage, LastPage)
     const totalPages = Math.ceil(contacts.length / rows);
-    
+
     const [filter, setFilter] = useState<boolean>(false)
     const [currentTab, setCurrenTab] = useState<boolean>(false)
 
     const handlePageChange = (newPage: number) => {
         setCurrentPage(newPage);
-      };
+    };
 
-    useEffect(() =>{
+    useEffect(() => {
         let newComments = []
-        if(commentsDataStatus === 'idle'){
+        if (commentsDataStatus === 'idle') {
             dispatch(commentsListThunk())
-        }else if (commentsDataStatus === 'pending'){
-        
-            
-        }else if(commentsDataStatus === 'fulfilled'){
-            if(filter){
+        } else if (commentsDataStatus === 'pending') {
+
+
+        } else if (commentsDataStatus === 'fulfilled') {
+            if (filter) {
                 newComments = commentsData.filter((comment) => comment.status === true)
-            }else{
+            } else {
                 newComments = [...commentsData]
             }
 
             const orderedComments = newComments.sort((a, b) => {
-                
-                 return new Date(a.date).getTime() - new Date(b.date).getTime();
-                
+
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+
             })
-            
+
             setContacts(orderedComments)
 
-        }else if(commentsDataStatus === 'rejected'){
+        } else if (commentsDataStatus === 'rejected') {
             console.log(commentsDataError)
         }
-    },[dispatch, commentsData, commentsDataStatus,filter])
+    }, [dispatch, commentsData, commentsDataStatus, filter])
 
     const handleFilter = (option: boolean) => {
         setFilter(option);
         setCurrenTab(option)
-      };
+    };
 
-    
 
-   
+
+
 
     return (
         <>
             <ContactContainer>
                 <TopContainer>
-                    <SwiperReview/>
+                    <SwiperReview />
                 </TopContainer>
             </ContactContainer>
             <BotContainer>
                 <ContactMenu>
                     <TabMenu>
-                        <TabElement onClick={()=> handleFilter(false)} $isActive={currentTab === false}> All Contacts </TabElement>
-                        <TabElement onClick={()=> handleFilter(true)} $isActive={currentTab === true}> Archived </TabElement>
+                        <TabElement onClick={() => handleFilter(false)} $isActive={currentTab === false}> All Contacts </TabElement>
+                        <TabElement onClick={() => handleFilter(true)} $isActive={currentTab === true}> Archived </TabElement>
                     </TabMenu>
-                    
+
                 </ContactMenu>
-            <TableStyled>
-                <thead>
+                <TableStyled>
+                    <thead>
                         <tr>
                             <TdStyled>Date & Id</TdStyled>
                             <TdStyled>Customer, Email & Phone</TdStyled>
                             <TdStyled>Subject & Comment</TdStyled>
                             <TdStyled>Action</TdStyled>
                         </tr>
-                </thead>
-                <tbody>
-                    <ContactTable data={displayedRows} />
-                </tbody>
-                
-            </TableStyled>
-            <PaginationContainer>
+                    </thead>
+                    <tbody>
+                        <ContactTable data={displayedRows} />
+                    </tbody>
+
+                </TableStyled>
+                <PaginationContainer>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>Previous</GreenBtnStyled>
                     <GreenBtnStyled onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages || totalPages === 0}>Next</GreenBtnStyled>
-            </PaginationContainer>
+                </PaginationContainer>
             </BotContainer>
         </>
     )

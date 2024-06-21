@@ -135,7 +135,7 @@ export const Users = () => {
                     <thead>
                         <tr>
                             <TdStyled>Name</TdStyled>
-                            <TdStyled>Job Desk</TdStyled>
+                            <TdStyled>Job Description</TdStyled>
                             <TdStyled>Contact</TdStyled>
                             <TdStyled>Status</TdStyled>
                             <TdStyled>Options</TdStyled>
