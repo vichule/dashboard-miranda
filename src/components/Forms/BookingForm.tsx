@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { getBookingData, getBookingError, getBookingStatus } from "../../features/bookings/bookingsSlice"
 import { addBookingThunk, bookingThunk, editBookingThunk } from "../../features/bookings/bookingsThunk"
 import { BookingInterface, RoomInterface } from "../../features/interfaces/interfaces"
+import { successToast } from "../Swal/myToast"
 
 interface BookingProp extends EventTarget {
     first_name: HTMLFormElement,
@@ -96,6 +97,7 @@ export const BookingForm = () => {
             room_type: bookingRoom.room_type,
         }
         dispatch(editBookingThunk({ ...booking, ...newBooking }))
+        successToast.fire()
         navigator('/bookings')
     }
 

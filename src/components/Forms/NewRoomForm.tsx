@@ -5,6 +5,7 @@ import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { addRoomThunk, roomListThunk } from "../../features/rooms/roomsThunk"
 import { getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { successToast } from "../Swal/myToast"
 
 interface NewRoomProp extends EventTarget {
     room_type: HTMLFormElement,
@@ -67,6 +68,7 @@ export const NewRoomForm = () => {
             amenities: amenitiesArr,
         }
         dispatch(addRoomThunk(newRoom))
+        successToast.fire()
         navigator('/rooms')
     }
 

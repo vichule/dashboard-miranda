@@ -5,6 +5,7 @@ import { addUserThunk, userListThunk } from "../../features/users/usersThunk"
 import { BtnContainerForm, FormContainer, FormStyled, InputContainer, InputForms, LabelForms, SelectForms, TextAreaForms } from "./FormStyled"
 import { BasicBtnStyled, GreenBtnStyled } from "../Button/BtnStyled"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { successToast } from "../Swal/myToast"
 
 interface NewUserProp extends EventTarget{
             first_name: HTMLFormElement,
@@ -60,6 +61,7 @@ export const NewUserForm = () =>{
             job: formUser.job.value
         }
         dispatch(addUserThunk(newUser))
+        successToast.fire()
         navigator('/users')
     }
 

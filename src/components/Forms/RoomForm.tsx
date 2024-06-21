@@ -6,6 +6,7 @@ import { addRoomThunk, editRoomThunk, roomListThunk, roomThunk } from "../../fea
 import { getRoomData, getRoomStatus, getRoomsData, getRoomsError, getRoomsStatus } from "../../features/rooms/roomsSlice"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { RoomInterface } from "../../features/interfaces/interfaces"
+import { successToast } from "../Swal/myToast"
 
 interface RoomProp extends EventTarget {
     room_type: HTMLFormElement,
@@ -95,6 +96,7 @@ export const RoomForm = () => {
         }
        
         dispatch(editRoomThunk({...room, ...newRoom}))
+        successToast.fire()
         navigator('/rooms')
     }
 

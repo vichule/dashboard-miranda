@@ -7,6 +7,7 @@ import { getBookingsData, getBookingsError, getBookingsStatus } from "../../feat
 import { addBookingThunk, bookingsListThunk } from "../../features/bookings/bookingsThunk"
 import { getRoomsData } from "../../features/rooms/roomsSlice"
 import { roomListThunk } from "../../features/rooms/roomsThunk"
+import { successToast } from "../Swal/myToast"
 
 interface NewBookingProp extends EventTarget {
     first_name: HTMLFormElement,
@@ -80,6 +81,7 @@ export const NewBookingForm = () => {
             room_type: roomSelected.room_type,
         }
         dispatch(addBookingThunk(newBooking))
+        successToast.fire()
         navigator('/bookings')
     }
 
